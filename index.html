@@ -53,7 +53,7 @@
                 <a class="navbar-brand" href="index.html" > <img class="header-logo" src="/img/logo1.png" alt=""></a>
             </div>
 			
-            <form class="nav navbar-form navbar-left navbar-search bottom-align no-left-padding collapse navbar-collapse"  id="test">
+            <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">
                 <div class="form-group form-group-sm">
                     <div class="input-group">
 
@@ -79,11 +79,18 @@
 							<a href="faq.html">FAQ</a>
 						</li>
 						<li>
-							<a id="example" href="#" class="btn btn-link" data-container="body" data-toggle="modal" data-target="#myModal">
+							<a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
                             Login</a>
 						</li>						
 					</ul>
             </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            
+        <!-- /.navbar-collapse -->
+            
+        </div>
+        <!-- /.container -->
+    </nav>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -94,34 +101,27 @@
                             Log In
                         </div>
                         <div class="modal-body">
-							<form class="form-group ">
-								<div class="form-group-xs">
-									
-										<label for="username" class="sr-only">Username</label>
-										<input type="text" id="username" class="form-control" placeholder="Username" />
-									
-										<label for="password" class="sr-only">Password</label>
-										<input type="text" id="password" class="form-control" placeholder="Password" />
-									
+							<form>
+								<div class="form-group">
+									<div class="">									
+											<label for="username" class="sr-only">Username</label>
+											<input type="text" id="username" class="form-control" placeholder="Username" />
+									</div>
+								</div>
+								<div class = "form-group">
+									<div class="">
+											<label for="password" class="sr-only">Password</label>
+											<input type="text" id="password" class="form-control" placeholder="Password" />
+									</div>
+								</div>
 										<button type="button" class="btn  btn-default btn-sm" >Sign In</button>
 										<button type="button" class="btn btn-default btn-sm">Sign Up!</button>
 									
-									<!--<div class="input-group-btn " style="padding-top:10px;">-->
-										
-									<!--</div> -->
                                 </form>				
                         </div>
                 </div>
                </div>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            
-        <!-- /.navbar-collapse -->
-            
-        </div>
-        <!-- /.container -->
-    </nav>
-
     <!-- Header Carousel -->
     <header id="myCarousel" class="carousel push-down">
         <!-- Wrapper for slides -->
