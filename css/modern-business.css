@@ -62,6 +62,14 @@ body {
 	height:75px;
 }
 
+.modal {
+ overflow-y: auto;
+}
+
+.modal-open {
+ overflow: auto;
+}
+
 .img-portfolio {
     margin-bottom: 30px;
 }
