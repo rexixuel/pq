@@ -32,14 +32,6 @@ body {
 	}
 }
 
-@media (max-width:768px){
-	.bottom-align{
-		float:left;
-		clear: right;
-	}
-	
-	
-}
 
 @media (max-width:568px){
 	.bottom-align{	
