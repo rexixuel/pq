@@ -1,0 +1,182 @@
+/*!
+ * Custom People's Q! CSS
+ */
+
+/* Global Styles */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding-top: 100px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+
+
+@media (min-width:768px){
+
+    .login-header{
+			padding:50px 0 0 6.5em;	
+    }	
+	
+    .bottom-align{
+            position: relative;
+            top:40px;            
+			clear:right;
+    }
+	
+	.no-left-padding{
+		padding-left:0px;
+		margin-left:0px;
+	}
+
+	.pq-carousel-text{
+		text-align: right;
+		float:right;
+		margin-right:5px;
+		margin-bottom:0px;
+		
+	}
+	.pq-carousel-header {
+		font-weight:bold;
+
+		background:#2c3e50;
+		padding:5px 15px 5px 15px;
+		clear:right;
+		
+		color:#e67e22;
+	}
+	.pq-carousel-caption{
+  
+		  position: absolute;
+		  right: 40%;
+		  bottom: 200px;
+		  left: 5%;  
+		  padding-top: 20px;
+		  padding-bottom: 20px;
+	}
+	
+}
+
+@media(max-width:768px){
+	.pq-carousel-header{
+		display:none;
+	}
+	.pq-carousel-text-min{
+		display:block;
+		
+		font-weight:bold;
+		
+		float:right;
+		width:100%;
+		text-align:center;
+		
+		background:#2c3e50;
+		padding:5px 15px 5px 15px;
+		margin-top:2em;
+		clear:right;
+		
+		color:#e67e22;
+
+	}
+	.pq-carousel-caption{
+		  position: absolute;
+		  right: 15%;
+		  bottom: 20px;
+		  left: 15%;
+		  z-index: 10;
+		  padding-top: 20px;
+		  padding-bottom: 20px;
+	}
+}
+@media (max-width:568px){
+	.bottom-align{	
+		clear: all;
+	}
+	
+    .login-header{
+		padding:0px 0 0 0px;	
+    }	
+
+	
+}
+
+@media(min-width:968px){
+
+
+}
+.toggle-button-bottom-align{
+          position: relative;
+          top:40px;            
+		  padding:6px 6px;
+}
+
+.header-logo{
+	height:75px;
+}
+
+.modal {
+ overflow-y: auto;
+}
+
+.modal-open {
+ overflow: auto;
+}
+
+
+
+.pq-modal-header {
+  background-color:#e67e22;
+  border-bottom: #e67e22;
+  color: #ecf0f1;
+  font-weight:bold;
+
+}
+/*.modal-content {
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}*/
+
+.pq-modal-body{
+    border: 1px solid #e67e22;
+/*    background-color:#2c3e50;*/
+    color: #ecf0f1;
+}
+
+
+.pq-carousel-caption{  
+  color: #fff;
+  text-align: center;
+  text-shadow: 5px 3px 5px rgba(0, 0, 0, .6);
+}
+
+.pq-carousel-caption-header{
+	   	
+	margin-bottom:0px;    
+
+}
+.img-portfolio {
+    margin-bottom: 30px;
+}
+
+.img-hover:hover {
+    opacity: 0.8;
+}
+.navbar-brand{
+	height:100%;
+}
+
+
+.pq-page-instruction{
+	margin-top:12px;
+	font-size:14px;
+}
