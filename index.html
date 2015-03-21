@@ -15,7 +15,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <!--<link href="dist/css/flat-ui.min.css" rel="stylesheet"> -->
     <link href="css/modern-business.css" rel="stylesheet">   
+    <link href="css/pq.css" rel="stylesheet">   
     
 
     <!-- Custom Fonts -->
@@ -80,7 +82,7 @@
 						</li>
 						<li>
 							<a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
-                            Login</a>
+                            Log In</a>
 						</li>						
 					</ul>
             </div>
@@ -92,15 +94,15 @@
         <!-- /.container -->
     </nav>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                        <div class="modal-header">
+              <div class="modal-dialog ">
+                <div class="modal-content pq-modal-body">
+                        <div class="modal-header pq-modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             Log In
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body ">
 							<form>
 								<div class="form-group">
 									<div class="">									
@@ -111,29 +113,50 @@
 								<div class = "form-group">
 									<div class="">
 											<label for="password" class="sr-only">Password</label>
-											<input type="text" id="password" class="form-control" placeholder="Password" />
+											<input type="password" id="password" class="form-control" placeholder="Password" />
 									</div>
 								</div>
-										<button type="button" class="btn  btn-default btn-sm" >Sign In</button>
-										<button type="button" class="btn btn-default btn-sm">Sign Up!</button>
-									
-                                </form>				
+								<div class = "form-group form-inline">
+										<button type="button" class="btn btn-primary btn-sm" >Sign In</button>
+										<a href="signup.php"> <large> Sign Up Now! </large> </a>
+                                </div>
+								<a href="signup.php"> <small> Forgot your password? </small></a>
+                                </form>
                         </div>
                 </div>
                </div>
             </div>
     <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel push-down">
+    <header id="" class="carousel push-down">
         <!-- Wrapper for slides -->
-		
         <div class="carousel-inner">
+            
             <div class="item active">
-                <div class="fill" style="background-image:url('img/test1.jpg');"></div>
+                
+                <div class="fill" style="background-image:url('img/test2.jpg');">
+
+                    <div class="pq-carousel-text">
+                        <h1 class="pq-carousel-header"> You Review. </h1>
+
+                        <h1 class="pq-carousel-header"> You Decide. </h1>
+
+                        <h1 class="pq-carousel-header"> Is It Worth It? </h1>
+
+                    </div>
+                    <div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+                        <a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
+                        Login Here </a> or
+                        <a href="signup.php"> Sign up </a> now as a premium user and get a chance to win monthly prizes!
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+    
             </div>
 	
-            <div class="carousel-caption" >
-                <h2>25% OFF on IMAGINARY TRAVEL AGENCY!!!</h2>
-            </div>				
+            <div class="pq-carousel-caption " >
+                <h1 class="pq-carousel-caption-header">Sponsored Prize of the Month</h1>
+                <h2 class="pq-carousel-caption-header">25% OFF on IMAGINARY TRAVEL AGENCY!!!</h2>
+            </div>
         </div>
 
     </header>
@@ -221,12 +244,15 @@
 							<li>
 								<a href="faq.html">FAQ</a>
 							</li>
-
+                            <li>
+                                <a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
+                            Login</a>
+							</li>
 						</ul>
 					</div>
                 </div>
                 <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="#">Sign Up!</a>
+                    <a class="btn btn-lg btn-primary btn-block" href="#">Sign Up!</a>
                 </div>
             </div>
         </div>
