@@ -218,7 +218,7 @@
 							<div class = "form-group">
 								<div class="">
 										<label for="rules">Category Rules</label>
-										<textarea id="rules" class="form-control" placeholder="Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting.">Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting.</textarea>
+										<textarea id="rules" class="form-control" placeholder="Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting."></textarea>
 										
 								</div>
 								<div class="pq-format-tags">
@@ -241,20 +241,9 @@
 							<hr>
 							
 							<div class = "form-group">
-								<div class="dropdown-toggle">
+								<div class="input-group">
 										<label for="modNumber">Number of Moderators</label>
-										<select class="dropdown-toggle form-control" id="modNumber">
-											<option> 0 </option>
-											<option> 1 </option>
-											<option> 2 </option>
-											<option> 3 </option>
-											<option> 4 </option>
-											<option> 5 </option>
-											<option> 6 </option>
-											<option> 7 </option>
-											<option> 8 </option>
-											<option> 9 </option>
-										</select>
+										<input type="number" class="form-control" id="modNumber" min=0 max = 9 />
 								</div>
 							</div>
 							<!-- must be dynamic -->
