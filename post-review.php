@@ -9,15 +9,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>People's Q! Admin</title>
+    <title>People's Q! Post Review</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/modern-business.css" rel="stylesheet">
+    <link href="kartik-v-bootstrap-star-rating-v3.5.1-1-gc015b2b/kartik-v-bootstrap-star-rating-c015b2b/css/star-rating.min.css" media="all" rel="stylesheet">
     <link href="css/pq.css" rel="stylesheet">
-
+		
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -59,7 +60,7 @@
                     <div class="input-group">
 
                         <label for="reviewSearch" class="sr-only">Search</label>
-                        <input type="text" id="reviewSearch" class="form-control" placeholder="Search" />
+                        <input type="search" id="reviewSearch" class="form-control" placeholder="Search" />
                         <span class="input-group-btn ">
                             <button type="submit" class="btn btn-default btn-sm">Find Out!</button>
                         </span>
@@ -72,6 +73,10 @@
                                     <li>
                                         <a href="about.html">About</a>
                                     </li>
+                                    <li>
+                                        <a href="post-review.php">Post Review</a>
+                                    </li>
+									
                                     <li>
                                         <a href="categories.html">Categories</a>
                                     </li>
@@ -134,8 +139,8 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Site Set-up
-				<small> Category Set-up </small>
+                <h1 class="page-header">Post a Review
+				<small> username </small>
 				<div class="pq-page-instruction">
 					<small class="pq-page-instruction"> Enter description for product to be reviewed.
 					<br />
@@ -149,7 +154,7 @@
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
                     </li>
-                    <li class="active">Site Set-up
+                    <li class="active">Post a Review
                     </li>
                     
                 </ol>
@@ -168,7 +173,16 @@
                 </div>
             </div>
             <!-- Content Column -->
+			<!-- temporary list. replace with jQuery UI Autocomplete -->
+			<datalist id="categoryList">
+				<option value = "Sample Category 1" />
+				<option value = "Sample Category 2" />
+				<option value = "Sample Category 3" />
+				<option value = "Sample Category 4" />
+				<option value = "Sample Category 5" />
+			</datalist>
             <div class="col-md-9" role="tabpanel">
+
 						<ul class="nav nav-pills">
 							<li> <a href="#description"> Description  </a> </li>
 							<li> <a href="#review"> Review </a> </li>							
@@ -178,14 +192,36 @@
 
 							<hr>
 							
-							<h3 id="description">Description</h3>
+							<h3 id="description">Description</h3> 
 							
 							<hr>
+
+							<div class = "form-group">
+								<div class="">
+										<label for="productName">Product Name</label>
+
+										
+										<input type="text" id="productName" class="form-control" placeholder="Product Name">
+								</div>
+							</div>
+
+							<div class = "form-group">
+								<div class="">
+										<label for="category">Category</label>
+
+										
+										<input list = "categoryList" type="text" id="category" class="form-control" placeholder="Category">
+								</div>
+							</div>
 							
 							<div class = "form-group">
 								<div class="">
 										<label for="descriptionText">Product Description</label>
-										<textarea id="descriptionText" class="form-control" placeholder="Enter product description or introduction here. Use provided HTML5 tags for formatting.">Enter product description or introduction here. Use provided HTML5 tags for formatting.</textarea>
+										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+										
+										<textarea id="descriptionText" class="form-control" placeholder="Enter product description or introduction here. Use provided HTML5 tags for formatting."></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -201,16 +237,31 @@
 								</div>
 								
 							</div>
+							
+							<div class = "form-group">
+								<div class="">
+										<label for="productImage">Product Image</label>
+										<input type="file" id="productImage" />
+										
+										<p class="help-block"> Upload Product Image </p>
+								</div>
+							</div>						
+							
 							<hr>
 							
 							<h3 id="review">Review</h3>
 							
 							<hr>
-							
 							<div class = "form-group">
 								<div class="">
-										<label for="criteria1">Criteria 1</label>
-										<textarea id="criteria1" class="form-control" placeholder="Review details for Criteria 1"> Enter review details for Criteria 1 </textarea>
+										<label for="criteria1" style = "clear: right;">Criteria 1</label>
+										<input id="criteriaStar1" type="number" class="rating" data-size="xs" style="" />
+										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+																				
+										
+										<textarea id="criteria1" class="form-control" placeholder="Enter review details for Criteria 1"></textarea>
 								</div>
 								<div class="pq-format-tags">
 									<label> <small> Format: </small> </label>
@@ -228,7 +279,13 @@
 							<div class = "form-group">
 								<div class="">
 										<label for="criteria2">Criteria 2</label>
-										<textarea id="criteria2" class="form-control" placeholder="Review details for Criteria 2"> Enter review details for Criteria 2 </textarea>
+										<input id="criteriaStar2" type="number" class="rating" data-size="xs" style="" />
+										
+										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+																				
+										<textarea id="criteria2" class="form-control" placeholder="Enter review details for Criteria 2"></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -245,7 +302,14 @@
 							<div class="form-group">
 								<div class="">									
 										<label for="criteria3">Criteria 3</label>
-										<textarea id="criteria3" class="form-control" placeholder="Review details for Criteria 3"> Enter review details for Criteria 3 </textarea>
+										<input id="criteriaStar3" type="number" class="rating" data-size="xs" style="" />
+										
+										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+																				
+										
+										<textarea id="criteria3" class="form-control" placeholder="Enter review details for Criteria 3"></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -262,7 +326,14 @@
 							<div class = "form-group">
 								<div class="">
 										<label for="criteria4">Criteria 4</label>
-										<textarea id="criteria4" class="form-control" placeholder="Review details for Criteria 4"> Enter review details for Criteria 4 </textarea>
+										<input id="criteriaStar4" type="number" class="rating" data-size="xs" style="" />
+										
+										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+																				
+										
+										<textarea id="criteria4" class="form-control" placeholder="Enter review details for Criteria 4"></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -279,7 +350,14 @@
 							<div class = "form-group">
 								<div class="">
 										<label for="criteria5">Criteria 5</label>
-										<textarea id="criteria5" class="form-control" placeholder="Review details for Criteria 5"> Enter review details for Criteria 5 </textarea>
+										<input id="criteriaStar5" type="number" class="rating" data-size="xs" style="" />
+										
+										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+																				
+										
+										<textarea id="criteria5" class="form-control" placeholder="Enter review details for Criteria 5"></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -296,17 +374,24 @@
 							
 							<hr>
 							
-							<h3 id="rulesOptions">Category Rules and Description</h3>
+							<h3 id="">Overall</h3>
 
 							<hr>
 							
 							<div class = "form-group">
 								<div class="">
-										<label for="rules">Category Rules</label>
-										<textarea id="rules" class="form-control" placeholder="Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting.">Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting.</textarea>
+										<label for="overall">Overall Review</label>
+										<input id="overallStar" type="number" class="rating" data-size="xs" style="" />
+										
+										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+										
+										
+										<textarea id="overall" class="form-control" placeholder="Enter overall review details - this could inlcude summary, conclusions or final thoughts on the product. Use provided HTML5 tags for formatting."></textarea>
 										
 								</div>
-								<div>
+								<div class="pq-format-tags">
 									<label> <small> Format: </small> </label>
 									<a href=""> <code> List </code> </a>
 									<a href=""> <code> Header 1 </code> </a>
@@ -317,57 +402,14 @@
 								</div>
 							</div>
 							
-							<hr>
-							
-							<h3 id="modOptions">Moderators</h3>
-
-							<hr>
-							
-							<div class = "form-group">
-								<div class="dropdown-toggle">
-										<label for="modNumber">Number of Moderators</label>
-										<select class="dropdown-toggle form-control" id="modNumber">
-											<option> 0 </option>
-											<option> 1 </option>
-											<option> 2 </option>
-											<option> 3 </option>
-											<option> 4 </option>
-											<option> 5 </option>
-											<option> 6 </option>
-											<option> 7 </option>
-											<option> 8 </option>
-											<option> 9 </option>
-										</select>
-								</div>
-							</div>
-							<!-- must be dynamic -->
-							<div class = "form-group">
-								<div class="">
-										<label for="mod1">Moderator 1</label>
-										<input type='text' id="mod1" class="form-control" placeholder="Moderator Name">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="">									
-										<label for="mod2">Moderator 2</label>
-										<input type='text' id="mod2" class="form-control" placeholder="Moderator Name">
-								</div>
-							</div>
-							
-							<hr>
-								
-							<div class = "form-group form-inline">										                
-									<button type="submit" class="btn btn-primary btn-sm" >Submit</button>           
-							</div>							
 							
 							<hr>
 						</form>
 															
 						<ul class="nav nav-pills">
-							<li> <a href="#criteriaOptions"> Criteria  </a> </li>
-							<li> <a href="#rulesOptions"> Category Rules and Description </a> </li>
-							<li> <a href="#modOptions"> Moderators </a> </li>				
-						</ul> 					
+							<li> <a href="#description"> Description  </a> </li>
+							<li> <a href="#review"> Review </a> </li>							
+						</ul> 
 												
 										
             </div>
@@ -416,6 +458,8 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+	<!-- star rating script -->
+	<script src="kartik-v-bootstrap-star-rating-v3.5.1-1-gc015b2b/kartik-v-bootstrap-star-rating-c015b2b/js/star-rating.min.js" type="text/javascript"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
