@@ -196,8 +196,7 @@
 							<div class = "form-group">
 								<div class="">
 										<label for="prize">Prize Description</label>
-										<textarea id="prize" class="form-control" placeholder="Specify prize to be given away by sponsor of the month"> Specify prize to be given away by sponsor of the month
-										</textarea>
+										<textarea id="prize" class="form-control" placeholder="Specify prize to be given away by sponsor of the month"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -222,7 +221,8 @@
 							<div class = "form-group">
 								<div class="">
 										<label for="prizeBanner">Prize Banner</label>
-										<input type="file" id="address" class="form-control" placeholder="Address" />
+										<input type="file" id="address" />
+										<p class="help-block"> Upload Prize Banner Image </p>
 								</div>
 							</div>						
 							
@@ -235,21 +235,21 @@
 							<div class = "form-group">
 								<div class="">
 										<label for="welcomeMessage">Welcome Message</label>
-										<textarea id="welcomeMessage" class="form-control" placeholder="Welcome Message that shall appear in the welcome page. You can describe the website here or add links"> Welcome Message that shall appear in the welcome page. You can describe the website here or add links</textarea>
+										<textarea id="welcomeMessage" class="form-control" placeholder="Welcome Message that shall appear in the welcome page. You can describe the website here or add links"></textarea>
 								</div>
 							</div>
 
 							<div class = "form-group">
 								<div class="">
 										<label for="announcement">Announcement</label>
-										<textarea id="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"> Enter your announcements here. Announcements can be about site maintenance or any upgrades made in the site</textarea>
+										<textarea id="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"></textarea>
 								</div>
 							</div>
 
 							<div class = "form-group">
 								<div class="">
 										<label for="news">News</label>
-										<textarea id="news" class="form-control" placeholder="Enter Site News Here. "> Enter Site News here. Announcements can be about site maintenance or any upgrades made in the site</textarea>
+										<textarea id="news" class="form-control" placeholder="Enter Site News Here. "></textarea>
 								</div>
 							</div>
 
@@ -284,15 +284,10 @@
 								<hr>
 								
 								<div class = "form-group">
-									<div class="">
-											<div class="dropdown-toggle">
-													<label for="pollNumber">Number of Categories</label>								
-													<select class="dropdown-toggle form-control " id="pollNumber">
-														<option> 2 </option>
-														<option> 3 </option>
-														<option> 4 </option>
-														<option> 5 </option>										
-													</select>
+									<div class="input-group">
+											<div>
+													<label for="pollNumber">Number of Categories</label>
+													<input type="number" id="pollNumber" class="form-control" min=2 max=5 value=2/>
 											</div>
 									</div>
 								</div>
@@ -324,11 +319,11 @@
 								
 								<div class="">
 									<ul>
-										<li class="progress-bar" style="width:50%; margin-bottom:5px;"> Poll Category 1 </li>
+										<li class="progress-bar" style="width:50%; margin-bottom:5px;"> Poll Category 1 - 50%</li>
 										<div class="clearfix"> </div>
-										<li class="progress-bar" style="width:30%; margin-bottom:5px;"> Poll Category 2 </li>
+										<li class="progress-bar" style="width:30%; margin-bottom:5px;"> Poll Category 2 - 30%</li>
 										<div class="clearfix"> </div>
-										<li class="progress-bar" style="width:20%; margin-bottom:5px;"> Poll Category 3</li>
+										<li class="progress-bar" style="width:20%; margin-bottom:5px;"> Poll Category 3 - 20%</li>
 										<div class="clearfix"> </div>
 									</ul>
 								</div>
