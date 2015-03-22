@@ -52,7 +52,7 @@
                     <span class="sr-only">Toggle search</span>
                      Find Out! 
                 </button>
-                <a class="navbar-brand" href="index.html" > <img class="header-logo" src="/img/logo1.png" alt=""></a>
+                <a class="navbar-brand" href="index.html" > <img class="header-logo" src="img/logo1.png" alt=""></a>
             </div>
 			
             <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">

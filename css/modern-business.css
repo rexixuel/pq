@@ -14,61 +14,6 @@ body {
 body {
     padding-top: 100px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
-@media (min-width:768px){
-
-    .login-header{
-			padding:50px 0 0 6.5em;	
-    }	
-	
-    .bottom-align{
-            position: relative;
-            top:40px;            
-			clear:right;
-    }
-	
-	.no-left-padding{
-		padding-left:0px;
-		margin-left:0px;
-	}
-}
-
-@media (max-width:768px){
-	.bottom-align{
-		float:left;
-		clear: right;
-	}
-	
-	
-}
-
-@media (max-width:568px){
-	.bottom-align{	
-		clear: all;
-	}
-	
-    .login-header{
-			padding:0px 0 0 0px;	
-    }	
-	
-	body {
-		padding-top: 58%; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-	}
-}
-
-@media (min-width:768){
-	.login-header{
-		clear:right;
-		padding: 50px;
-	}
-}
-.toggle-button-bottom-align{
-          position: relative;
-          top:40px;            
-}
-
-.header-logo{
-	height:75px;
-}
 
 .img-portfolio {
     margin-bottom: 30px;
@@ -77,15 +22,13 @@ body {
 .img-hover:hover {
     opacity: 0.8;
 }
-.navbar-brand{
-	height:100%;
-}
+
 /* Home Page Carousel */
 .push-down{
     
 }
 header.carousel {
-    height: 50%;
+    height: 75%;
 }
 
 header.carousel .item,
