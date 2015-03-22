@@ -164,12 +164,9 @@ body {
 	margin-bottom:0px;    
 
 }
-.img-portfolio {
-    margin-bottom: 30px;
-}
 
-.img-hover:hover {
-    opacity: 0.8;
+.pq-format-tags, .pq-format-tags a{
+	margin:5px;
 }
 .navbar-brand{
 	height:100%;
