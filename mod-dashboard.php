@@ -221,12 +221,14 @@
 										<textarea id="rules" class="form-control" placeholder="Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting.">Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting.</textarea>
 										
 								</div>
-								<div>
+								<div class="pq-format-tags">
 									<label> <small> Format: </small> </label>
 									<a href=""> <code> List </code> </a>
 									<a href=""> <code> Header 1 </code> </a>
 									<a href=""> <code> Header 2 </code> </a>
 									<a href=""> <code> Header 3 </code> </a>
+									<a href=""> <code> Bold </code> </a>
+									<a href=""> <code> Italize </code> </a>
 									<a href=""> <code> Large Font </code> </a>
 									<a href=""> <code> Small Font </code> </a>
 								</div>
