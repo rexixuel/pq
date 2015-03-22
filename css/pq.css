@@ -168,6 +168,12 @@ body {
 .pq-format-tags, .pq-format-tags a{
 	margin:5px;
 }
+
+.pq-form-misc-links{
+	float:right;
+	font-size:13px;
+	margin-right:5px;	
+}
 .navbar-brand{
 	height:100%;
 }
