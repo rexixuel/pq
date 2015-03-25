@@ -41,14 +41,14 @@
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="container">
-		<div class="navbar-header" style="height:50px; ">
+		<div class="navbar-header pq-navbar-header" >
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" style="padding-top:6px; ;" href="#"> <img src='img/pq-logo.png' /> </a>
+			<a class="navbar-brand pq-navbar-brand" href="#"> <img src='img/pq-logo.png' /> </a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -120,7 +120,7 @@
             
             <div class="item active ">
                 
-                <div class="fill pq-carousel" style="background-image:url('img/test2.jpg');">
+                <div class="fill pq-carousel" style="background-image:url('img/test1.jpg');">
 
                     <div class="pq-carousel-text">
                         <h1 class="pq-carousel-header"> You Review. </h1>
@@ -221,7 +221,7 @@
         <div class="well">
             <div class="row">
                 <div class="col-md-8">
-					<div class="nav navbar" style="height:50%;">
+					<div class="nav navbar" >
 						<ul class="nav navbar-nav navbar-left" >
 							<li>
 								<a href="about.html">About</a>
@@ -233,7 +233,7 @@
 								<a href="faq.html">FAQ</a>
 							</li>
                             <li>
-                                <a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
+                                <a href="#" class="" data-container="body" data-toggle="modal" data-target="#login">
                             Login</a>
 							</li>
 						</ul>
@@ -251,7 +251,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Team CMC 2015</p>
                 </div>
             </div>
         </footer>
