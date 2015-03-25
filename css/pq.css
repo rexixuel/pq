@@ -10,7 +10,7 @@ body {
 }
 
 body {
-    padding-top: 65px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 
@@ -55,6 +55,10 @@ body {
 		  left: 5%;  
 		  padding-top: 20px;
 		  padding-bottom: 20px;
+	}
+	
+	.pq-carousel{
+		padding: 15px;
 	}
 	
 }

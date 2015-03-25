@@ -11,14 +11,13 @@
 
     <title>People's Q!</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <!--<link href="dist/css/flat-ui.min.css" rel="stylesheet"> -->
-    <link href="css/modern-business.css" rel="stylesheet">   
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<link href="css/modern-business.css" rel="stylesheet">   
+<link href="css/pq.css" rel="stylesheet">   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="css/pq.css" rel="stylesheet">   
-    
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -35,65 +34,50 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+	<!-- The Header  FIXED-->
+<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="container">
+		<div class="navbar-header" style="height:50px;">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" style="padding-top:6px;" href="#"> <img src='img/pq-logo.png' /> </a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="nav navbar-nav">
 
-                <button type="button" class="navbar-toggle toggle-button-bottom-align" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-				
-				<button type="button" class="btn navbar-left navbar-toggle btn-link
-				toggle-button-bottom-align" data-toggle="collapse" data-target="#test" style="padding:6px 6px;">
-                    <span class="sr-only">Toggle search</span>
-                     Find Out! 
-                </button>
-                <a class="navbar-brand" href="index.html" > <img class="header-logo" src="img/pq-logo.png" alt=""></a>
-            </div>
-			
-            <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">
-                <div class="form-group form-group-sm">
-                    <div class="input-group">
+				<li class="active"><a href="index.php" target="_blank"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li><a href="categories.php" target="_blank"><span class="glyphicon glyphicon-list"></span> Categories</a></li>
+				<li><a href="faq.php" target="_blank"><span class="glyphicon glyphicon-star"></span> FAQs</a></li>				
+				<li><a href="about.php" target="_blank"><span class="glyphicon glyphicon-star"></span> About Us</a></li>
+				 <li><a data-toggle="modal" href="#login" data-target=""><span class="glyphicon glyphicon-user"></span> Login</a></li>
 
-                        <label for="reviewSearch" class="sr-only">Search</label>
-                        <input type="text" id="reviewSearch" class="form-control" placeholder="Search" />
-                        <span class="input-group-btn ">
-                            <button type="submit" class="btn btn-default btn-sm">Find Out!</button>
-                        </span>
-                    </div>
-
-                </div>
-            </form>
-			
-            <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right" >
-						<li>
-							<a href="about.html">About</a>
-						</li>
-						<li>
-							<a href="categories.html">Categories</a>
-						</li>
-						<li>
-							<a href="faq.html">FAQ</a>
-						</li>
-						<li>
-							<a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
-                            Log In</a>
-						</li>						
-					</ul>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            
-        <!-- /.navbar-collapse -->
-            
-        </div>
-        <!-- /.container -->
-    </nav>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			</ul>
+			<!-- <ul class="nav navbar-nav pull-right">
+				    				    				    	
+				 <li><a data-toggle="modal" href="#login" data-target=""><span class="glyphicon glyphicon-user"></span> Login</a></li>
+				      
+			</ul> -->
+			<div class="col-sm-3 col-md-3 pull-right">
+				<form class="navbar-form" role="search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search keyword...." name="srch-term" id="srch-term">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+				</form>	
+			</div>
+		</div>
+	</div>
+</nav>
+<!-- End of Header -->	
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog ">
                 <div class="modal-content pq-modal-body">
                         <div class="modal-header pq-modal-header">
@@ -131,9 +115,9 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             
-            <div class="item active">
+            <div class="item active ">
                 
-                <div class="fill" style="background-image:url('img/test2.jpg');">
+                <div class="fill pq-carousel" style="background-image:url('img/test2.jpg');">
 
                     <div class="pq-carousel-text">
                         <h1 class="pq-carousel-header"> You Review. </h1>
@@ -271,23 +255,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <script>
-        $('#example').popover(options)
-    </script>
-
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
 
 </body>
 
