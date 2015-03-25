@@ -11,8 +11,11 @@
 
     <title>People's Q!</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
+
+<link href="css/bootstrap.min.css" rel="stylesheet">   
+<link href="css/bootstrap-theme.min.css" rel="stylesheet">   
 <link href="css/modern-business.css" rel="stylesheet">   
 <link href="css/pq.css" rel="stylesheet">   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -38,14 +41,14 @@
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="container">
-		<div class="navbar-header" style="height:50px;">
+		<div class="navbar-header" style="height:50px; ">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" style="padding-top:6px;" href="#"> <img src='img/pq-logo.png' /> </a>
+			<a class="navbar-brand" style="padding-top:6px; ;" href="#"> <img src='img/pq-logo.png' /> </a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -128,7 +131,7 @@
 
                     </div>
                     <div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
-                        <a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
+                        <a id="loginLink" href="#" class="" data-container="body" data-toggle="modal" data-target="#login">
                         Login Here </a> or
                         <a href="signup.php"> Sign up </a> now as a premium user and get a chance to win monthly prizes!
                     </div>
