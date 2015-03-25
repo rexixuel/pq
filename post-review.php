@@ -40,19 +40,18 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
 
-                <button type="button" class="navbar-toggle toggle-button-bottom-align" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle pq-navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
 				
-				<button type="button" class="btn navbar-left navbar-toggle btn-link
-				toggle-button-bottom-align" data-toggle="collapse" data-target="#test" style="padding:6px 6px;">
+				<button type="button" class="btn btn-link navbar-left navbar-toggle pq-navbar-toggle pq-search-toggle" data-toggle="collapse" data-target="#test">
                     <span class="sr-only">Toggle search</span>
                      Find Out! 
                 </button>
-                <a class="navbar-brand" href="index.php" > <img class="header-logo" src="img/logo1.png" alt=""></a>
+                <a class="navbar-brand" href="index.php" > <img class="header-logo" src="img/pq-logo.png" alt=""></a>
             </div>
 			
             <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">
@@ -69,7 +68,7 @@
                 </div>
             </form>
             <div class="collapse navbar-collapse "  id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav navbar-right" >
+                                <ul class="nav navbar-nav navbar-right pq-navbar-links" >
                                     <li>
                                         <a href="about.html">About</a>
                                     </li>

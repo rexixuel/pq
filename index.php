@@ -52,7 +52,7 @@
                     <span class="sr-only">Toggle search</span>
                      Find Out! 
                 </button>
-                <a class="navbar-brand" href="index.html" > <img class="header-logo" src="img/logo1.png" alt=""></a>
+                <a class="navbar-brand" href="index.html" > <img class="header-logo" src="img/pq-logo.png" alt=""></a>
             </div>
 			
             <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">
@@ -148,15 +148,16 @@
                         Login Here </a> or
                         <a href="signup.php"> Sign up </a> now as a premium user and get a chance to win monthly prizes!
                     </div>
+					<div class="pq-carousel-caption " >
+						<h1 class="pq-carousel-caption-header">Sponsored Prize of the Month</h1>
+						<h2 class="pq-carousel-caption-header">25% OFF on IMAGINARY TRAVEL AGENCY!!!</h2>
+					</div>
                 </div>
                 <div class="clearfix"> </div>
     
             </div>
 	
-            <div class="pq-carousel-caption " >
-                <h1 class="pq-carousel-caption-header">Sponsored Prize of the Month</h1>
-                <h2 class="pq-carousel-caption-header">25% OFF on IMAGINARY TRAVEL AGENCY!!!</h2>
-            </div>
+
         </div>
 
     </header>

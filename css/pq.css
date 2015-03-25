@@ -10,7 +10,7 @@ body {
 }
 
 body {
-    padding-top: 100px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 65px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 
@@ -22,8 +22,8 @@ body {
     }	
 	
     .bottom-align{
-            position: relative;
-            top:40px;            
+            margin-top:15px;			
+            /*top:40px;*/            
 			clear:right;
     }
 	
@@ -49,8 +49,7 @@ body {
 		color:#e67e22;
 	}
 	.pq-carousel-caption{
-  
-		  position: absolute;
+  		 
 		  right: 40%;
 		  bottom: 200px;
 		  left: 5%;  
@@ -82,13 +81,17 @@ body {
 
 	}
 	.pq-carousel-caption{
-		  position: absolute;
-		  right: 15%;
-		  bottom: 20px;
+		  position:absolute;
+		  right: 15%;		  
+		  bottom: 40px;
 		  left: 15%;
 		  z-index: 10;
 		  padding-top: 20px;
 		  padding-bottom: 20px;
+	}
+	
+	.pq-carousel-caption-header{
+		font-size:35px;
 	}
 }
 @media (max-width:568px){
@@ -107,16 +110,21 @@ body {
 
 
 }
-.toggle-button-bottom-align{
-          position: relative;
-          top:40px;            
-		  padding:6px 6px;
+.pq-search-toggle{
+	padding:6px 6px;
+}	
+.pq-navbar-toggle{            
+	margin-top:15px;
 }
 
 .header-logo{
-	height:75px;
+	margin:0px;
+	height:100%;
 }
 
+.pq-navbar-links{
+	margin-top:5px;
+}
 .modal {
  overflow-y: auto;
 }
