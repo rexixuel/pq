@@ -18,14 +18,10 @@
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">   
 <link href="css/modern-business.css" rel="stylesheet">   
 <link href="css/pq.css" rel="stylesheet">   
-
-<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
--->
+    <link href="css/pq.css" rel="stylesheet">   
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -45,14 +41,14 @@
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="container">
-		<div class="navbar-header" style="height:50px; ">
+		<div class="navbar-header pq-navbar-header" >
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" style="padding-top:6px; ;" href="#"> <img src='img/pq-logo.png' /> </a>
+			<a class="navbar-brand pq-navbar-brand" href="#"> <img src='img/pq-logo.png' /> </a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -62,7 +58,7 @@
 				<li><a href="categories.php" target="_blank"><span class="glyphicon glyphicon-list"></span> Categories</a></li>
 				<li><a href="faq.php" target="_blank"><span class="glyphicon glyphicon-star"></span> FAQs</a></li>				
 				<li><a href="about.php" target="_blank"><span class="glyphicon glyphicon-star"></span> About Us</a></li>
-				 <li><a data-toggle="modal" href="#" data-target="#login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+				 <li><a data-toggle="modal" href="#login" data-target=""><span class="glyphicon glyphicon-user"></span> Login</a></li>
 
 			</ul>
 			<!-- <ul class="nav navbar-nav pull-right">
@@ -71,7 +67,7 @@
 				      
 			</ul> -->
 			<div class="col-sm-3 col-md-3 pull-right">
-				<form class="navbar-form navbar-search" style="width:100%;" role="search">
+				<form class="navbar-form" role="search">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search keyword...." name="srch-term" id="srch-term">
 					<div class="input-group-btn">
@@ -84,42 +80,39 @@
 	</div>
 </nav>
 <!-- End of Header -->	
-
-<!--Modal Login-->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog ">
-		<div class="modal-content pq-modal-body">
-				<div class="modal-header pq-modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					Log In
-				</div>
-				<div class="modal-body ">
-					<form>
-						<div class="form-group">
-							<div class="">									
-									<label for="username" class="sr-only">Username</label>
-									<input type="text" id="username" class="form-control" placeholder="Username" />
-							</div>
-						</div>
-						<div class = "form-group">
-							<div class="">
-									<label for="password" class="sr-only">Password</label>
-									<input type="password" id="password" class="form-control" placeholder="Password" />
-							</div>
-						</div>
-						<div class = "form-group form-inline">
-								<button type="button" class="btn btn-primary btn-sm" >Sign In</button>
-								<a href="signup.php"> <large> Sign Up Now! </large> </a>
-						</div>
-						<a href="signup.php"> <small> Forgot your password? </small></a>
-						</form>
-				</div>
-		</div>
-    </div>
-</div>
-<!-- end of modal login -->
+              <div class="modal-dialog ">
+                <div class="modal-content pq-modal-body">
+                        <div class="modal-header pq-modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            Log In
+                        </div>
+                        <div class="modal-body ">
+							<form>
+								<div class="form-group">
+									<div class="">									
+											<label for="username" class="sr-only">Username</label>
+											<input type="text" id="username" class="form-control" placeholder="Username" />
+									</div>
+								</div>
+								<div class = "form-group">
+									<div class="">
+											<label for="password" class="sr-only">Password</label>
+											<input type="password" id="password" class="form-control" placeholder="Password" />
+									</div>
+								</div>
+								<div class = "form-group form-inline">
+										<button type="button" class="btn btn-primary btn-sm" >Sign In</button>
+										<a href="signup.php"> <large> Sign Up Now! </large> </a>
+                                </div>
+								<a href="signup.php"> <small> Forgot your password? </small></a>
+                                </form>
+                        </div>
+                </div>
+               </div>
+            </div>
     <!-- Header Carousel -->
     <header id="" class="carousel push-down">
         <!-- Wrapper for slides -->
@@ -127,7 +120,7 @@
             
             <div class="item active ">
                 
-                <div class="fill pq-carousel" style="background-image:url('img/test2.jpg');">
+                <div class="fill pq-carousel" style="background-image:url('img/test1.jpg');">
 
                     <div class="pq-carousel-text">
                         <h1 class="pq-carousel-header"> You Review. </h1>
@@ -228,7 +221,7 @@
         <div class="well">
             <div class="row">
                 <div class="col-md-8">
-					<div class="nav navbar" style="height:50%;">
+					<div class="nav navbar" >
 						<ul class="nav navbar-nav navbar-left" >
 							<li>
 								<a href="about.html">About</a>
@@ -240,7 +233,7 @@
 								<a href="faq.html">FAQ</a>
 							</li>
                             <li>
-                                <a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
+                                <a href="#" class="" data-container="body" data-toggle="modal" data-target="#login">
                             Login</a>
 							</li>
 						</ul>
@@ -258,7 +251,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Team CMC 2015</p>
                 </div>
             </div>
         </footer>
