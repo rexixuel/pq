@@ -3,17 +3,34 @@
  */
 
 /* Global Styles */
+@font-face {
+    font-family: bulleto;
+    src: url('../fonts/forte.ttf');
+}
 
+@font-face {
+    font-family: roboto;
+    src: url('../fonts/roboto-regular.ttf');
+}
+@font-face {
+    font-family: roboto-black;
+    src: url('../fonts/roboto-black.ttf');
+}
 html,
 body {
     height: 100%;
+    font-family:roboto;
 }
 
 body {
     padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
-
-
+h1,h2{
+    font-weight:bold;
+}
+.pq-carousel-caption{
+    font-family:bulleto;
+}
 
 @media (min-width:768px){
 
@@ -41,7 +58,7 @@ body {
 	}
 	.pq-carousel-header {
 		font-weight:bold;
-
+        font-family:roboto-black;
 		background:#2c3e50;
 		padding:5px 15px 5px 15px;
 		clear:right;
@@ -53,8 +70,9 @@ body {
 		  right: 40%;
 		  bottom: 200px;
 		  left: 5%;  
-		  padding-top: 20px;
-		  padding-bottom: 20px;
+		  margin-top: 50px;
+		  margin-bottom: 20px;
+          font-weight:bold;
 	}
 	
 	.pq-carousel{
@@ -96,8 +114,8 @@ body {
 		  bottom: 40px;
 		  left: 15%;
 		  z-index: 10;
-		  padding-top: 20px;
-		  padding-bottom: 20px;
+		  margin-top: 20px;
+		  margin-bottom: 20px;
 	}
 	
 	.pq-carousel-caption-header{
@@ -115,12 +133,12 @@ body {
 
 	
 }
-
 @media(max-width:550px and min-height:501px) {
 	.pq-carousel-caption-header{
 		font-size:30px;
 	}
 }
+
 
 @media(max-width:450px), @media(min-height:500px){
 	.pq-carousel-caption-header{
@@ -159,14 +177,6 @@ body {
 .pq-navbar-links{
 	margin-top:5px;
 }
-
-.pq-navbar-brand{
-	padding-top:6px;
-}
-
-.pq-navbar-header{
-	height:50px;
-}
 .modal {
  overflow-y: auto;
 }
@@ -204,14 +214,20 @@ body {
 
 
 .pq-carousel-caption{  
-  color: #fff;
+  color: #e67e22;
   text-align: center;
-  text-shadow: 5px 3px 5px rgba(0, 0, 0, .6);
+  /*text-shadow: 5px 3px 5px rgba(0, 0, 0, .6);*/
+    text-shadow:
+   -1px -2px 0 #2c3e50,  
+    1px -2px 0 #2c3e50,
+    -1px 3px 0 #2c3e50,
+     1px 3px 0 #2c3e50;
 }
 
 .pq-carousel-caption-header{
 	   	
 	margin-bottom:0px;    
+	font-size:45px;
 
 }
 
