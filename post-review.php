@@ -32,71 +32,17 @@
 </head>
 
 <body>
+<?php
 
-			
- <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+include ('/include/elementClass.php');
 
-                <button type="button" class="navbar-toggle pq-navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-				
-				<button type="button" class="btn btn-link navbar-left navbar-toggle pq-navbar-toggle pq-search-toggle" data-toggle="collapse" data-target="#test">
-                    <span class="sr-only">Toggle search</span>
-                     Find Out! 
-                </button>
-                <a class="navbar-brand" href="index.php" > <img class="header-logo" src="img/pq-logo.png" alt=""></a>
-            </div>
-			
-            <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">
-                <div class="form-group form-group-sm">
-                    <div class="input-group">
+$element = new ConstantElements();
 
-                        <label for="reviewSearch" class="sr-only">Search</label>
-                        <input type="search" id="reviewSearch" class="form-control" placeholder="Search" />
-                        <span class="input-group-btn ">
-                            <button type="submit" class="btn btn-default btn-sm">Find Out!</button>
-                        </span>
-                    </div>
+print $element->GetHeader();
 
-                </div>
-            </form>
-            <div class="collapse navbar-collapse "  id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav navbar-right pq-navbar-links" >
-                                    <li>
-                                        <a href="about.html">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="post-review.php">Post Review</a>
-                                    </li>
-									
-                                    <li>
-                                        <a href="categories.html">Categories</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">FAQ</a>
-                                    </li>
-                                    <li>
-                                        <a id="example" href="logout.php" >
-                                        Log Out</a>
-                                    </li>						
-                                </ul>
-			</div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        
-                    <!-- /.navbar-collapse -->
-                        
-		</div>
-                    <!-- /.container -->
-    </nav>
-   
-    <!-- login modal -->
+?>			
+	<!-- Start Modal -->
+	<!-- login modal	 -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
         <div class="modal-content pq-modal-body">
@@ -166,9 +112,9 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="index.html" class="list-group-item">Browse All Reviews</a>
-                    <a href="index.html" class="list-group-item">Browse Reviews By Category</a>
-                    <a href="about.html" class="list-group-item active">Post A Review</a>
+                    <a href="browse-review.php" class="list-group-item">Browse All Reviews</a>
+                    <a href="categories.php" class="list-group-item">Browse Reviews By Category</a>
+                    <a href="post-review.php" class="list-group-item active">Post A Review</a>
                 </div>
             </div>
             <!-- Content Column -->
@@ -180,7 +126,7 @@
 				<option value = "Sample Category 4" />
 				<option value = "Sample Category 5" />
 			</datalist>
-            <div class="col-md-9" role="tabpanel">
+            <div class="col-md-9">
 
 						<ul class="nav nav-pills">
 							<li> <a href="#description"> Description  </a> </li>
@@ -400,9 +346,13 @@
 									<a href=""> <code> Small Font </code> </a>
 								</div>
 							</div>
-							
-							
+														
 							<hr>
+							
+							<div class = "form-group form-inline">										                
+									<button type="submit" class="btn btn-primary btn-sm" >Submit</button>           
+							</div>
+							
 						</form>
 															
 						<ul class="nav nav-pills">

@@ -3,19 +3,39 @@
  */
 
 /* Global Styles */
+@font-face {
+    font-family: bulleto;
+    src: url('../fonts/timeless.ttf');
+}
 
+@font-face {
+    font-family: roboto;
+    src: url('../fonts/babelsans.ttf');
+}
+@font-face {
+    font-family: roboto-black;
+    src: url('../fonts/babelsans.ttf');
+}
 html,
 body {
     height: 100%;
+    /*font-family:roboto;*/
 }
 
 body {
     padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
+h1,h2{
+    font-weight:bold;
+}
+.pq-carousel-caption{
+    /*font-family:bulleto;*/
+}
+.pq-responsive-user-menu, .pq-responsive-hide{
+	display:inline;
+}	
 
-
-
-@media (min-width:768px){
+@media (min-width:1000px){
 
     .login-header{
 			padding:50px 0 0 6.5em;	
@@ -31,17 +51,20 @@ body {
 		padding-left:0px;
 		margin-left:0px;
 	}
-
+	.pq-responsive-user-menu{
+		display:none;
+	}
 	.pq-carousel-text{
 		text-align: right;
 		float:right;
 		margin-right:5px;
-		margin-bottom:0px;
-		
+		margin-top:10px;
+		margin-bottom:10px;
+		clear:right;
 	}
 	.pq-carousel-header {
 		font-weight:bold;
-
+        /*font-family:roboto-black;*/
 		background:#2c3e50;
 		padding:5px 15px 5px 15px;
 		clear:right;
@@ -53,29 +76,48 @@ body {
 		  right: 40%;
 		  bottom: 200px;
 		  left: 5%;  
-		  padding-top: 20px;
-		  padding-bottom: 20px;
+		  margin-top: 20px;
+		  margin-bottom: 20px;
+          font-weight:bold;
 	}
 	
 	.pq-carousel{
 		padding: 15px;
+        padding-top:35px;
 	}
 	
 }
 
-@media(min-width:700px){
-	.pq-collapse{
-		display:none;
-	}
-}
+.pq-carousel-poll-announcement{
+	font-size:20px;
+}	
 
-@media(max-width:768px){
-	.pq-carousel-header{
+@media(max-width:1000px){
+	.pq-responsive-hide, .pq-carousel-header{
 		display:none;
 	}
+	
+
+	.pq-carousel-caption{
+		  position:static;
+		  /*right: 5%;		  
+		  width:90%;
+		  left: 5%;
+		  z-index: 10;
+		  margin-top: 20%;
+		  margin-bottom: 20px;*/
+	}
+	
+	.pq-carousel-caption-header{
+		font-size:35px;
+	}
+	
+	h1.pq-carousel-caption-header{
+		font-size:40px;
+	}	
+
 	.pq-carousel-text-min{
 		display:block;
-		
 		font-weight:bold;
 		
 		float:right;
@@ -87,22 +129,10 @@ body {
 		margin-top:2em;
 		clear:right;
 		
-		color:#e67e22;
+		color:#e67e22;	        
 
-	}
-	.pq-carousel-caption{
-		  position:absolute;
-		  right: 15%;		  
-		  bottom: 40px;
-		  left: 15%;
-		  z-index: 10;
-		  padding-top: 20px;
-		  padding-bottom: 20px;
-	}
+	}	
 	
-	.pq-carousel-caption-header{
-		font-size:35px;
-	}
 }
 @media (max-width:568px){
 	.bottom-align{	
@@ -115,17 +145,26 @@ body {
 
 	
 }
-
-@media(max-width:550px and min-height:501px) {
-	.pq-carousel-caption-header{
-		font-size:30px;
-	}
+@media(min-height:501px){
 }
-
-@media(max-width:450px), @media(min-height:500px){
+@media(max-width:550px and min-height:501px) {
 	.pq-carousel-caption-header{
 		font-size:25px;
 	}
+	h1.pq-carousel-caption-header{
+		font-size:35px;
+	}
+}
+
+@media(max-width:450px), @media(max-height:500px){
+	.pq-carousel-caption-header{
+		font-size:22px;
+	}
+	
+	h1.pq-carousel-caption-header{
+		font-size:30px;
+	}
+	
 }
 
 @media(max-width:350px){
@@ -133,12 +172,30 @@ body {
     .pq-carousel-header{
 		font-size:14px;
     }
+	
+	.pq-carousel-caption-header, .pq-carousel-poll-announcement	{
+		font-size:14px;
+		text-shadow: 3px 1px 3px #2c3e50;
+	}
+	h1.pq-carousel-caption-header{
+		font-size:19px;
+	}
+	
+	.pq-carousel-text-min{
+		font-size:10px;
+	}
+	
 }
 
 @media(max-width:300px){
 	.pq-carousel-caption-header{
 		font-size:20px;
 	}
+	
+	h1.pq-carousel-caption-header{
+		font-size:25px;
+	}
+	
     .pq-carousel-header{
 		font-size:12px;
     }
@@ -206,14 +263,26 @@ body {
 .pq-carousel-caption{  
   color: #fff;
   text-align: center;
-  text-shadow: 5px 3px 5px rgba(0, 0, 0, .6);
+  text-shadow: 4px 2px 4px #2c3e50;
+    /*text-shadow:
+   -1px -1px 0 #2c3e50,  
+    1px -1px 0 #2c3e50,
+    -1px 1px 0 #2c3e50,
+     1px 1px 0 #2c3e50;*/
 }
+.navbar{
 
+  -webkit-backface-visibility: hidden;
+
+}
 .pq-carousel-caption-header{
 	   	
 	margin-bottom:0px;    
 
 }
+
+
+
 
 .pq-format-tags, .pq-format-tags a{
 	margin:5px;
@@ -230,8 +299,59 @@ body {
 
 
 .pq-page-instruction{
-	margin-top:12px;
+	margin-top:12px;	
 	font-size:14px;
 }
 
+.carousel-inner, header.carousel {
+    height: 100%;
+}
 
+
+.pq-btn-user { 
+  color: #E67E22; 
+  background-color: #1F2B38; 
+  border-color: #2C3E50; 
+  
+  margin-top: 8px;
+} 
+ 
+.pq-btn-user:hover, 
+.pq-btn-user:focus, 
+.pq-btn-user:active, 
+.pq-btn-user.active, 
+.open .dropdown-toggle.pq-btn-user { 
+  color: #E67E22; 
+  background-color: #2C3E50; 
+  border-color: #ecf0f1; 
+} 
+ 
+.pq-btn-user:active, 
+.pq-btn-user.active, 
+.open .dropdown-toggle.pq-btn-user { 
+  background-image: none; 
+} 
+ 
+.pq-btn-user.disabled, 
+.pq-btn-user[disabled], 
+fieldset[disabled] .pq-btn-user, 
+.pq-btn-user.disabled:hover, 
+.pq-btn-user[disabled]:hover, 
+fieldset[disabled] .pq-btn-user:hover, 
+.pq-btn-user.disabled:focus, 
+.pq-btn-user[disabled]:focus, 
+fieldset[disabled] .pq-btn-user:focus, 
+.pq-btn-user.disabled:active, 
+.pq-btn-user[disabled]:active, 
+fieldset[disabled] .pq-btn-user:active, 
+.pq-btn-user.disabled.active, 
+.pq-btn-user[disabled].active, 
+fieldset[disabled] .pq-btn-user.active { 
+  background-color: #1F2B38; 
+  border-color: #2C3E50; 
+} 
+ 
+.pq-btn-user .badge { 
+  color: #1F2B38; 
+  background-color: #E67E22; 
+}
