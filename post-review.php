@@ -38,6 +38,7 @@ include ('/include/elementClass.php');
 
 $element = new ConstantElements();
 
+$element->SetUser('Regular User');
 print $element->GetHeader();
 
 ?>			
@@ -136,9 +137,9 @@ print $element->GetHeader();
 						<form>
 
 							<hr>
-							
-							<h3 id="description">Description</h3> 
-							
+							<span id="description" class="pq-offset-anchor">					
+								<h3 class="pq-offset-anchor">Description</h3> 
+							</span>
 							<hr>
 
 							<div class = "form-group">
@@ -146,7 +147,7 @@ print $element->GetHeader();
 										<label for="productName">Product Name</label>
 
 										
-										<input type="text" id="productName" class="form-control" placeholder="Product Name">
+										<input type="text" id="productName" class="form-control" placeholder="Product Name" required>
 								</div>
 							</div>
 
@@ -155,7 +156,7 @@ print $element->GetHeader();
 										<label for="category">Category</label>
 
 										
-										<input list = "categoryList" type="text" id="category" class="form-control" placeholder="Category">
+										<input list = "categoryList" type="text" id="category" class="form-control" placeholder="Category" required>
 								</div>
 							</div>
 							
@@ -166,7 +167,7 @@ print $element->GetHeader();
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 										
-										<textarea id="descriptionText" class="form-control" placeholder="Enter product description or introduction here. Use provided HTML5 tags for formatting."></textarea>
+										<textarea id="descriptionText" class="form-control" placeholder="Enter product description or introduction here. Use provided HTML5 tags for formatting." required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -193,20 +194,20 @@ print $element->GetHeader();
 							</div>						
 							
 							<hr>
-							
-							<h3 id="review">Review</h3>
-							
+							<span id="review" class="pq-offset-anchor">					
+								<h3 class="pq-offset-anchor">Review</h3>
+							</span>
 							<hr>
 							<div class = "form-group">
 								<div class="">
 										<label for="criteria1" style = "clear: right;">Criteria 1</label>
-										<input id="criteriaStar1" type="number" class="rating" data-size="xs" style="" />
+										<input id="criteriaStar1" type="number" class="rating" data-size="xs" style="" required/>
 										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria1" class="form-control" placeholder="Enter review details for Criteria 1"></textarea>
+										<textarea id="criteria1" class="form-control" placeholder="Enter review details for Criteria 1" required></textarea>
 								</div>
 								<div class="pq-format-tags">
 									<label> <small> Format: </small> </label>
@@ -224,13 +225,13 @@ print $element->GetHeader();
 							<div class = "form-group">
 								<div class="">
 										<label for="criteria2">Criteria 2</label>
-										<input id="criteriaStar2" type="number" class="rating" data-size="xs" style="" />
+										<input id="criteriaStar2" type="number" class="rating" data-size="xs" style="" required/>
 										
 										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
-										<textarea id="criteria2" class="form-control" placeholder="Enter review details for Criteria 2"></textarea>
+										<textarea id="criteria2" class="form-control" placeholder="Enter review details for Criteria 2" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -247,14 +248,14 @@ print $element->GetHeader();
 							<div class="form-group">
 								<div class="">									
 										<label for="criteria3">Criteria 3</label>
-										<input id="criteriaStar3" type="number" class="rating" data-size="xs" style="" />
+										<input id="criteriaStar3" type="number" class="rating" data-size="xs" style="" required/>
 										
 										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria3" class="form-control" placeholder="Enter review details for Criteria 3"></textarea>
+										<textarea id="criteria3" class="form-control" placeholder="Enter review details for Criteria 3" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -271,14 +272,14 @@ print $element->GetHeader();
 							<div class = "form-group">
 								<div class="">
 										<label for="criteria4">Criteria 4</label>
-										<input id="criteriaStar4" type="number" class="rating" data-size="xs" style="" />
+										<input id="criteriaStar4" type="number" class="rating" data-size="xs" style="" required/>
 										
 										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria4" class="form-control" placeholder="Enter review details for Criteria 4"></textarea>
+										<textarea id="criteria4" class="form-control" placeholder="Enter review details for Criteria 4" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -295,14 +296,14 @@ print $element->GetHeader();
 							<div class = "form-group">
 								<div class="">
 										<label for="criteria5">Criteria 5</label>
-										<input id="criteriaStar5" type="number" class="rating" data-size="xs" style="" />
+										<input id="criteriaStar5" type="number" class="rating" data-size="xs" style="" required/>
 										
 										<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria5" class="form-control" placeholder="Enter review details for Criteria 5"></textarea>
+										<textarea id="criteria5" class="form-control" placeholder="Enter review details for Criteria 5" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -333,7 +334,7 @@ print $element->GetHeader();
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 										
 										
-										<textarea id="overall" class="form-control" placeholder="Enter overall review details - this could inlcude summary, conclusions or final thoughts on the product. Use provided HTML5 tags for formatting."></textarea>
+										<textarea id="overall" class="form-control" placeholder="Enter overall review details - this could inlcude summary, conclusions or final thoughts on the product. Use provided HTML5 tags for formatting."required ></textarea>
 										
 								</div>
 								<div class="pq-format-tags">

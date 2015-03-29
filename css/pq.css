@@ -28,6 +28,11 @@ body {
 h1,h2{
     font-weight:bold;
 }
+
+.pq-offset-anchor{
+	padding-top: 50px; margin-top: -50px;
+}
+
 .pq-carousel-caption{
     /*font-family:bulleto;*/
 }

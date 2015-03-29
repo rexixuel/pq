@@ -2,8 +2,8 @@
 
 class ConstantElements{
 		public $homeActive;
-		
-
+		public $user;
+		public $menu;
 	public function GetHeader(){
 		$header = '	<!-- Navigation -->
 		<!-- The Header  FIXED-->
@@ -22,9 +22,9 @@ class ConstantElements{
 									<i class="fa fa-list-alt"></i> Menu <span class="badge">2</span></a>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right " role="menu">
-									<li role="presentation" class="dropdown-header">Hi Regular User!</li>
+									<li role="presentation" class="dropdown-header">Hi '.$this->user.'!</li>
 									<li role="presentation" class="divider"></li>
-									<li> <a href="post-review.php"> Post Review </a> </li>
+									'.$this->menu.'
 									<li> <a href="account-mgt.php"> Account Management </a> </li>
 									<li> <a href="messages.php"> Messages <span class="badge">2</span></a> </li>
 								</ul>
@@ -49,7 +49,7 @@ class ConstantElements{
 										<li><a href="categories.php?categoryKey=">Music</a></li>
 										<li><a href="categories.php?categoryKey=">Gadgets</a></li>
 										<li class="divider"></li>
-										<li><a href="categories.php">See All Subsription</a></li>
+										<li><a href="categories.php">See All Subscription</a></li>
 								  </ul>
 								</li>
 								<li><a href="faq.php" ><span class="glyphicon glyphicon-star"></span> FAQs</a></li>				
@@ -76,9 +76,9 @@ class ConstantElements{
 							<i class="fa fa-list-alt"></i> Menu <span class="badge">2</span></a>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-right " role="menu">
-						  <li role="presentation" class="dropdown-header">Hi Regular User!</li>
+						  <li role="presentation" class="dropdown-header">Hi '.$this->user.'!</li>
 						  <li role="presentation" class="divider"></li>
-							<li> <a href="post-review.php"> Post Review </a> </li>
+							'.$this->menu.'
 							<li> <a href="account-mgt.php"> Account Management </a> </li>
 							<li> <a href="messages.php"> Messages <span class="badge">2</span></a> </li>
 						</ul>
@@ -90,7 +90,23 @@ class ConstantElements{
 		<!-- End of Header -->';
 		return $header;
 	}
-	
+	public function SetUser($user){
+		$this->user  = $user;
+		if ($user != "admin" && $user != "moderator")
+		{
+			$this->menu = '<li> <a href="post-review.php"> Post Review </a> </li>';
+		}
+		else
+			if ($user != "moderator")
+			{
+				$this->menu = '<li> <a href="mod-dashboard.php"> Site Set-up </a> </li>';		
+			}
+			else
+				if ($user != "admin")
+				{
+					$this->menu = '<li> <a href="admin-dashboard.php"> Category Set-up </a> </li>';		
+				}
+	}
 	public function SetHomeActive($active){
 		$this->homeActive = 'class = "'.$active.'" ';
 	}

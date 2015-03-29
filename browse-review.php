@@ -38,7 +38,7 @@
 include ('/include/elementClass.php');
 
 $element = new ConstantElements();
-
+$element->SetUser('Regular User');
 print $element->GetHeader();
 
 ?>						

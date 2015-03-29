@@ -32,66 +32,15 @@
 
 <body>
 
-			
- <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+<?php
 
-                <button type="button" class="navbar-toggle toggle-button-bottom-align" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-				
-				<button type="button" class="btn navbar-left navbar-toggle btn-link
-				toggle-button-bottom-align" data-toggle="collapse" data-target="#test" style="padding:6px 6px;">
-                    <span class="sr-only">Toggle search</span>
-                     Find Out! 
-                </button>
-                <a class="navbar-brand" href="index.php" > <img class="header-logo" src="img/pq-logo.png" alt=""></a>
-            </div>
-			
-            <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">
-                <div class="form-group form-group-sm">
-                    <div class="input-group">
+include ('/include/elementClass.php');
 
-                        <label for="reviewSearch" class="sr-only">Search</label>
-                        <input type="text" id="reviewSearch" class="form-control" placeholder="Search" />
-                        <span class="input-group-btn ">
-                            <button type="submit" class="btn btn-default btn-sm">Find Out!</button>
-                        </span>
-                    </div>
+$element = new ConstantElements();
+$element->SetUser('admin');
+print $element->GetHeader();
 
-                </div>
-            </form>
-            <div class="collapse navbar-collapse "  id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav navbar-right" >
-                                    <li>
-                                        <a href="about.html">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="categories.html">Categories</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">FAQ</a>
-                                    </li>
-                                    <li>
-                                        <a id="example" href="logout.php" >
-                                        Log Out</a>
-                                    </li>						
-                                </ul>
-			</div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        
-                    <!-- /.navbar-collapse -->
-                        
-		</div>
-                    <!-- /.container -->
-    </nav>
-   
+?>   
     <!-- login modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
@@ -135,10 +84,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Site Set-up
-				<small> Category Set-up </small>
-				<div class="pq-page-instruction">
-					<small class="pq-page-instruction"> Enter details below to create a new category. Approve a category poll winner to create the category. Input moderator for created category. Click 'Submit' to finalize changes. </small>
-				</div>
+					<small> Category Set-up </small>
+					<div class="pq-page-instruction">
+						<small class="pq-page-instruction"> Enter details below to create a new category. Approve a category poll winner to create the category. Input moderator for created category. Click 'Submit' to finalize changes. </small>
+					</div>
                 </h1>
 				
                 <ol class="breadcrumb">
@@ -165,26 +114,26 @@
 				
 
                 <ul id="myTab" class="nav nav-tabs nav-justified">
-                    <li class="active"><a href="#welcomepageSetup" data-toggle="tab"><i class=""></i> Welcome Page Set-up</a>
+                    <li class="active"><a href="#welcomepageSetup" data-toggle="tab"><i  class="glyphicon glyphicon-home"></i> Welcome Page Set-up</a>
                     </li>
-                    <li class=""><a href="#categoriesSetup" data-toggle="tab"><i class=""></i> Categories Set-up</a>
+                    <li class=""><a href="#categoriesSetup" data-toggle="tab"><i class="glyphicon glyphicon-list"></i> Categories Set-up</a>
                     </li>
                 </ul>				
 			
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active in" id="welcomepageSetup">				
-										<ul class="nav nav-pills">
-					<li> <a href="#sponsorOptions"> Sponsor </a> </li>
-					<li> <a href="#messageOptions"> Message </a> </li>
-					
-				</ul> 
+						<ul class="nav nav-pills">
+							<li> <a href="#sponsorOptions"> Sponsor </a> </li>
+							<li> <a href="#messageOptions"> Message </a> </li>
+							
+						</ul> 
 				
 						<form>
 						
 							<hr>						
-							
-							<h3 id="sponsorOptions">Sponsor Options</h3>
-							
+							<span id="sponsorOptions" class="pq-offset-anchor">					
+								<h3 class="pq-offset-anchor">Sponsor Options</h3>
+							</span>
 							<hr>
 							
 							<div class = "form-group">
@@ -227,9 +176,9 @@
 							</div>						
 							
 							<hr>							
-							
-							<h3 id="messageOptions">Message Options</h3>
-							
+							<span id="messageOptions" class="pq-offset-anchor">					
+								<h3 class="pq-offset-anchor">Message Options</h3>
+							</span>
 							<hr>
 							
 							<div class = "form-group">

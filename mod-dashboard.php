@@ -33,65 +33,16 @@
 <body>
 
 			
- <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+<?php
 
-                <button type="button" class="navbar-toggle toggle-button-bottom-align" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-				
-				<button type="button" class="btn navbar-left navbar-toggle btn-link
-				toggle-button-bottom-align" data-toggle="collapse" data-target="#test">
-                    <span class="sr-only">Toggle search</span>
-                     Find Out! 
-                </button>
-                <a class="navbar-brand" href="index.php" > <img class="header-logo" src="img/logo1.png" alt=""></a>
-            </div>
-			
-            <form class="nav navbar-form navbar-left navbar-search bottom-align form-inline collapse navbar-collapse"  id="test">
-                <div class="form-group form-group-sm">
-                    <div class="input-group">
+include ('/include/elementClass.php');
 
-                        <label for="reviewSearch" class="sr-only">Search</label>
-                        <input type="text" id="reviewSearch" class="form-control" placeholder="Search" />
-                        <span class="input-group-btn ">
-                            <button type="submit" class="btn btn-default btn-sm">Find Out!</button>
-                        </span>
-                    </div>
+$element = new ConstantElements();
+$element->SetUser('moderator');
 
-                </div>
-            </form>
-            <div class="collapse navbar-collapse "  id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav navbar-right" >
-                                    <li>
-                                        <a href="about.html">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="categories.html">Categories</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">FAQ</a>
-                                    </li>
-                                    <li>
-                                        <a id="example" href="logout.php" >
-                                        Log Out</a>
-                                    </li>						
-                                </ul>
-			</div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        
-                    <!-- /.navbar-collapse -->
-                        
-		</div>
-                    <!-- /.container -->
-    </nav>
-   
+print $element->GetHeader();
+
+?>   
     <!-- login modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
@@ -173,9 +124,9 @@
 						<form>
 
 							<hr>
-							
-							<h3 id="criteriaOptions">Criteria </h3>
-							
+							<span id="criteriaOptions" class="pq-offset-anchor">										
+									<h3 class="pq-offset-anchor">Criteria </h3>
+							</span>
 							<hr>
 							
 							<div class = "form-group">
@@ -210,9 +161,9 @@
 							</div>
 							
 							<hr>
-							
-							<h3 id="rulesOptions">Category Rules and Description</h3>
-
+							<span id="rulesOptions" class="pq-offset-anchor">					
+								<h3 class="pq-offset-anchor">Category Rules and Description</h3>
+							</span>
 							<hr>
 							
 							<div class = "form-group">
@@ -235,9 +186,9 @@
 							</div>
 							
 							<hr>
-							
-							<h3 id="modOptions">Moderators</h3>
-
+							<span id="modOptions" class="pq-offset-anchor">					
+								<h3 class="pq-offset-anchor">Moderators</h3>
+							</span>
 							<hr>
 							
 							<div class = "form-group">
