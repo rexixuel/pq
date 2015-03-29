@@ -19,9 +19,11 @@ class ConstantElements{
 
 						<div class="btn-group pull-right pq-responsive-user-menu"  >
 								<button type="button" class="btn pq-btn-user dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-									<i class="fa fa-list-alt"></i> Menu
+									<i class="fa fa-list-alt"></i> Menu <span class="badge">2</span></a>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right " role="menu">
+									<li role="presentation" class="dropdown-header">Hi Regular User!</li>
+									<li role="presentation" class="divider"></li>
 									<li> <a href="post-review.php"> Post Review </a> </li>
 									<li> <a href="account-mgt.php"> Account Management </a> </li>
 									<li> <a href="messages.php"> Messages <span class="badge">2</span></a> </li>
@@ -40,7 +42,16 @@ class ConstantElements{
 							<ul class="nav navbar-nav">
 					
 								<li '.$this->homeActive.'><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-								<li><a href="categories.php"><span class="glyphicon glyphicon-list"></span> Categories</a></li>
+								<li class="dropdown">
+									<a href="categories.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-list"></span> Categories</a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="categories.php?categoryKey=">Gaming</a></li>
+										<li><a href="categories.php?categoryKey=">Music</a></li>
+										<li><a href="categories.php?categoryKey=">Gadgets</a></li>
+										<li class="divider"></li>
+										<li><a href="categories.php">See All Subsription</a></li>
+								  </ul>
+								</li>
 								<li><a href="faq.php" ><span class="glyphicon glyphicon-star"></span> FAQs</a></li>				
 								<li><a href="about.php" ><span class="glyphicon glyphicon-star"></span> About Us</a></li>
 								 <li><a href="index.php"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
@@ -62,9 +73,11 @@ class ConstantElements{
 				<div class="col-sm-1 col-md-1 pq-responsive-hide " style="margin-left:0px;">
 					<div class="btn-group" >
 						<button type="button" class="btn pq-btn-user dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-							<i class="fa fa-list-alt"></i> Menu
+							<i class="fa fa-list-alt"></i> Menu <span class="badge">2</span></a>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-right " role="menu">
+						  <li role="presentation" class="dropdown-header">Hi Regular User!</li>
+						  <li role="presentation" class="divider"></li>
 							<li> <a href="post-review.php"> Post Review </a> </li>
 							<li> <a href="account-mgt.php"> Account Management </a> </li>
 							<li> <a href="messages.php"> Messages <span class="badge">2</span></a> </li>
