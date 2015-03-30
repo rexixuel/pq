@@ -18,6 +18,8 @@
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">   
 <link href="css/modern-business.css" rel="stylesheet">   
 <link href="css/pq.css" rel="stylesheet">   
+
+<link href="kartik-v-bootstrap-star-rating-v3.5.1-1-gc015b2b/kartik-v-bootstrap-star-rating-c015b2b/css/star-rating.min.css" media="all" rel="stylesheet">
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
 
@@ -147,13 +149,12 @@ print $element->GetHeader();
 
         <!-- Marketing Icons Section -->
         <div class="row">
-			<!-- Row -->
-			<div class="row">
 				<div class="col-lg-2">
-					<h3 class="page-header" >
-							Category Poll
-					</h3>
-					Vote Now!
+
+						<h3 class="page-header" >
+								Category Poll 
+								<small> Vote Now! </small>
+						</h3>
 						<form>
 							<div class="form-group">
 									<div class="radio">
@@ -177,6 +178,22 @@ print $element->GetHeader();
 									<button type="submit" class="btn btn-sm btn-primary"> Submit Vote </button>
 							</div>
 						</form>
+						
+						<h3 class="page-header">
+							Announcements
+						</h3>
+						<ul class="list-unstyled">							
+							<li> 03/30/2015 <a href="announcement.php"> New Category is now up </a> </li>
+							<li> 03/29/2015 <a href="announcement.php"> People's Q! is live! </a> </li>
+						</ul>
+						
+						<h3 class="page-header">
+							News
+						</h3>
+						<ul class="list-unstyled">							
+							<li> 03/30/2015 <a href="announcement.php"> New Features available </a> </li>
+							<li> 03/29/2015 <a href="announcement.php"> People's Q! is live! </a> </li>
+						</ul>						
 				</div>
 				<div class="col-lg-10">
 					<div class="col-lg-12">
@@ -189,7 +206,7 @@ print $element->GetHeader();
 					
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							Latest Reviews:
+							Latest Reviews
 						</h1>
 					</div>
 					
@@ -202,8 +219,9 @@ print $element->GetHeader();
 							<div class="panel-body">
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 								<div class="clearfix"> </div>
-								<h4> Verdict: <h5 style="clear:left; display=inline;"> Worth it! </h5> </h4>
-								<a href="#" class="btn btn-default">Read Full Review</a>
+								<h4> Verdict: <!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
+								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
+								<a href="#" class="btn btn-primary">Read Full Review</a>
 							</div>
 						</div>
 					</div>
@@ -216,8 +234,9 @@ print $element->GetHeader();
 							<div class="panel-body">
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 								<div class="clearfix"> </div>
-								<h4> Verdict: <h5 style="clear:left; display=inline;"> Worth it! </h5> </h4>
-								<a href="#" class="btn btn-default">Read Full Review</a>
+								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
+								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
+								<a href="#" class="btn btn-primary">Read Full Review</a>
 							</div>
 						</div>
 					</div>
@@ -225,19 +244,36 @@ print $element->GetHeader();
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 3</h4>
-								<h6> Category 2</h6>
+								<small> Category 2</small>
 							</div>
 							<div class="panel-body">
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 								<div class="clearfix"> </div>
-								<h4> Verdict: <h5 style="clear:left; display=inline;"> Worth it! </h5> </h4>
-								<a href="#" class="btn btn-default">Read Full Review</a>
+								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
+								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
+								<a href="#" class="btn btn-primary">Read Full Review</a>
 							</div>
 						</div>
 					</div>
+					
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							Announcements
+						</h1>
+						
+						<p> <lead> Lorem ipsum dolor sit amet, </lead> consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+					</div>
+					
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							News
+						</h1>
+						
+						<p> <lead> Lorem ipsum dolor sit amet, </lead> consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+					</div>					
+					
 				</div>
 				<!-- end main column-->
-			</div>
         </div>
         <!-- /.row -->
 
@@ -287,7 +323,10 @@ print $element->GetHeader();
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
+	<!-- star rating script -->
+	<script src="kartik-v-bootstrap-star-rating-v3.5.1-1-gc015b2b/kartik-v-bootstrap-star-rating-c015b2b/js/star-rating.min.js" type="text/javascript"></script>
+   
+   <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 </body>
 
