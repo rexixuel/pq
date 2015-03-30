@@ -18,6 +18,8 @@
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">   
 <link href="css/modern-business.css" rel="stylesheet">   
 <link href="css/pq.css" rel="stylesheet">   
+
+<link href="kartik-v-bootstrap-star-rating-v3.5.1-1-gc015b2b/kartik-v-bootstrap-star-rating-c015b2b/css/star-rating.min.css" media="all" rel="stylesheet">
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
 
@@ -198,7 +200,8 @@
                     <div class="panel-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 						<div class="clearfix"> </div>
-						<h4> Verdict: <h5 style="clear:left; display=inline;"> Worth it! </h5> </h4>
+						<h4> Verdict: <!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
+						<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
                         <a href="#" class="btn btn-default">Read Full Review</a>
                     </div>
                 </div>
@@ -212,7 +215,8 @@
                     <div class="panel-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 						<div class="clearfix"> </div>
-						<h4> Verdict: <h5 style="clear:left; display=inline;"> Worth it! </h5> </h4>
+						<h4> Verdict: <!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
+						<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 3.5 disabled/>
                         <a href="#" class="btn btn-default">Read Full Review</a>
                     </div>
                 </div>
@@ -226,7 +230,8 @@
                     <div class="panel-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 						<div class="clearfix"> </div>
-						<h4> Verdict: <h5 style="clear:left; display=inline;"> Worth it! </h5> </h4>
+						<h4> Verdict: <!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
+						<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
                         <a href="#" class="btn btn-default">Read Full Review</a>
                     </div>
                 </div>
@@ -279,6 +284,9 @@
     <!-- /.container -->
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+
+	<!-- star rating script -->
+	<script src="kartik-v-bootstrap-star-rating-v3.5.1-1-gc015b2b/kartik-v-bootstrap-star-rating-c015b2b/js/star-rating.min.js" type="text/javascript"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
