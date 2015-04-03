@@ -13,6 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/modern-business.css" rel="stylesheet">
@@ -36,16 +37,19 @@
 <?php
 
 include ('/include/elementClass.php');
-
+$user = '';
+if(!empty($_GET['username']))
+{
+	$user = $_GET['username'];
+}
 $element = new ConstantElements();
-$element->SetUser('Regular User');
+$element->SetUser($user);
 print $element->GetHeader();
 
 ?>						
-	<!-- Start Modal -->
-	<!-- login modal	 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog ">
+<!-- Start Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
         <div class="modal-content pq-modal-body">
                 <div class="modal-header pq-modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -54,30 +58,31 @@ print $element->GetHeader();
                     Log In
                 </div>
                 <div class="modal-body ">
-                    <form>
+                    <form action="login.php" method="POST">
                         <div class="form-group">
                             <div class="">									
                                     <label for="username" class="sr-only">Username</label>
-                                    <input type="text" id="username" class="form-control" placeholder="Username" />
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
                             </div>
                         </div>
                         <div class = "form-group">
                             <div class="">
                                     <label for="password" class="sr-only">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Password" />
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
                             </div>
                         </div>
                         <div class = "form-group form-inline">
-                                <button type="button" class="btn btn-primary btn-sm" >Sign In</button>
+                                <button type="submit" class="btn btn-primary btn-sm" >Sign In</button>
                                 <a href="signup.php"> <large> Sign Up Now! </large> </a>
                         </div>
+                        <a href="account-recovery-password.php"> <small> Forgot your password? </small></a>
+                        <a href="account-recovery-user.php"> <small> Forgot your username? </small></a>
                         </form>
                 </div>
         </div>
-       </div>
-    </div>
-  
-
+   </div>
+</div>
+<!-- End Modal -->
 
     <!-- Page Content -->
     <div class="container">
@@ -95,7 +100,7 @@ print $element->GetHeader();
                 </h1>
 				
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.php">Home</a>
                     </li>
                     <li class="active">Search Results
                     </li>
@@ -110,9 +115,9 @@ print $element->GetHeader();
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="browse-review.php" class="list-group-item active">Browse All Reviews</a>
-                    <a href="categories.php" class="list-group-item">Browse Reviews By Category</a>
-                    <a href="post-review.php" class="list-group-item">Post A Review</a>
+                    <?php                       
+                        print $element->GetSidebar('active','','','','','');
+                    ?>
                 </div>
             </div>
             <!-- Content Column -->
@@ -125,6 +130,52 @@ print $element->GetHeader();
 				<option value = "Sample Category 5" />
 			</datalist>
             <div class="col-md-9">
+            	<div class="row">
+	        		<div class="col-lg-12 col-sm-12">
+	        			<div class="">
+	        				<label> Sort by: </label>
+        				</div>
+						<div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-success active">
+						    <input type="checkbox" autocomplete="off" class="success" checked> Worth It?
+						  </label>
+						  <label class="btn btn-danger">
+						    <input type="checkbox" autocomplete="off" class="danger"> Not Worth It?
+						  </label>
+						  <label class="btn btn-primary">
+						    <input type="checkbox" autocomplete="off" class="warning"> Product Name
+						  </label>
+						  <label class="btn btn-info">
+						    <input type="checkbox" autocomplete="off" class="info"> Date Posted
+						  </label>						  
+						</div>
+	        		</div>
+        		</div>
+        		<div class="row">
+	        		<div class="col-lg-4 col-sm-4">
+        			</div>
+	        		<div class="col-lg-4 col-sm-4">
+		        		<nav>
+		        		  <ul class="pagination">
+		        		    <li class="disabled">
+		        		      <a href="#" aria-label="Previous">
+		        		        <span aria-hidden="true">&laquo;</span>
+		        		      </a>
+		        		    </li>
+		        		    <li class="active"><a href="#">1</a></li>
+		        		    <li class="disabled"><a href="#">2</a></li>
+		        		    <li class="disabled"><a href="#">3</a></li>
+		        		    <li class="disabled"><a href="#">4</a></li>
+		        		    <li class="disabled"><a href="#">5</a></li>
+		        		    <li class="disabled">
+		        		      <a href="#" aria-label="Next">
+		        		        <span aria-hidden="true">&raquo;</span>
+		        		      </a>
+		        		    </li>
+		        		  </ul>
+		        		</nav>
+	        		</div>			
+	        	</div>
 				<!-- product row -->
 				<div class="row">
 					<div class="col-md-6 img-portfolio">
@@ -141,8 +192,9 @@ print $element->GetHeader();
 									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
 								</div>
 							</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+			                <p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>
 						</form>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 					</div>
 					<div class="col-md-6 img-portfolio">
 						<a href="portfolio-item.html">
@@ -158,8 +210,9 @@ print $element->GetHeader();
 									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
 								</div>
 							</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+			                <p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>
 						</form>						
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 					</div>
 				</div>
 				<!-- /.row product -->
@@ -179,8 +232,9 @@ print $element->GetHeader();
 									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 4 disabled/>
 								</div>
 							</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+							<p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>	
 						</form>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 					</div>
 					<div class="col-md-6 img-portfolio">
 						<a href="portfolio-item.html">
@@ -196,10 +250,35 @@ print $element->GetHeader();
 									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 3 disabled/>
 								</div>
 							</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+							<p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>
 						</form>						
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 					</div>
 				</div>
+        		<div class="col-lg-4 col-sm-4">
+
+        		</div>
+        		<div class="col-lg-4 col-sm-4">
+	        		<nav>
+	        		  <ul class="pagination">
+	        		    <li class="disabled">
+	        		      <a href="#" aria-label="Previous">
+	        		        <span aria-hidden="true">&laquo;</span>
+	        		      </a>
+	        		    </li>
+	        		    <li class="active"><a href="#">1</a></li>
+	        		    <li class="disabled"><a href="#">2</a></li>
+	        		    <li class="disabled"><a href="#">3</a></li>
+	        		    <li class="disabled"><a href="#">4</a></li>
+	        		    <li class="disabled"><a href="#">5</a></li>
+	        		    <li class="disabled">
+	        		      <a href="#" aria-label="Next">
+	        		        <span aria-hidden="true">&raquo;</span>
+	        		      </a>
+	        		    </li>
+	        		  </ul>
+	        		</nav>
+        		</div>				
 				<!-- /.row product -->				
 				
             </div>

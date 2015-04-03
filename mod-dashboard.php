@@ -13,6 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/modern-business.css" rel="stylesheet">
@@ -93,7 +94,7 @@ print $element->GetHeader();
                 </h1>
 				
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a> </li>                    
+                    <li><a href="index.php">Home</a> </li>                    
                     <li class="active">Category Set-up
                     </li>
                     
@@ -107,9 +108,9 @@ print $element->GetHeader();
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="mod-dashboard.php" class="list-group-item active">Category 1</a>
-                    <a href="mod-dashboard.php" class="list-group-item">Category 2</a>
-                    <a href="mod-dashboard.php" class="list-group-item">Category 3</a>
+                    <a href="mod-dashboard.php" class="list-group-item active">Games</a>
+                    <a href="mod-dashboard.php" class="list-group-item">Music</a>
+                    <a href="mod-dashboard.php" class="list-group-item">Gadgets</a>
                 </div>
             </div>
             <!-- Content Column -->
@@ -247,7 +248,7 @@ print $element->GetHeader();
 								<a href="faq.html">FAQ</a>
 							</li>
                             <li>
-                                <a id="example" href="#" class="" data-container="body" data-toggle="modal" data-target="#myModal">
+                                <a id="example" href="index.php" class="" data-container="body">
                             Log Out</a>
 							</li>
 						</ul>

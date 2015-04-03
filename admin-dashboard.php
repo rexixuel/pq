@@ -11,12 +11,12 @@
 
     <title>People's Q! Admin</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">   
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">   
+    <link href="css/modern-business.css" rel="stylesheet">   
+    <link href="css/pq.css" rel="stylesheet">   
 
-    <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
-    <link href="css/pq.css" rel="stylesheet">
+    <link href="kartik-v-bootstrap-star-rating-v3.5.1-1-gc015b2b/kartik-v-bootstrap-star-rating-c015b2b/css/star-rating.min.css" media="all" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -37,6 +37,7 @@
 include ('/include/elementClass.php');
 
 $element = new ConstantElements();
+$element->SetSidebarActive('active');
 $element->SetUser('admin');
 print $element->GetHeader();
 
@@ -84,14 +85,28 @@ print $element->GetHeader();
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Site Set-up
-					<small> Category Set-up </small>
-					<div class="pq-page-instruction">
-						<small class="pq-page-instruction"> Enter details below to create a new category. Approve a category poll winner to create the category. Input moderator for created category. Click 'Submit' to finalize changes. </small>
-					</div>
+                	<span class="welcome-instruction">
+                		<small> Welcome Page Set-up </small>
+                		<div class="pq-page-instruction">
+                			<small class="pq-page-instruction"> Enter details below to set up site's Welcome Page. 
+                				<br />
+                				Click 'Preview' to see changes and Submit' to finalize changes. </small>
+                		</div>
+                	</span>
+                	<span class="category-instruction" style="display:none;">
+						<small> Category Set-up </small>
+						<div class="pq-page-instruction">
+							<small class="pq-page-instruction"> Enter details below to create a new category. 
+								<br />
+								Approve a category poll winner to create the category. Input moderator for created category. 
+								<br/>
+								Click 'Submit' to finalize changes. </small>
+						</div>
+					</span>
                 </h1>
 				
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.php">Home</a>
                     </li>
                     <li class="active">Site Set-up
                     </li>
@@ -106,14 +121,16 @@ print $element->GetHeader();
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="admin-dashboard.php" class="list-group-item active">Site Set-up</a>
+                    <?php                       
+                        print $element->GetSidebar('','','','','','','active');
+                    ?>
                 </div>
             </div>
             <!-- Content Column -->
             <div class="col-md-9" role="tabpanel">
 				
 
-                <ul id="myTab" class="nav nav-tabs nav-justified">
+                <ul id="setupTab" class="nav nav-tabs nav-justified">
                     <li class="active"><a href="#welcomepageSetup" data-toggle="tab"><i  class="glyphicon glyphicon-home"></i> Welcome Page Set-up</a>
                     </li>
                     <li class=""><a href="#categoriesSetup" data-toggle="tab"><i class="glyphicon glyphicon-list"></i> Categories Set-up</a>
@@ -186,19 +203,69 @@ print $element->GetHeader();
 										<label for="welcomeMessage">Welcome Message</label>
 										<textarea id="welcomeMessage" class="form-control" placeholder="Welcome Message that shall appear in the welcome page. You can describe the website here or add links"></textarea>
 								</div>
+								<div class="pq-format-tags">
+									<label> <small> Format: </small> </label>
+									<a href=""> <code> List </code> </a>
+									<a href=""> <code> Header 1 </code> </a>
+									<a href=""> <code> Header 2 </code> </a>
+									<a href=""> <code> Header 3 </code> </a>
+									<a href=""> <code> Bold </code> </a>
+									<a href=""> <code> Italize </code> </a>
+									<a href=""> <code> Large Font </code> </a>
+									<a href=""> <code> Small Font </code> </a>
+								</div>
+
 							</div>
 
 							<div class = "form-group">
 								<div class="">
 										<label for="announcement">Announcement</label>
-										<textarea id="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"></textarea>
+										<div class = "form-group form-inline">
+											<input type="text" class="form-control" placeholder="Announcement Title" data-toggle="tooltip" title="This is the title of the announement." required/>
+										</div>
+										<div class = "form-group">										
+											<textarea id="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"></textarea>
+										</div>
+										<div class="pq-format-tags">
+											<label> <small> Format: </small> </label>
+											<a href=""> <code> List </code> </a>
+											<a href=""> <code> Header 1 </code> </a>
+											<a href=""> <code> Header 2 </code> </a>
+											<a href=""> <code> Header 3 </code> </a>
+											<a href=""> <code> Bold </code> </a>
+											<a href=""> <code> Italize </code> </a>
+											<a href=""> <code> Large Font </code> </a>
+											<a href=""> <code> Small Font </code> </a>
+										</div>
+	
 								</div>
 							</div>
 
 							<div class = "form-group">
 								<div class="">
+										
 										<label for="news">News</label>
-										<textarea id="news" class="form-control" placeholder="Enter Site News Here. "></textarea>
+										<div class="form-group form-inline">
+											<div>
+												<label for="newsTitle" class="sr-only"> News Title </label>
+												<input required type="text" id="newsTitle" name="newsTitle" class="form-control" placeholder="News Title" data-toggle="tooltip" title="This is the title of the news." />																						
+											</div>	
+										</div>
+										<div class="form-group">
+											<textarea id="news" class="form-control" placeholder="Enter Site News Here. "></textarea>
+										</div>
+										<div class="pq-format-tags">
+											<label> <small> Format: </small> </label>
+											<a href=""> <code> List </code> </a>
+											<a href=""> <code> Header 1 </code> </a>
+											<a href=""> <code> Header 2 </code> </a>
+											<a href=""> <code> Header 3 </code> </a>
+											<a href=""> <code> Bold </code> </a>
+											<a href=""> <code> Italize </code> </a>
+											<a href=""> <code> Large Font </code> </a>
+											<a href=""> <code> Small Font </code> </a>
+										</div>
+
 								</div>
 							</div>
 
@@ -227,9 +294,9 @@ print $element->GetHeader();
 							<form>
 							
 								<hr>
-
-								<h3 id="pollOptions">Create Category Poll</h3>
-								
+								<span id="pollOptions" class="pq-offset-anchor">					
+									<h3 class="pq-offset-anchor">Create Category Poll</h3>
+								</span>	
 								<hr>
 								
 								<div class = "form-group">
@@ -261,9 +328,9 @@ print $element->GetHeader();
 								</div>
 								
 								<hr>								
-								
-								<h3 id="approveOptions"> Create Category </h3>
-								
+								<span id="approveOptions" class="pq-offset-anchor">					
+									<h3 class="pq-offset-anchor"> Create Category </h3>
+								</span>
 								<hr>								
 								
 								<div class="">
@@ -360,7 +427,17 @@ print $element->GetHeader();
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+		$('a[data-toggle="tab"]').on('hidden.bs.tab', function (e) {
+		  $('.category-instruction').toggle();
+		  $('.welcome-instruction').toggle();
+		})
 
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+
+    </script>
 </body>
 
 </html>

@@ -48,41 +48,6 @@ print $element->SetHomeActive('active');
 print $element->GetHeader();
 
 ?>			
-<!-- Start Modal -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-        <div class="modal-content pq-modal-body">
-                <div class="modal-header pq-modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Log In
-                </div>
-                <div class="modal-body ">
-                    <form>
-                        <div class="form-group">
-                            <div class="">									
-                                    <label for="username" class="sr-only">Username</label>
-                                    <input type="text" id="username" class="form-control" placeholder="Username" />
-                            </div>
-                        </div>
-                        <div class = "form-group">
-                            <div class="">
-                                    <label for="password" class="sr-only">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Password" />
-                            </div>
-                        </div>
-                        <div class = "form-group form-inline">
-                                <button type="button" class="btn btn-primary btn-sm" >Sign In</button>
-                                <a href="signup.php"> <large> Sign Up Now! </large> </a>
-                        </div>
-                        <a href="signup.php"> <small> Forgot your password? </small></a>
-                        </form>
-                </div>
-        </div>
-   </div>
-</div>
-<!-- End Modal -->
     <!-- Header Carousel -->
     <header id="" class="carousel push-down">
         <!-- Wrapper for slides -->
@@ -115,7 +80,7 @@ print $element->GetHeader();
 					<div class="clearfix"> </div>
 					<!--start 2nd row -->
 					<div class="row">	
-						<div class="col-md-12 col-sm-12 pull-right ">
+						<div class="col-md-12 col-sm-12 col-xs-12  pull-right ">
 							<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
 								
 									Logged In as Regular User  
@@ -123,7 +88,7 @@ print $element->GetHeader();
 							</div>
 							
 							<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
-								<a href="signup.php"> Upgrade </a> now to premium user and get a chance to win the monthly prize! <a href="signup.php"> Learn More Here</a> 
+								<a href="account-mgt.php"> Upgrade </a> now to premium user and get a chance to win the monthly prize! <a href="account-mgt.php"> Learn More Here</a> 
 							</div>					
 						</div>
 					</div>
@@ -150,50 +115,57 @@ print $element->GetHeader();
         <!-- Marketing Icons Section -->
         <div class="row">
 				<div class="col-lg-2">
-
-						<h3 class="page-header" >
-								Category Poll 
-								<small> Vote Now! </small>
-						</h3>
-						<form>
-							<div class="form-group">
-									<div class="radio">
-										<label>
-											<input type="radio" name="pollCategOptions" id="category1" value="categKey1">
-											Ramen Noodles
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="pollCategOptions" id="category2" value="categKey2">
-											Guitars
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="pollCategOptions" id="category3" value="categKey3">
-											Consumer Speakers
-										</label>
-									</div>
-									<button type="submit" class="btn btn-sm btn-primary"> Submit Vote </button>
-							</div>
-						</form>
-						
-						<h3 class="page-header">
-							Announcements
-						</h3>
-						<ul class="list-unstyled">							
-							<li> 03/30/2015 <a href="announcement.php"> New Category is now up </a> </li>
-							<li> 03/29/2015 <a href="announcement.php"> People's Q! is live! </a> </li>
-						</ul>
-						
-						<h3 class="page-header">
-							News
-						</h3>
-						<ul class="list-unstyled">							
-							<li> 03/30/2015 <a href="announcement.php"> New Features available </a> </li>
-							<li> 03/29/2015 <a href="announcement.php"> People's Q! is live! </a> </li>
-						</ul>						
+                    <div class="row">
+                        <div class="col-lg-12 col-md-4 col-sm-4">
+                            <h3 class="page-header">
+                                    Category Poll 
+									<small> Vote Now! </small>
+                            </h3>
+                            <form>
+                                <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="pollCategOptions" id="category1" value="categKey1">
+                                                Ramen Noodles
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="pollCategOptions" id="category2" value="categKey2">
+                                                Guitars
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="pollCategOptions" id="category3" value="categKey3">
+                                                Consumer Speakers
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-primary"> Submit Vote </button>
+                                </div>
+                            </form>
+						</div>
+                        <div class="col-lg-12 col-md-4 col-sm-4">
+                            <h3 class="page-header">
+                                Announcements
+                            </h3>
+                            <ul class="list-unstyled">							
+                                <li> 03/30/2015 <a href="announcement-1.php?username=Regular User"> New Category is now up </a> </li>
+                                <li> 03/29/2015 <a href="announcement-2.php?username=Regular User"> People's Q! is live! </a> </li>
+                                <li> <a href="announcement-list.php?username=Regular User"> See all announcements... </a> </li>
+                            </ul>
+						</div>
+                        <div class="col-lg-12 col-md-4 col-sm-4">
+                            <h3 class="page-header">
+                                News
+                            </h3>
+                            <ul class="list-unstyled">							
+                                <li> 03/30/2015 <a href="news-1.php?username=Regular User"> New Features available </a> </li>
+                                <li> 03/29/2015 <a href="news-2.php?username=Regular User"> People's Q! is live! </a> </li>
+                                <li> <a href="news-list.php?username=Regular User"> See all news... </a> </li>
+                            </ul>	
+                        </div>
+                    </div>
 				</div>
 				<div class="col-lg-10">
 					<div class="col-lg-12">
@@ -210,7 +182,7 @@ print $element->GetHeader();
 						</h1>
 					</div>
 					
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 1</h4>
@@ -221,11 +193,11 @@ print $element->GetHeader();
 								<div class="clearfix"> </div>
 								<h4> Verdict: <!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
 								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
-								<a href="#" class="btn btn-primary">Read Full Review</a>
+								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 2</h4>
@@ -236,11 +208,11 @@ print $element->GetHeader();
 								<div class="clearfix"> </div>
 								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
 								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
-								<a href="#" class="btn btn-primary">Read Full Review</a>
+								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 3</h4>
@@ -251,12 +223,28 @@ print $element->GetHeader();
 								<div class="clearfix"> </div>
 								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
 								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
-								<a href="#" class="btn btn-primary">Read Full Review</a>
+								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 4</h4>
+								<small> Category 3</small>
+							</div>
+							<div class="panel-body">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+								<div class="clearfix"> </div>
+								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
+								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
+								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
 							</div>
 						</div>
 					</div>
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 pull-left">
 						<h1 class="page-header">
 							Announcements
 						</h1>
@@ -264,7 +252,7 @@ print $element->GetHeader();
 						<p> <lead> Lorem ipsum dolor sit amet, </lead> consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 					</div>
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 pull-left">
 						<h1 class="page-header">
 							News
 						</h1>
@@ -295,14 +283,16 @@ print $element->GetHeader();
 								<a href="faq.html">FAQ</a>
 							</li>
                             <li>
-                                <a href="#" class="" data-container="body" data-toggle="modal" data-target="#login">
-                            Login</a>
+                                <a href="index.php" class="" >
+                            Log Out</a>
 							</li>
 						</ul>
 					</div>
                 </div>
                 <div class="col-md-4">
-                    <a class="btn btn-lg btn-primary btn-block" href="#">Sign Up!</a>
+                	<?php
+                		print $element->GetCallToAction();
+                	?>
                 </div>
             </div>
         </div>

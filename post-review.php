@@ -36,10 +36,13 @@
 
 include ('/include/elementClass.php');
 
+$user = $_GET['username'];
+
 $element = new ConstantElements();
 
-$element->SetUser('Regular User');
+$element->SetUser($user);
 print $element->GetHeader();
+
 
 ?>			
 	<!-- Start Modal -->
@@ -98,7 +101,7 @@ print $element->GetHeader();
                 </h1>
 				
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.php">Home</a>
                     </li>
                     <li class="active">Post a Review
                     </li>
@@ -113,9 +116,10 @@ print $element->GetHeader();
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="browse-review.php" class="list-group-item">Browse All Reviews</a>
-                    <a href="categories.php" class="list-group-item">Browse Reviews By Category</a>
-                    <a href="post-review.php" class="list-group-item active">Post A Review</a>
+                    <?php						
+						print $element->GetSidebar('','','active','','','');
+                    ?>
+                    
                 </div>
             </div>
             <!-- Content Column -->

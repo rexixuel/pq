@@ -97,6 +97,14 @@ h1,h2{
 	font-size:20px;
 }	
 
+	.pq-carousel-caption-header{
+		font-size:35px;
+	}
+	
+	h1.pq-carousel-caption-header{
+		font-size:40px;
+	}	
+
 @media(max-width:1000px){
 	.pq-responsive-hide, .pq-carousel-header{
 		display:none;
@@ -113,14 +121,6 @@ h1,h2{
 		  margin-bottom: 20px;*/
 	}
 	
-	.pq-carousel-caption-header{
-		font-size:35px;
-	}
-	
-	h1.pq-carousel-caption-header{
-		font-size:40px;
-	}	
-
 	.pq-carousel-text-min{
 		display:block;
 		font-weight:bold;
@@ -261,7 +261,7 @@ h1,h2{
 .pq-modal-body{
     border: 1px solid #e67e22;
 /*    background-color:#2c3e50;*/
-    color: #ecf0f1;
+    /*color: #ecf0f1;*/
 }
 
 
