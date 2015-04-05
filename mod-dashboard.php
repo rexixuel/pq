@@ -86,8 +86,8 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Category Set-up
-				<small> Category 1</small>
+                <h1 class="page-header"> <i class="fa fa-wrench"></i> Category Set-up
+				<small> Games </small>
 				<div class="pq-page-instruction">
 					<small class="pq-page-instruction"> Enter details below to set-up category.  Click 'Submit' to finalize changes. </small>
 				</div>
@@ -111,6 +111,8 @@ print $element->GetHeader();
                     <a href="mod-dashboard.php" class="list-group-item active">Games</a>
                     <a href="mod-dashboard.php" class="list-group-item">Music</a>
                     <a href="mod-dashboard.php" class="list-group-item">Gadgets</a>
+                    <a href="mod-dashboard.php" class="list-group-item">Food and Restaurant</a>
+
                 </div>
             </div>
             <!-- Content Column -->
@@ -170,7 +172,7 @@ print $element->GetHeader();
 							<div class = "form-group">
 								<div class="">
 										<label for="rules">Category Rules</label>
-										<textarea id="rules" class="form-control" placeholder="Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting."></textarea>
+										<textarea rows="7" id="rules" class="form-control" placeholder="Enter category description and site rules here. This will be displayed in the category sidebar. Use provided HTML5 tags for formatting."></textarea>
 										
 								</div>
 								<div class="pq-format-tags">

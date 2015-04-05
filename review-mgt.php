@@ -68,7 +68,7 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Review Management
+                <h1 class="page-header"> <i class="fa fa-book"></i> Review Management
 				<small> username </small>
 				<div class="pq-page-instruction">
 					<small class="pq-page-instruction"> Click on posted review to view details.
@@ -108,6 +108,19 @@ print $element->GetHeader();
 				<option value = "Sample Category 5" />
 			</datalist>
             <div class="col-md-9">
+                <form class="form-group form-inline">
+                    <div class="form-group">
+                        <div class="">
+                            <label for="searchPosts"> Search: </label>
+                            <input type="text" id="searchPosts" class="form-control" placeholder="Enter keyword" required>                        
+                            <select class="form-control">
+                                <option class="form-control"> Review </option>
+                                <option class="form-control"> Category </option>
+                                <option class="form-control"> Timestamp </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
             	<table class="table table-hover table-striped">
         			<thead >
         				<tr class="info">
@@ -116,6 +129,7 @@ print $element->GetHeader();
                                     <input type="checkbox" name="reviewAll" id="reviewAll" data-toggle="tooltip" title="Click here to select ALL"/>   
                                     <a href="#"> Review <span class="caret"> </span> </a> 
                                 </label> </th>
+                            <th> <a href="#"> Categories <span class="caret"> </span> </a> </th> 
         					<th> <a href="#"> Timestamp <span class="caret"> </span> </a> </th> 
                             <th> Options <span data-toggle="tooltip" data-placement="top" title="Delete Selected Posts" style="margin-left:10px;"> 
                                         <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a> 
@@ -131,18 +145,22 @@ print $element->GetHeader();
                                   
                                     <label>
                                         <input type="checkbox" name="review1" id="review1" class="reviews"/>  
-                                        <a href="edit-post-1.php?username='.$user.'"> Product 1 </a> 
+                                        <a href="review-details-1.php?username='.$user.'"> Sinigang na Lechon </a> 
                                     </label>
-                                  
-                                  </td>';
+                                 
+                                   </td>';
                                 ?>
+                                <?php print'<td><a href="category-2.php?username'.$user.'"> Food and Restaurant </a></td>' ?>
                 				<td><time> 04/02/2015 16:00 </time></td>
                                  <td><span data-toggle="tooltip" data-placement="left" title="Delete Post"> 
-                                        <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-sm" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a> 
+                                        <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a> 
                                      </span>
                                      <span data-toggle="tooltip" data-placement="right" title="Edit Post">
-                                        <a href="edit-post-1.php" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"> </i> </a>  </td>
+                                        <?php
+                                         print '<a href="edit-post-1.php?username='.$user.'" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"> </i> </a>';
+                                        ?>
                                      </span>
+                                </td>
             				</tr>
                 			<tr>
                                 <!--<td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review2" id="reviews"/> </td>-->
@@ -150,17 +168,21 @@ print $element->GetHeader();
                                   print '<td class=""> 
                                   <label>
                                     <input type="checkbox" name="review2" id="review2" class="reviews"/> 
-                                    <a href="edit-post-2.php?username='.$user.'"> Product 2 </a>
+                                    <a href="review-details-2.php?username='.$user.'"> Product 1 </a>
                                   </label>
                                   </td>';
                                 ?>
+                                <?php print'<td><a href="category-1.php?username'.$user.'"> Games </a></td>' ?>
                                 <td><time> 04/03/2015 16:00 </time></td>
                                 <td><span data-toggle="tooltip" data-placement="left" title="Delete Post">
-                                        <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-sm" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a>
+                                        <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a>
                                     </span>
                                     <span data-toggle="tooltip" data-placement="right" title="Edit Post">
-                                        <a href="edit-post-2.php" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"> </i> </a>  </td>
+                                        <?php
+                                         print '<a href="edit-post-2.php?username='.$user.'" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"> </i> </a>';
+                                         ?>
                                     </span>
+                                </td>
             				</tr>
                         </form>
         			</tbody>
@@ -216,6 +238,12 @@ print $element->GetHeader();
 						</ul>
 					</div>
                 </div>        
+                <div class="col-md-4">
+                    <?php
+                        print $element->GetCallToAction();
+                    ?>
+                </div>
+
             </div>
         </div>
 		

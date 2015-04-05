@@ -84,8 +84,8 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"> Account Management
-					<small> Update username </small>
+                <h1 class="page-header"><i class="fa fa-user"></i> Account Management
+					<small> Update [username] </small>
 					<div class="pq-page-instruction">
 						<small class="pq-page-instruction"> Enter details below to update account.  Click 'Update' to finalize updates. </small>
 					</div>

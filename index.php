@@ -175,14 +175,14 @@ print $element->GetHeader();
                     </div>
 				</div>
 				<div class="col-lg-10">
-					<div class="col-lg-12">
+					<!--<div class="col-lg-12">
 						<h1 class="page-header">
 							Welcome to People's Q!
 						</h1>
 						
 						<p> <lead> Lorem ipsum dolor sit amet, </lead> consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
 					</div>
-					
+					-->
 					<div class="col-lg-12">
 						<h1 class="page-header">
 							Latest Reviews

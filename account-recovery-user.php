@@ -83,7 +83,7 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"> Account Recovery
+                <h1 class="page-header"> <i class="fa fa-user"> </i> Account Recovery
 					<small> Forgot Username</small>
 					<div class="pq-page-instruction">
 						<small class="pq-page-instruction"> Enter your registered e-mail address and answer the security question.  <br/>
@@ -121,16 +121,17 @@ print $element->GetHeader();
 				<form  class="form-horizontal" id="registerHere" method='post' action=''>
 					<fieldset>
 						  <div class="col-md-12">
-							
-							<div class="form-group col-lg-6">
-								<label>Email Address</label>
-								<input type="email" name="" class="form-control" id="" value="" required="required" rel="popover"  title="Tips & Information">
-							</div>
-							
-							<div class="form-group col-lg-6">
-								<label>Confirm Email Address</label>
-								<input type="email" name="" class="form-control" id="" value="">
-							</div>          
+							<div class="form-group">
+								<div class="col-lg-6">
+									<label>Email Address</label>
+									<input type="email" name="" class="form-control" id="" value="" required="required" rel="popover"  title="Tips & Information">
+								</div>
+								
+								<div class="col-lg-6">
+									<label>Confirm Email Address</label>
+									<input type="email" name="" class="form-control" id="" value="">
+								</div>         
+							</div> 
 							<div class="form-group col-lg-12">
 								<button type="submit" class="btn btn-info" onClick="				$('#secValid').show();">Validate E-mail</button>
 							</div>

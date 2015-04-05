@@ -83,7 +83,7 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"> Account Recovery
+                <h1 class="page-header"> <i class="fa fa-user"> </i> Account Recovery
 					<small> Forgot Password</small>
 					<div class="pq-page-instruction">
 						<small class="pq-page-instruction"> Enter username of whom password you forgot.  Click 'Reset Password' to reset password.  <br /> 

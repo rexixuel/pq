@@ -5,7 +5,7 @@
 /* Global Styles */
 @font-face {
     font-family: bulleto;
-    src: url('../fonts/timeless.ttf');
+    src: url('../fonts/bulletto-killa.ttf');
 }
 
 @font-face {
@@ -28,7 +28,19 @@ body {
 h1,h2{
     font-weight:bold;
 }
-
+.pq-main-reply{
+	margin:5px;
+}
+.pq-mod-list{
+	margin-top:10px;
+}
+.pq-verdict{
+	padding:2px;
+	font-family: bulleto;
+	font-size: 20px;
+	font-weight: lighter;
+ 	/*text-shadow: 1px 2px 1px #fff;*/
+}
 .pq-offset-anchor{
 	padding-top: 50px; margin-top: -50px;
 }
@@ -39,6 +51,15 @@ h1,h2{
 .pq-responsive-user-menu, .pq-responsive-hide{
 	display:inline;
 }	
+.pq-header {
+	font-weight:bold;
+    /*font-family:roboto-black;*/
+	background:#2c3e50;
+	padding:5px 15px 5px 15px;
+	clear:right;
+	
+	color:#e67e22;
+}
 
 @media (min-width:1000px){
 

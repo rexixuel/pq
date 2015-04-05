@@ -42,7 +42,7 @@ class ConstantElements{
 					
 								<li '.$this->homeActive.'><a href="'.$this->userIndex.'"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 								<li class="dropdown">
-									<a href="categories.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-list"></span> Categories <span class="caret"> </span> </a>
+									<a href="categories.php?username='.$this->user.'" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-list"></span> Categories <span class="caret"> </span> </a>
 									<ul class="dropdown-menu" role="menu">'.$this->categoryDropDown.'
 								  </ul>
 								</li>
@@ -73,11 +73,11 @@ class ConstantElements{
 	}
 	public function SetUser($user){
 		$this->user  = $user;
-		$this->categoryDropDown ='	<li><a href="categories.php?categoryKey=">Gaming</a></li>
-							    	<li><a href="categories.php?categoryKey=">Music</a></li>
-									<li><a href="categories.php?categoryKey=">Gadgets</a></li>
+		$this->categoryDropDown ='	<li><a href="categories.php?username='.$this->user.'&categoryKey=">Gaming</a></li>
+							    	<li><a href="categories.php?username='.$this->user.'&categoryKey=">Music</a></li>
+									<li><a href="categories.php?username='.$this->user.'&categoryKey=">Gadgets</a></li>
 									<li class="divider"></li>
-									<li><a href="categories.php">See All Subscription</a></li>';		
+									<li><a href="categories.php?username='.$this->user.'">See All Subscription</a></li>';		
 		if ($user == "Regular User" )
 		{
 			$this->menu = '<li> <a href="account-mgt.php?username='.$user.'"> Account Management </a> </li>';
@@ -110,7 +110,7 @@ class ConstantElements{
 				{
 					$this->userIndex = 'index.php';					
 					$this->callToAction = '<a class="btn btn-lg btn-primary btn-block" href="signup.php">Signup Now!</a>';
-					$this->categoryDropDown = '<li class=""><a href="fnr.php">Food and Restaurants</a></li>
+					$this->categoryDropDown = '<li class=""><a href="category-2.php">Food and Restaurants</a></li>
                         <li><a href="sports.php">Sports</a></li>
                         <li><a href="entertainment.php">Entertainment & Movies</a></li>
                         <li><a href="hnf.php">Health and Fitness</a></li>
@@ -118,7 +118,7 @@ class ConstantElements{
                         <li><a href="olgames.php">Online Games</a></li>
                         <li><a href="socialnet.php">Social Networking</a></li>
                         <li class="divider"></li>
-                        <li><a href="allcategories.php">See All..</a></li>';
+                        <li><a href="categories.php?username='.$this->user.'">See All...</a></li>';
 				}
 	
 		if($user == "Regular User" || $user == "admin" || $user == "moderator")
@@ -133,7 +133,7 @@ class ConstantElements{
 				  <li role="presentation" class="divider"></li>
 				  '.$this->menu.'
 				  <li> <a href="browse-review.php?username='.$this->user.'">Browse All Reviews</a> </li>
-                  <li> <a href="categories.php?username='.$this->user.'">Browse Reviews By Category</a> </li>
+                  <li> <a href="categories.php?username='.$this->user.'?username='.$this->user.'">Browse Reviews By Category</a> </li>
 				  <li> <a href="post-review.php?username='.$this->user.'"> Post Review </a> </li>
 										
 					<li> <a href="review-mgt.php?username='.$this->user.'"> Review Management </a> </li>
@@ -151,7 +151,7 @@ class ConstantElements{
 									<li role="presentation" class="divider"></li>
 									'.$this->menu.'
 				  					<li> <a href="browse-review.php?username='.$this->user.'">Browse All Reviews</a> </li>
-                  <li> <a href="categories.php?username='.$this->user.'">Browse Reviews By Category</a> </li>
+                  <li> <a href="categories.php?username='.$this->user.'?username='.$this->user.'">Browse Reviews By Category</a> </li>
 				  <li> <a href="post-review.php?username='.$this->user.'"> Post Review </a> </li>						
 					<li> <a href="review-mgt.php?username='.$user.'"> Review Management </a> </li>
 					<li> <a href="messages.php?username='.$this->user.'"> Messages <span class="badge">2</span></a> </li>
@@ -168,15 +168,18 @@ class ConstantElements{
 
 	public function GetSidebar($list1,$list2,$list3,$list4,$list5,$list6)
 	{
+		$userSidebar='';
+		if(!empty($this->user))
+		{
+        	$userSidebar = '<a href="post-review.php?username='.$this->user.'" class="list-group-item '.$list3.'">Post A Review</a>
+                    		<a href="review-mgt.php?username='.$this->user.'" class="list-group-item '.$list4.'"> Review Management </a>    							
+			                <a href="messages.php?username='.$this->user.'" class="list-group-item '.$list6.'">Messages <span class="badge">2</span></a>';
+
+		}
 		$this->sidebar = $this->userSidebar.'
     							'.$this->userSidebar2.'
-		                    <a href="browse-review.php" class="list-group-item '.$list1.'">Browse All Reviews</a>
-                    <a href="categories.php" class="list-group-item '.$list2.'">Browse Reviews By Category</a>
-
-                    	<a href="post-review.php?username='.$this->user.'" class="list-group-item '.$list3.'">Post A Review</a>
-                    		   <a href="review-mgt.php?username='.$this->user.'" class="list-group-item '.$list4.'"> Review Management </a>    							
-			                   <a href="messages.php?username='.$this->user.'" class="list-group-item '.$list6.'">Messages <span class="badge">2</span></a>
-    							';                   
+		                    <a href="browse-review.php?username='.$this->user.'" class="list-group-item '.$list1.'">Browse All Reviews</a>
+                    <a href="categories.php?username='.$this->user.'" class="list-group-item '.$list2.'">Browse Reviews By Category</a>'.$userSidebar;                   
        return $this->sidebar;
 	}
 
@@ -226,9 +229,90 @@ class ConstantElements{
                         </div>
                         <div class = "form-group">
                             <div class="">
-                                    <label for="message-body" class="sr-only">Message</label>
-                                    <textarea id="message-body" class="form-control" placeholder="Enter message here" row="5"> </textarea>
+                                    <label for="message-body" class="">Message</label>
+
+									<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+									<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+
+
+                                    <textarea id="message-body" class="form-control" placeholder="Enter message here" rows="5"> </textarea>
                             </div>
+							<div class="pq-format-tags">
+								<label> <small> Format: </small> </label>
+								<a href=""> <code> List </code> </a>
+								<a href=""> <code> Header 1 </code> </a>
+								<a href=""> <code> Header 2 </code> </a>
+								<a href=""> <code> Header 3 </code> </a>
+								<a href=""> <code> Bold </code> </a>
+								<a href=""> <code> Italize </code> </a>
+								<a href=""> <code> Large Font </code> </a>
+								<a href=""> <code> Small Font </code> </a>
+							</div>
+
+                        </div>
+                        <div class = "form-group form-inline">
+                                <button type="submit" class="btn btn-primary btn-sm" > Send </button>
+                                <button type="submit" class="btn btn-default btn-sm" > Cancel </button>
+                        </div>
+                        </form>
+                </div>
+        </div>
+       </div>
+    </div>
+  <!-- end modal -->
+
+  <!-- Start Modal -->
+	<!-- reply modal	 -->
+    <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="replyLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content pq-modal-body">
+                <div class="modal-header pq-modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-title">
+                        Reply to Message
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group">
+	                  <div class="form-group form-inline">
+	                       <div class="">									
+	                                <label for="recipient">To:</label>
+	                                <input type="text" id="recipient" class="form-control" placeholder="Recipient" />
+	                        </div>
+	                  </div>
+
+                      <div class="form-group form-inline">
+                            <div class="">									
+                                    <label for="subject">Subject:</label>
+                                    <input type="text" id="subject" class="form-control" placeholder="Enter subject here" />
+                            </div>
+                        </div>
+                        <div class = "form-group">
+                            <div class="">
+                                    <label for="message-body">Message</label>
+
+									<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+									<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+
+
+                                    <textarea id="message-body" class="form-control" placeholder="Enter message here" rows="5"> </textarea>
+                            </div>
+							<div class="pq-format-tags">
+								<label> <small> Format: </small> </label>
+								<a href=""> <code> List </code> </a>
+								<a href=""> <code> Header 1 </code> </a>
+								<a href=""> <code> Header 2 </code> </a>
+								<a href=""> <code> Header 3 </code> </a>
+								<a href=""> <code> Bold </code> </a>
+								<a href=""> <code> Italize </code> </a>
+								<a href=""> <code> Large Font </code> </a>
+								<a href=""> <code> Small Font </code> </a>
+							</div>
+
                         </div>
                         <div class = "form-group form-inline">
                                 <button type="submit" class="btn btn-primary btn-sm" > Send </button>
@@ -241,6 +325,133 @@ class ConstantElements{
     </div>
   <!-- end modal -->';
   		return $replyModal;
+	}
+
+	public function GetReportModal()
+	{
+		$reportModal = '	<!-- Start Modal -->
+	<!-- reply modal	 -->
+    <div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="replyLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content pq-modal-body">
+                <div class="modal-header pq-modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-title">
+                        Reply to Message
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group">
+	                  <div class="form-group form-inline">
+	                       <div class="">									
+	                                <label for="recipient">To:</label>
+	                                <input type="text" id="recipient" class="form-control" placeholder="Recipient" />
+	                        </div>
+	                  </div>
+
+                      <div class="form-group form-inline">
+                            <div class="">									
+                                    <label for="subject">Subject:</label>
+                                    <input type="text" id="subject" class="form-control" placeholder="Enter subject here" />
+                            </div>
+                        </div>
+                        <div class = "form-group">
+                            <div class="">
+                                    <label for="message-body" class="sr-only">Message</label>
+
+									<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
+										
+									<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
+
+                                    <textarea id="message-body" class="form-control" placeholder="Enter message here" rows="5"> </textarea>
+                            </div>
+							<div class="pq-format-tags">
+								<label> <small> Format: </small> </label>
+								<a href=""> <code> List </code> </a>
+								<a href=""> <code> Header 1 </code> </a>
+								<a href=""> <code> Header 2 </code> </a>
+								<a href=""> <code> Header 3 </code> </a>
+								<a href=""> <code> Bold </code> </a>
+								<a href=""> <code> Italize </code> </a>
+								<a href=""> <code> Large Font </code> </a>
+								<a href=""> <code> Small Font </code> </a>
+							</div>
+
+                        </div>
+                        <div class = "form-group form-inline">
+                                <button type="submit" class="btn btn-primary btn-sm" > Send </button>
+                                <button type="submit" class="btn btn-default btn-sm" > Cancel </button>
+                        </div>
+                        </form>
+                </div>
+        </div>
+       </div>
+    </div>
+  <!-- end modal -->';
+  		return $reportModal;
+	}
+
+	public function PrintReport(){		
+		if(empty($this->user)){
+			return "";
+		}else{
+			return '<a href="#" data-container="body" data-toggle="modal" data-recipient="@FNR_Mod; @Admin" data-user="@user" data-target="#report" 
+                                            class="btn btn-link">
+                                          <small>  <i class="fa fa-flag"></i> report </small> </a>';
+		}
+	}
+
+	public function PrintReviewReport(){		
+		if(empty($this->user)){
+			return "";
+		}else{
+			return '<a href="#" style="color:#fff;" data-container="body" data-toggle="modal" data-recipient="@FNR_Mod; @Admin" data-user="@user" data-target="#report" 
+                                            class="">
+                                          <small>  <i class="fa fa-flag"></i> report </small> </a>';
+		}
+	}
+
+	public function SetDisabled(){		
+		if(empty($this->user)){
+			return "disabled";
+		}else{
+			return "";
+		}
+	}
+	public function GetBrowseFilter(){
+		if(!empty($this->user)){
+			$browserFilter = '	        		<div class="col-lg-5 col-sm-5">
+	        			<form class="form-group">
+	        				<div class="row">
+			        			<div class="form-group form-inline col-lg-12">
+			        				<label> See Categories: </label>
+									<div class="btn-group" data-toggle="buttons">
+									  <label class="btn btn-primary btn-xs active">
+									    <input type="checkbox" autocomplete="off" class="success" checked> Subscribed
+									  </label>
+									  <label class="btn btn-info btn-xs">
+									    <input type="checkbox" autocomplete="off" class="danger"> ALL
+									  </label>
+									</div>
+		        				</div>
+			        			<div class="form-group form-inline col-lg-12">
+			        				<label> Search in: </label>
+									<div class="btn-group" data-toggle="buttons">
+									  <label class="sr-only" for "category"> Subscribed Categories
+									  </label>
+									    <input list = "categoryList" type="text" id="category" class="form-control" placeholder="Enter subscribed categories here" required>
+									</div>
+		        				</div>		        				
+		        			</div>
+        				</form>	        			
+        			</div>';
+		}else{
+			$browserFilter = '';
+		}
+
+		return $browserFilter;
 	}
 }
 ?>

@@ -71,7 +71,7 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Messages
+                <h1 class="page-header"> <i class="fa fa-inbox"></i> Messages
 				<small> username </small>
 				<div class="pq-page-instruction">
 					<small class="pq-page-instruction"> Click on message subject to view details.</small>
@@ -109,6 +109,19 @@ print $element->GetHeader();
 				<option value = "Sample Category 5" />
 			</datalist>
             <div class="col-md-9">
+                <form class="form-group form-inline">
+                    <div class="form-group">
+                        <div class="">
+                            <label for="searchMessages"> Search: </label>
+                            <input type="text" id="searchMessages" class="form-control" placeholder="Enter keyword" required>                        
+                            <select class="form-control">
+                                <option class="form-control"> Subject </option>
+                                <option class="form-control"> Sender </option>
+                                <option class="form-control"> Timestamp </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>                
             	<table class="table table-hover table-striped">
         			<thead >
         				<tr class="info">
@@ -125,7 +138,7 @@ print $element->GetHeader();
                                         <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a> 
                                     </span> 
                                     <span data-toggle="tooltip" data-placement="top" title="Mark selected as Read"> 
-                                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal"> <i class="fa fa-inbox"> </i> </a> 
+                                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal"> <i class="fa fa-envelope-square"></i> </a> 
                                     </span> 
                             </th> 
 
@@ -151,7 +164,7 @@ print $element->GetHeader();
                                         <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a> 
                                     </span> 
                                     <span data-toggle="tooltip" data-placement="right" title="Mark as Read"> 
-                                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal"> <i class="fa fa-inbox"> </i> </a> 
+                                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal"> <i class="fa fa-envelope-square"></i> </a> 
                                     </span> 
                                 </td>
                             </tr>
@@ -161,7 +174,7 @@ print $element->GetHeader();
                                   print '<td>
                                             <label>
                                                 <input type="checkbox" name="message2" id="message2" class="messages"/>       
-                                                <i class="fa fa-inbox"></i>
+                                                <i class="fa fa-envelope-square"></i>
                                                 <a href="message-details-2.php?username='.$user.'"> Subscribed to Gaming </a>
                                             </label>
                                          </td>';
@@ -173,7 +186,7 @@ print $element->GetHeader();
                                         <a href="#" data-target="#confirmDelete" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-trash-o"> </i> </a> 
                                     </span> 
                                     <span data-toggle="tooltip" data-placement="right" title="Mark as Read"> 
-                                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal"> <i class="fa fa-inbox"> </i> </a> 
+                                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal"> <i class="fa fa-envelope-square"></i> </a> 
                                     </span> 
                                 </td>                                
             				</tr>        				
@@ -230,7 +243,13 @@ print $element->GetHeader();
 							</li>
 						</ul>
 					</div>
-                </div>        
+                </div> 
+               <div class="col-md-4">
+                   <?php
+                       print $element->GetCallToAction();
+                   ?>
+               </div>
+
             </div>
         </div>
 		

@@ -47,9 +47,9 @@ print $element->GetHeader();
 
 ?>			
 	<!-- Start Modal -->
-	<!-- login modal	 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog ">
+    <!-- Start Login Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
         <div class="modal-content pq-modal-body">
                 <div class="modal-header pq-modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -58,11 +58,11 @@ print $element->GetHeader();
                     Log In
                 </div>
                 <div class="modal-body ">
-                    <form>
+                    <form action="login.php" method="POST">
                         <div class="form-group">
-                            <div class="">									
+                            <div class="">                                  
                                     <label for="username" class="sr-only">Username</label>
-                                    <input type="text" id="username" class="form-control" placeholder="Username" />
+                                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
                             </div>
                         </div>
                         <div class = "form-group">
@@ -72,15 +72,16 @@ print $element->GetHeader();
                             </div>
                         </div>
                         <div class = "form-group form-inline">
-                                <button type="button" class="btn btn-primary btn-sm" >Sign In</button>
+                                <button type="submit" class="btn btn-primary btn-sm" >Sign In</button>
                                 <a href="signup.php"> <large> Sign Up Now! </large> </a>
                         </div>
+                        <a href="signup.php"> <small> Forgot your password? </small></a>
                         </form>
                 </div>
         </div>
-       </div>
-    </div>
-  
+   </div>
+</div>
+<!-- End Login Modal -->
 
 
     <!-- Page Content -->
@@ -89,22 +90,26 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"> <i class="fa fa-pencil-square"></i> Post a Review
-				<small> username </small>
+                <h1 class="page-header"> <i class="glyphicon glyphicon-edit"></i> Edit Review
+				<small> Sinigang na Lechon </small>
 				<div class="pq-page-instruction">
 					<small class="pq-page-instruction"> Enter description for product to be reviewed.
 					<br />
 					Assign number of stars for each criteria and add details of review for each criteria in the text area. 
 					Overall stars are automatically computed - enter details for overall review. 
 					<br />
-					Click 'Submit' to post review. </small>
+					Click 'Update' to finalize changes. </small>
 				</div>
                 </h1>
 				
                 <ol class="breadcrumb">
                     <li><a href="index.php">Home</a>
                     </li>
-                    <li class="active">Post a Review
+                    <?php
+	                  print '<li class=""> <a href="review-mgt.php?username='.$user.'"> Review Management </a> </li>';
+                    ?>
+                    
+                    <li class="active">Edit Review
                     </li>
                     
                 </ol>
@@ -118,7 +123,7 @@ print $element->GetHeader();
             <div class="col-md-3">
                 <div class="list-group">
                     <?php						
-						print $element->GetSidebar('','','active','','','');
+						print $element->GetSidebar('','','','active','','');
                     ?>
                     
                 </div>
@@ -150,9 +155,8 @@ print $element->GetHeader();
 							<div class = "form-group">
 								<div class="">
 										<label for="productName">Product Name</label>
-
-										
-										<input type="text" id="productName" class="form-control" placeholder="Product Name" required>
+									
+										<input type="text" id="productName" class="form-control" placeholder="Product Name" value="Sinigang na Lechon" required>
 								</div>
 							</div>
 
@@ -161,7 +165,7 @@ print $element->GetHeader();
 										<label for="category">Category</label>
 
 										
-										<input list = "categoryList" type="text" id="category" class="form-control" placeholder="Category" required>
+										<input list = "categoryList" type="text" id="category" class="form-control" placeholder="Category" required value="Food and Restaurant">
 								</div>
 							</div>
 							
@@ -172,7 +176,13 @@ print $element->GetHeader();
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 										
-										<textarea id="descriptionText" class="form-control" placeholder="Enter product description or introduction here. Use provided HTML5 tags for formatting." required></textarea>
+										<textarea id="descriptionText" class="form-control" placeholder="Enter product description or introduction here. Use provided HTML5 tags for formatting." required rows="7">
+<b>Nutrition Information/serving:</b>
+<p>One of a kind Filipino recipe! Roasted suckling pig and fresh vegetables simmered in tamarind broth.</p>
+<p>Calories 258, Carbohydrates 8g, Protein 25g, Fat 14g, Vitamin C 13mg, Iron 2mg, Vitamin A 358mcg</p> <p>To lessen fat intake when the soup is cold remove the layer of fat that has formed on the surface and reheat before serving.</p>
+
+<p>Lechon's crispy brown skin is the result of the high temperature during roasting which cannot be achieved in other cooking methods. This gives the aroma and meaty flavor of roasted meats. So when used in stewed or simmered dishes like sinigang it adds a depth of flavor to the dish.</p>
+										</textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -212,7 +222,7 @@ print $element->GetHeader();
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria1" class="form-control" placeholder="Enter review details for Criteria 1" required></textarea>
+										<textarea rows="7" id="criteria1" class="form-control" placeholder="Enter review details for Criteria 1" required></textarea>
 								</div>
 								<div class="pq-format-tags">
 									<label> <small> Format: </small> </label>
@@ -236,7 +246,7 @@ print $element->GetHeader();
 										
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
-										<textarea id="criteria2" class="form-control" placeholder="Enter review details for Criteria 2" required></textarea>
+										<textarea rows="7" id="criteria2" class="form-control" placeholder="Enter review details for Criteria 2" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -260,7 +270,7 @@ print $element->GetHeader();
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria3" class="form-control" placeholder="Enter review details for Criteria 3" required></textarea>
+										<textarea rows="7" id="criteria3" class="form-control" placeholder="Enter review details for Criteria 3" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -284,7 +294,7 @@ print $element->GetHeader();
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria4" class="form-control" placeholder="Enter review details for Criteria 4" required></textarea>
+										<textarea rows="7" id="criteria4" class="form-control" placeholder="Enter review details for Criteria 4" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -308,7 +318,7 @@ print $element->GetHeader();
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 																				
 										
-										<textarea id="criteria5" class="form-control" placeholder="Enter review details for Criteria 5" required></textarea>
+										<textarea rows="7" id="criteria5" class="form-control" placeholder="Enter review details for Criteria 5" required></textarea>
 								</div>
 								
 								<div class="pq-format-tags">
@@ -339,7 +349,7 @@ print $element->GetHeader();
 										<a href="etiquette.php" class="pq-form-misc-links"> <small> PQetiquette </small> </a>
 										
 										
-										<textarea id="overall" class="form-control" placeholder="Enter overall review details - this could inlcude summary, conclusions or final thoughts on the product. Use provided HTML5 tags for formatting."required ></textarea>
+										<textarea rows="7" id="overall" class="form-control" placeholder="Enter overall review details - this could inlcude summary, conclusions or final thoughts on the product. Use provided HTML5 tags for formatting."required ></textarea>
 										
 								</div>
 								<div class="pq-format-tags">
@@ -356,7 +366,7 @@ print $element->GetHeader();
 							<hr>
 							
 							<div class = "form-group form-inline">										                
-									<button type="submit" class="btn btn-primary btn-sm" >Submit</button>           
+									<button type="submit" class="btn btn-primary btn-sm" >Update</button>
 							</div>
 							
 						</form>
@@ -393,7 +403,7 @@ print $element->GetHeader();
 							</li>
 						</ul>
 					</div>
-                </div>
+                </div>        
                 <div class="col-md-4">
                     <?php
                         print $element->GetCallToAction();

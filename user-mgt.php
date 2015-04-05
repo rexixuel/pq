@@ -71,7 +71,7 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User Management
+                <h1 class="page-header"> <i class="fa fa-users"></i> User Management
 				<small> Downgrade Users</small>
 				<div class="pq-page-instruction">
 					<small class="pq-page-instruction"> Click on 'Downgrade' button to downgrade selected user(s).</small>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>People's Q! Browse Reviews</title>
+    <title>People's Q! Games </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -90,7 +90,7 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"> <i class="glyphicon glyphicon-search"></i> Search Results
+                <h1 class="page-header"> Search Results
 				<small> [Product Name Review]</small>
 				<div class="pq-page-instruction">
 					<small class="pq-page-instruction"> 4 match(es) found!
@@ -123,28 +123,44 @@ print $element->GetHeader();
             <!-- Content Column -->
 			<!-- temporary list. replace with jQuery UI Autocomplete -->
 			<datalist id="categoryList">
-				<option value = "Games" />
-				<option value = "Music" />
-				<option value = "Gadgets" />
+				<option value = "Sample Category 1" />
+				<option value = "Sample Category 2" />
+				<option value = "Sample Category 3" />
+				<option value = "Sample Category 4" />
+				<option value = "Sample Category 5" />
 			</datalist>
             <div class="col-md-9">
             	<div class="row">
-            		<?php print $element->GetBrowseFilter(); ?>
-	        		<div class="col-lg-7 col-sm-7">
+	        		<div class="col-lg-4 col-sm-4">
+	        			<form class="form-group">
+		        			<div class="form-group form-inline">
+		        				<label> See Categories: </label>
+								<div class="btn-group" data-toggle="buttons">
+								  <label class="btn btn-primary btn-sm active">
+								    <input type="checkbox" autocomplete="off" class="success" checked> Subscribed
+								  </label>
+								  <label class="btn btn-info btn-sm">
+								    <input type="checkbox" autocomplete="off" class="danger"> ALL
+								  </label>
+								</div>
+	        				</div>
+        				</form>	        			
+        			</div>
+	        		<div class="col-lg-8 col-sm-8">
 	        			<form class="form-group">
 		        			<div class="form-group form-inline">
 		        				<label> Sort by: </label>
 								<div class="btn-group" data-toggle="buttons">
-								  <label class="btn btn-success btn-xs active">
+								  <label class="btn btn-success btn-sm active">
 								    <input type="checkbox" autocomplete="off" class="success" checked> Worth It?
 								  </label>
-								  <label class="btn btn-danger btn-xs">
+								  <label class="btn btn-danger btn-sm">
 								    <input type="checkbox" autocomplete="off" class="danger"> Not Worth It?
 								  </label>
-								  <label class="btn btn-primary btn-xs">
+								  <label class="btn btn-primary btn-sm">
 								    <input type="checkbox" autocomplete="off" class="warning"> Product Name
 								  </label>
-								  <label class="btn btn-info btn-xs">
+								  <label class="btn btn-info btn-sm">
 								    <input type="checkbox" autocomplete="off" class="info"> Date Posted
 								  </label>						  
 								</div>
@@ -180,11 +196,11 @@ print $element->GetHeader();
 				<!-- product row -->
 				<div class="row">
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<a href="portfolio-item.html">
 							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
 						</a>
 						<h3>
-							<a href="review-details-1.php">Sinigang na Lechon</a>
+							<a href="portfolio-item.html">Product One</a>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -194,16 +210,15 @@ print $element->GetHeader();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="review-details-1.php" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="review-details-1.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
-			                <?php print $element->PrintReport(); ?></p>
+			                <p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<a href="portfolio-item.html">
 							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Two</a>
+							<a href="portfolio-item.html">Product Two</a>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -213,9 +228,7 @@ print $element->GetHeader();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
-			                <?php print $element->PrintReport(); ?>
-			                </p>
+			                <p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>
 						</form>						
 					</div>
 				</div>
@@ -223,11 +236,11 @@ print $element->GetHeader();
 				<!--  product row-->				
 				<div class="row">
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<a href="portfolio-item.html">
 							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Three</a>
+							<a href="portfolio-item.html">Product Three</a>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -237,17 +250,15 @@ print $element->GetHeader();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
-							<?php print $element->PrintReport(); ?>
-							</p>	
+							<p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>	
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<a href="portfolio-item.html">
 							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
 						</a>
 						<h3>
-							<a href="review-details-.php">Product 4</a>
+							<a href="portfolio-item.html">Product 4</a>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -257,9 +268,7 @@ print $element->GetHeader();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
-								<?php print $element->PrintReport(); ?>
-							</p>
+							<p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a></p>
 						</form>						
 					</div>
 				</div>

@@ -84,7 +84,7 @@ print $element->GetHeader();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Site Set-up
+                <h1 class="page-header"> <i class="fa fa-cogs"></i> Site Set-up
                 	<span class="welcome-instruction">
                 		<small> Welcome Page Set-up </small>
                 		<div class="pq-page-instruction">
@@ -138,7 +138,7 @@ print $element->GetHeader();
                 </ul>				
 			
                 <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade active in" id="welcomepageSetup">				
+                    <div class="tab-pane fade active in" id="welcomepageSetup">
 						<ul class="nav nav-pills">
 							<li> <a href="#sponsorOptions"> Sponsor </a> </li>
 							<li> <a href="#messageOptions"> Message </a> </li>
@@ -162,7 +162,7 @@ print $element->GetHeader();
 							<div class = "form-group">
 								<div class="">
 										<label for="prize">Prize Description</label>
-										<textarea id="prize" class="form-control" placeholder="Specify prize to be given away by sponsor of the month"></textarea>
+										<textarea rows="7" id="prize" class="form-control" placeholder="Specify prize to be given away by sponsor of the month"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -201,7 +201,7 @@ print $element->GetHeader();
 							<div class = "form-group">
 								<div class="">
 										<label for="welcomeMessage">Welcome Message</label>
-										<textarea id="welcomeMessage" class="form-control" placeholder="Welcome Message that shall appear in the welcome page. You can describe the website here or add links"></textarea>
+										<textarea rows="7" id="welcomeMessage" class="form-control" placeholder="Welcome Message that shall appear in the welcome page. You can describe the website here or add links"></textarea>
 								</div>
 								<div class="pq-format-tags">
 									<label> <small> Format: </small> </label>
@@ -224,7 +224,7 @@ print $element->GetHeader();
 											<input type="text" class="form-control" placeholder="Announcement Title" data-toggle="tooltip" title="This is the title of the announement." required/>
 										</div>
 										<div class = "form-group">										
-											<textarea id="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"></textarea>
+											<textarea rows="7" id="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"></textarea>
 										</div>
 										<div class="pq-format-tags">
 											<label> <small> Format: </small> </label>
@@ -252,7 +252,7 @@ print $element->GetHeader();
 											</div>	
 										</div>
 										<div class="form-group">
-											<textarea id="news" class="form-control" placeholder="Enter Site News Here. "></textarea>
+											<textarea rows="7" id="news" class="form-control" placeholder="Enter Site News Here. "></textarea>
 										</div>
 										<div class="pq-format-tags">
 											<label> <small> Format: </small> </label>
