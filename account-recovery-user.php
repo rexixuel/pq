@@ -51,24 +51,25 @@ print $element->GetHeader();
                     Log In
                 </div>
                 <div class="modal-body ">
-                    <form>
+                    <form action="login.php" method="POST">
                         <div class="form-group">
                             <div class="">									
                                     <label for="username" class="sr-only">Username</label>
-                                    <input type="text" id="username" class="form-control" placeholder="Username" />
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
                             </div>
                         </div>
                         <div class = "form-group">
                             <div class="">
                                     <label for="password" class="sr-only">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Password" />
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
                             </div>
                         </div>
                         <div class = "form-group form-inline">
-                                <button type="button" class="btn btn-primary btn-sm" >Sign In</button>
+                                <button type="submit" class="btn btn-primary btn-sm" >Sign In</button>
                                 <a href="signup.php"> <large> Sign Up Now! </large> </a>
                         </div>
-                        <a href="account-mgt.php"> <small> Forgot your password? </small></a>
+                        <a href="account-recovery-password.php"> <small> Forgot your password? </small></a>
+                        <a href="account-recovery-user.php"> <small> Forgot your username? </small></a>
                         </form>
                 </div>
         </div>

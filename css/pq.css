@@ -9,8 +9,8 @@
 }
 
 @font-face {
-    font-family: roboto;
-    src: url('../fonts/babelsans.ttf');
+    font-family: intro;
+    src: url('../fonts/intro-cond-light.otf');
 }
 @font-face {
     font-family: roboto-black;
@@ -18,8 +18,25 @@
 }
 html,
 body {
-    height: 100%;
-    /*font-family:roboto;*/
+    height: 750px;
+    /*font-family:intro;
+    font-size: 13px;*/
+}
+
+@media (max-height:800px){
+    html,
+    body {
+        height: 600px;
+        /*font-family:roboto;*/
+    }
+}
+
+@media (max-height:500px and max-width:1000px){
+    html,
+    body {
+        height: 450px;
+        /*font-family:roboto;*/
+    }
 }
 
 body {
@@ -27,6 +44,10 @@ body {
 }
 h1,h2{
     font-weight:bold;
+}
+
+header.carousel {
+    height: 100px;
 }
 .pq-main-reply{
 	margin:5px;
@@ -51,7 +72,7 @@ h1,h2{
 .pq-responsive-user-menu, .pq-responsive-hide{
 	display:inline;
 }	
-.pq-header {
+.pq-header, .pq-thumbnail-user-post  {
 	font-weight:bold;
     /*font-family:roboto-black;*/
 	background:#2c3e50;
@@ -60,6 +81,15 @@ h1,h2{
 	
 	color:#e67e22;
 }
+
+.pq-thumbnail-user-post{
+	font-size:12px; 
+	padding:1px 5px 1px 5px;
+	position:absolute;
+	top:5px;
+	margin-left:4px;
+}
+
 
 @media (min-width:1000px){
 
@@ -88,7 +118,7 @@ h1,h2{
 		margin-bottom:10px;
 		clear:right;
 	}
-	.pq-carousel-header {
+	.pq-carousel-header{
 		font-weight:bold;
         /*font-family:roboto-black;*/
 		background:#2c3e50;
@@ -222,9 +252,9 @@ h1,h2{
 		font-size:25px;
 	}
 	
-    .pq-carousel-header{
+    /*.pq-carousel-header{
 		font-size:12px;
-    }
+    }*/
 }
 
 .pq-search-toggle{

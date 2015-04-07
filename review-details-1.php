@@ -50,7 +50,7 @@ print $element->GetReplyModal();
 print $element->GetReportModal();
 
 ?>   
-<!-- Start Login Modal -->
+<!-- Start Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog ">
         <div class="modal-content pq-modal-body">
@@ -63,27 +63,29 @@ print $element->GetReportModal();
                 <div class="modal-body ">
                     <form action="login.php" method="POST">
                         <div class="form-group">
-                            <div class="">                                  
+                            <div class="">									
                                     <label for="username" class="sr-only">Username</label>
-                                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
                             </div>
                         </div>
                         <div class = "form-group">
                             <div class="">
                                     <label for="password" class="sr-only">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Password" />
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
                             </div>
                         </div>
                         <div class = "form-group form-inline">
                                 <button type="submit" class="btn btn-primary btn-sm" >Sign In</button>
                                 <a href="signup.php"> <large> Sign Up Now! </large> </a>
                         </div>
-                        <a href="signup.php"> <small> Forgot your password? </small></a>
+                        <a href="account-recovery-password.php"> <small> Forgot your password? </small></a>
+                        <a href="account-recovery-user.php"> <small> Forgot your username? </small></a>
                         </form>
                 </div>
         </div>
    </div>
 </div>
+<!-- End Modal -->
 <!-- End Login Modal -->
 
 
@@ -152,10 +154,10 @@ print $element->GetReportModal();
                 		<h5 class="pq-header"> <strong> Message the Mods! </strong> </h5>
                 		<div class="list-group" class="pq-mod-list">
                 			<a href="#" data-container="body" data-toggle="modal" data-recipient="@Jolli Man" data-target="#message" 
-                			class="list-group-item"><i class="fa fa-key"></i> Jolli Man </a>
+                			class="btn list-group-item  <?php print $element->SetDisabled(); ?>"  ><i class="fa fa-key"></i> Jolli Man </a>
 
                 			<a href="#" data-container="body" data-toggle="modal" data-recipient="@Mc Donny" data-target="#message" 
-                			class="list-group-item"><i class="fa fa-key"></i> Mc Donny </a>
+                			class=" btn list-group-item  <?php print $element->SetDisabled(); ?> " ><i class="fa fa-key"></i> Mc Donny </a>
 
             			</div>
                 	</div>
@@ -204,7 +206,7 @@ print $element->GetReportModal();
 
                                             </h3>
 
-		            	                    <p><img src='img/sinigawanglechon.jpeg'/></p> 
+		            	                    <p><img class="img-responsive" src='img/sinigawanglechon.jpeg'/></p> 
 		            	                    <b>Nutrition Information/serving:</b>
 		            	                    <p>One of a kind Filipino recipe! Roasted suckling pig and fresh vegetables simmered in tamarind broth.</p>
 		            	                    <p>Calories 258, Carbohydrates 8g, Protein 25g, Fat 14g, Vitamin C 13mg, Iron 2mg, Vitamin A 358mcg</p>

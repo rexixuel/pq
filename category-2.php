@@ -145,13 +145,13 @@ print $element->GetReplyModal();
 				<div class="panel panel-info">
                 	<div class="panel-heading panel-primary"> <strong> Food and Restaurant Moderators </strong> </div>
                 	<div class="panel-body">
-                		<h5 class="pq-carousel-header"> <strong> Message the Mods! </strong> </h5>
+                		<h5 class="pq-header"> <strong> Message the Mods! </strong> </h5>
                 		<div class="list-group" class="pq-mod-list">
                 			<a href="#" data-container="body" data-toggle="modal" data-recipient="@Jolli Man" data-target="#message" 
-                			class="list-group-item"><i class="fa fa-key"></i> Jolli Man </a>
+                			class="btn list-group-item  <?php print $element->SetDisabled(); ?>" ><i class="fa fa-key"></i> Jolli Man </a>
 
                 			<a href="#" data-container="body" data-toggle="modal" data-recipient="@Mc Donny" data-target="#message" 
-                			class="list-group-item"><i class="fa fa-key"></i> Mc Donny </a>
+                			class="btn list-group-item  <?php print $element->SetDisabled(); ?>" ><i class="fa fa-key"></i> Mc Donny </a>
 
             			</div>
                 	</div>
@@ -170,10 +170,10 @@ print $element->GetReplyModal();
 		        			<div class="form-group form-inline">
 		        				<label> See: </label>
 								<div class="btn-group" data-toggle="buttons">
-								  <label class="btn btn-success btn-sm active">
+								  <label class="btn btn-success btn-xs active">
 								    <input type="checkbox" autocomplete="off" class="success" checked> Worth It?
 								  </label>
-								  <label class="btn btn-danger btn-sm active">
+								  <label class="btn btn-danger btn-xs active">
 								    <input type="checkbox" autocomplete="off" class="danger" checked> Not Worth It?
 								  </label>
 								</div>
@@ -185,16 +185,16 @@ print $element->GetReplyModal();
 		        			<div class="form-group form-inline">
 		        				<label> Sort by: </label>
 								<div class="btn-group" data-toggle="buttons">
-								  <label class="btn btn-success btn-sm active">
+								  <label class="btn btn-success btn-xs active">
 								    <input type="checkbox" autocomplete="off" class="success" checked> Worth It?
 								  </label>
-								  <label class="btn btn-danger btn-sm">
+								  <label class="btn btn-danger btn-xs">
 								    <input type="checkbox" autocomplete="off" class="danger"> Not Worth It?
 								  </label>
-								  <label class="btn btn-primary btn-sm">
+								  <label class="btn btn-primary btn-xs">
 								    <input type="checkbox" autocomplete="off" class="warning"> Product Name
 								  </label>
-								  <label class="btn btn-info btn-sm">
+								  <label class="btn btn-info btn-xs">
 								    <input type="checkbox" autocomplete="off" class="info"> Date Posted
 								  </label>						  
 								</div>
@@ -232,7 +232,9 @@ print $element->GetReplyModal();
 					<div class="col-md-6 img-portfolio">
 						
 						<a href="review-details-1.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
+
+							
 						</a>
 						<h3>
 							<?php
@@ -247,18 +249,21 @@ print $element->GetReplyModal();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			                <p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-			                 <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+			                <p><a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+			                 <a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a>
 			                 <?php
-			                 	print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+			                 	print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
 			                 ?>
-			                 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a> <?php print $element->PrintReport(); ?></p>
+                            <?php
+			                 print' <a href="review-details-1.php?username='.$user.' '. $element->SetDisabled().'" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>';
+                            ?>
+                            <?php print $element->PrintReport(); ?></p>
 						</form>
 					
 					</div>
 					<div class="col-md-6 img-portfolio">
 						<a href="review-details-.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
 							<a href="review-details-.php">Product Two</a>
@@ -271,12 +276,12 @@ print $element->GetReplyModal();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			                <p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a> <?php print $element->PrintReport(); ?></p>
+			                <p><a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" <?php print $element->SetDisabled(); ?> class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a> <?php print $element->PrintReport(); ?></p>
 						</form>						
 					</div>
 					<div class="col-md-6 img-portfolio">
 						<a href="review-details-.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
 							<a href="review-details-.php">Product Three</a>
@@ -289,12 +294,12 @@ print $element->GetReplyModal();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-							<p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a> <?php print $element->PrintReport(); ?></p>	
+							<p><a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" <?php print $element->SetDisabled(); ?> class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a> <?php print $element->PrintReport(); ?></p>	
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
 						<a href="review-details-.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
 							<a href="review-details-.php">Product 4</a>
@@ -307,7 +312,7 @@ print $element->GetReplyModal();
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-							<p><a href="#" class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a> <?php print $element->PrintReport(); ?></p>
+							<p><a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-success" role="button"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-danger" role="button"><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" <?php print $element->SetDisabled(); ?> class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" <?php print $element->SetDisabled(); ?> class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a> <?php print $element->PrintReport(); ?></p>
 						</form>						
 					</div>
 				</div>

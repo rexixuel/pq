@@ -52,8 +52,8 @@ class ConstantElements{
 							</ul>
 							
 							
-								<div class="col-sm-3 col-md-3 pull-right" style="margin-right:0px;">
-									<form class="navbar-form navbar-search" action="browse-review.php?username='.$this->user.'" method="GET" role="search">
+								<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 pull-right" style="margin-right:0px;">
+									<form class="navbar-form navbar-search" action="browse-review.php?username='.$this->user.'" method="POST" role="search">
 									<div class="input-group">
 										<input type="text" class="form-control" placeholder="Search keyword...." name="srch-term" id="srch-term">
 										<div class="input-group-btn">
@@ -99,7 +99,8 @@ class ConstantElements{
 			else
 				if ($user == "admin")
 				{
-					$this->menu = '<li> <a href="admin-dashboard.php"> Site Set-up </a> </li>';		
+					$this->menu = '<li> <a href="admin-dashboard.php"> Site Set-up </a> </li>
+								   <li> <a href="user-mgt.php?username='.$user.'"> User Management </a> </li>';			
 					$this->userIndex = 'index-mock-admin.php';
 					$this->userSidebar = '<a href="admin-dashboard.php" class="list-group-item '.$this->userSidebarActive.'"> Site-setup </a>';
 					$this->userSidebar2 = '<a href="user-mgt.php?username='.$user.'" class="list-group-item '.$this->userSidebar2Active.'"> User Management </a>';

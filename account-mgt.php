@@ -32,8 +32,11 @@
 <?php
 
 include ('/include/elementClass.php');
-$user = $_GET['username'];
-
+$user = '';
+if(!empty($_GET['username']))
+{
+    $user = $_GET['username'];
+}
 $element = new ConstantElements();
 $element->SetUser($user);
 

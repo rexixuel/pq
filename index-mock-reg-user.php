@@ -43,8 +43,13 @@
 include ('/include/elementClass.php');
 
 $element = new ConstantElements();
-$element->SetUser('Regular User');
+$user = 'Regular User';
+if(!empty($_GET['username']))
+{
+	$user = $_GET['username'];
+}
 print $element->SetHomeActive('active');
+$element->SetUser($user);
 print $element->GetHeader();
 
 ?>			
@@ -182,68 +187,115 @@ print $element->GetHeader();
 						</h1>
 					</div>
 					
-					<div class="col-md-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 1</h4>
-								<h6> Category 1 </h6>
+				<!-- product row -->
+
+					<div class="col-md-6 img-portfolio">
+						<a href="review-details-.php">
+							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
+						</a>
+						<h3>
+							<a href="review-details-1.php">Sinigang na Lechon </a> | 
+							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
+						</h3>
+						<form class="form-group">
+							<div class = "form-group">
+								<div class="">
+									<label for="criteriaOverall1" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
+								</div>
 							</div>
-							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-								<div class="clearfix"> </div>
-								<h4> Verdict: <!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
-								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
-								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
-							</div>
-						</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
+			                 <?php
+			                 	print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+			                 ?>
+
+			                  <a href="review-details-1.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+			                <?php print $element->PrintReport(); ?></p>
+						</form>
 					</div>
-					<div class="col-md-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 2</h4>
-								<h6> Category 1 </h6>
+					<div class="col-md-6 img-portfolio">
+						<a href="review-details-.php">
+							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
+						</a>
+						<h3>
+							<a href="review-details-.php">Product Two</a> | 
+							<small>  <a href="category-1.php"> Category 1 </a> </small>
+
+						</h3>
+						<form class="form-group">
+							<div class = "form-group">
+								<div class="">
+									<label for="criteriaOverall2" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall2" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
+								</div>
 							</div>
-							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-								<div class="clearfix"> </div>
-								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
-								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
-								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 3</h4>
-								<small> Category 2</small>
-							</div>
-							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-								<div class="clearfix"> </div>
-								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
-								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
-								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
-							</div>
-						</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> 
+			                	<?php
+			                		print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+			                	?>
+
+			                 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+			                <?php print $element->PrintReport(); ?>
+			                </p>
+						</form>						
 					</div>
 
-					<div class="col-md-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4><i class="fa fa-fw fa-check"></i>Sample Product Review 4</h4>
-								<small> Category 3</small>
+				<!-- /.row product -->
+				<!--  product row-->				
+					<div class="col-md-6 img-portfolio">
+						<a href="review-details-.php">
+							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
+						</a>
+						<h3>
+							<a href="review-details-.php">Product Three</a> | 
+							<small>  <a href="category-1.php"> Category 1 </a> </small>
+						</h3>
+						<form class="form-group">
+							<div class = "form-group">
+								<div class="">
+									<label for="criteriaOverall3" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall3" type="number" class="rating" data-size="xs" style="" value = 4 disabled/>
+								</div>
 							</div>
-							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-								<div class="clearfix"> </div>
-								<h4> Verdict:<!--<h5 style="clear:left; display=inline;"> Worth it! </h5> --></h4>
-								<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
-								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details </a></p>
-							</div>
-						</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> 
+								<?php
+									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+								?>
+
+								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+							<?php print $element->PrintReport(); ?>
+							</p>	
+						</form>
 					</div>
-					
+					<div class="col-md-6 img-portfolio">
+						<a href="review-details-.php">
+							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
+						</a>
+						<h3>
+							<a href="review-details-.php">Product 4</a> | 
+							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
+						</h3>
+						<form class="form-group">
+							<div class = "form-group">
+								<div class="">
+									<label for="criteriaOverall4" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall4" type="number" class="rating" data-size="xs" style="" value = 3 disabled/>
+								</div>
+							</div>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> 
+								<?php
+									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+								?>
+
+								 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+								<?php print $element->PrintReport(); ?>
+							</p>
+						</form>						
+					</div>									
 					<div class="col-lg-12 pull-left">
 						<h1 class="page-header">
 							Announcements

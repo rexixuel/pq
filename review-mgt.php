@@ -112,11 +112,11 @@ print $element->GetHeader();
                     <div class="form-group">
                         <div class="">
                             <label for="searchPosts"> Search: </label>
-                            <input type="text" id="searchPosts" class="form-control" placeholder="Enter keyword" required>                        
-                            <select class="form-control">
-                                <option class="form-control"> Review </option>
-                                <option class="form-control"> Category </option>
-                                <option class="form-control"> Timestamp </option>
+                            <input type="text" id="searchPosts" class="form-control input-sm" placeholder="Enter keyword" required>                        
+                            <select class="form-control input-sm">
+                                <option class=""> Review </option>
+                                <option class=""> Category </option>
+                                <option class=""> Timestamp </option>
                             </select>
                         </div>
                     </div>
@@ -190,7 +190,7 @@ print $element->GetHeader();
         		<div class="col-lg-4 col-sm-4">
 
         		</div>
-        		<div class="col-lg-4 col-sm-4">
+        		<div class="col-lg-4 col-sm-6">
 	        		<nav>
 	        		  <ul class="pagination">
 	        		    <li class="disabled">

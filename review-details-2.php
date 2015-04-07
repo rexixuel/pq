@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>People's Q! Admin</title>
+    <title>People's Q!</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">   
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">   
@@ -47,7 +47,7 @@ print $element->GetHeader();
 
 print $element->GetReplyModal();
 ?>   
-<!-- Start Login Modal -->
+<!-- Start Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog ">
         <div class="modal-content pq-modal-body">
@@ -60,28 +60,29 @@ print $element->GetReplyModal();
                 <div class="modal-body ">
                     <form action="login.php" method="POST">
                         <div class="form-group">
-                            <div class="">                                  
+                            <div class="">									
                                     <label for="username" class="sr-only">Username</label>
-                                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
                             </div>
                         </div>
                         <div class = "form-group">
                             <div class="">
                                     <label for="password" class="sr-only">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Password" />
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
                             </div>
                         </div>
                         <div class = "form-group form-inline">
                                 <button type="submit" class="btn btn-primary btn-sm" >Sign In</button>
                                 <a href="signup.php"> <large> Sign Up Now! </large> </a>
                         </div>
-                        <a href="signup.php"> <small> Forgot your password? </small></a>
+                        <a href="account-recovery-password.php"> <small> Forgot your password? </small></a>
+                        <a href="account-recovery-user.php"> <small> Forgot your username? </small></a>
                         </form>
                 </div>
         </div>
    </div>
 </div>
-<!-- End Login Modal -->
+<!-- End Modal -->
 
 
     <!-- Page Content -->

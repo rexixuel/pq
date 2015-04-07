@@ -220,7 +220,7 @@ print $element->GetHeader();
 							Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
 						</p>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <label> Sign up as Premium User </label>
 						<span rel="tooltip"
 						data-toggle="tooltip" data-placement="top" title="Premium Users can join in the monthly sponsored draw. Find out more benefits in the link to the right.">
@@ -229,7 +229,7 @@ print $element->GetHeader();
 						</span>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <a href="premium-benefits.php"> <small>Why should I sign up as <strong>Premium User</strong>? </small> </a>
                     </div>              
 					

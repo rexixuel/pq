@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>People's Q! Review Management</title>
+    <title>People's Q! Categories</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -157,39 +157,39 @@ print $element->GetHeader();
             <div class="col-md-9">
                 <form class="form-group">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-6">
+                        <div class="col-lg-6 col-sm-5">
                                 <div class="form-group form-inline">
                                     <label> See: </label>
                                     <div class="btn-group" data-toggle="buttons">
-                                      <label class="btn btn-primary btn-sm">
+                                      <label class="btn btn-primary btn-xs">
                                         <input type="radio" autocomplete="off" id="subFilter" class="success"> Subscribed
                                       </label>
-                                      <label class="btn btn-info btn-sm active">
+                                      <label class="btn btn-info btn-xs active">
                                         <input type="radio" autocomplete="off" id="subFilter" class="danger" checked> ALL
                                       </label>
                                     </div>
                                 </div>                                
                         </div>
-                        <div class="col-lg-6 col-sm-6">                                
+                        <div class="col-lg-6 col-sm-7">                                
                                 <div class="form-group btn-group form-inline">
                                     <label> Subscription Options: </label>
                                     <span data-toggle="tooltip" data-placement="top" title="Unsubscribe from selected categories" style="margin-left:10px;"> 
-                                            <a href="#" data-target="#confirmUnsubscribe" class="btn btn-danger btn-sm" data-toggle="modal"> <i class="fa fa-sign-out"></i> Unsubscribe</a> 
+                                            <a href="#" data-target="#confirmUnsubscribe" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-sign-out"></i> Unsubscribe</a> 
                                      </span>
                                      <span data-toggle="tooltip" data-placement="top" title="Subscribe to selected categories"> 
-                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal"> <i class="fa fa-sign-in"></i> Subscribe</a> 
+                                            <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"> <i class="fa fa-sign-in"></i> Subscribe</a> 
                                      </span> 
                                 </div>
                         </div>
-                        <div class="col-lg-6 col-sm-6">                                
+                        <div class="col-lg-6 col-sm-12">                                
 
                                 <div class="form-group form-inline">
                                     <div class="">
                                         <label for="searchMessages"> Search: </label>
-                                        <input type="text" id="searchMessages" class="form-control" placeholder="Enter keyword" required>                        
-                                        <select class="form-control">
-                                            <option class="form-control"> Categories </option>
-                                            <option class="form-control"> Subscription </option>
+                                        <input type="text" id="searchMessages" class="form-control input-sm" placeholder="Enter keyword" required>                        
+                                        <select class="form-control input-sm">
+                                            <option class=""> Categories </option>
+                                            <option class=""> Subscription </option>
                                         </select>
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@ print $element->GetHeader();
         		<div class="col-lg-4 col-sm-4">
 
         		</div>
-        		<div class="col-lg-4 col-sm-4">
+        		<div class="col-lg-4 col-sm-6">
 	        		<nav>
 	        		  <ul class="pagination">
 	        		    <li class="disabled">

@@ -155,7 +155,7 @@ print $element->GetHeader();
         		<div class="row">
 	        		<div class="col-lg-4 col-sm-4">
         			</div>
-	        		<div class="col-lg-4 col-sm-4">
+	        		<div class="col-lg-4 col-sm-6">
 		        		<nav>
 		        		  <ul class="pagination">
 		        		    <li class="disabled">
@@ -181,39 +181,54 @@ print $element->GetHeader();
 				<div class="row">
 					<div class="col-md-6 img-portfolio">
 						<a href="review-details-.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-1.php">Sinigang na Lechon</a>
+							<a href="review-details-1.php">Sinigang na Lechon </a> | 
+							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
 								<div class="">
-									<label for="criteriaOverall" style = "clear: right;">Category 1</label>
-									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
+									<label for="criteriaOverall1" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall1" type="number" class="rating" data-size="xs" style="" value = 4.5 disabled/>
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="review-details-1.php" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="review-details-1.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
+			                 <?php
+			                 	print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+			                 ?>
+
+                            <?php
+                                print' <a href="review-details-1.php?username='.$user.'"  class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>';
+                            ?>
 			                <?php print $element->PrintReport(); ?></p>
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
 						<a href="review-details-.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Two</a>
+							<a href="review-details-.php">Product Two</a> | 
+							<small>  <a href="category-1.php"> Category 1 </a> </small>
+
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
 								<div class="">
-									<label for="criteriaOverall" style = "clear: right;">Category 1</label>
-									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
+									<label for="criteriaOverall2" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall2" type="number" class="rating" data-size="xs" style="" value = 5 disabled/>
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+			                <p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> 
+			                	<?php
+			                		print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+			                	?>
+
+			                 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 			                <?php print $element->PrintReport(); ?>
 			                </p>
 						</form>						
@@ -224,49 +239,61 @@ print $element->GetHeader();
 				<div class="row">
 					<div class="col-md-6 img-portfolio">
 						<a href="review-details-.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Three</a>
+							<a href="review-details-.php">Product Three</a> | 
+							<small>  <a href="category-1.php"> Category 1 </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
 								<div class="">
-									<label for="criteriaOverall" style = "clear: right;">Category 4</label>
-									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 4 disabled/>
+									<label for="criteriaOverall3" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall3" type="number" class="rating" data-size="xs" style="" value = 4 disabled/>
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> 
+								<?php
+									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+								?>
+
+								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 							<?php print $element->PrintReport(); ?>
 							</p>	
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
 						<a href="review-details-.php">
-							<img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
+							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product 4</a>
+							<a href="review-details-.php">Product 4</a>| 
+							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
 								<div class="">
-									<label for="criteriaOverall" style = "clear: right;">Category 3</label>
-									<input id="criteriaOverall" type="number" class="rating" data-size="xs" style="" value = 3 disabled/>
+									<label for="criteriaOverall4" class="sr-only"> Verdict </label>
+									<input id="criteriaOverall4" type="number" class="rating" data-size="xs" style="" value = 3 disabled/>
 								</div>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> <a href="#" class="btn btn-primary" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-pencil"></i></a> <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+							<p><a href="#" class="btn btn-success" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="#" class="btn btn-danger" role="button"<?php print $element->SetDisabled(); ?> ><i class="glyphicon glyphicon-thumbs-down"></i></a> 
+								<?php
+									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
+								?>
+
+								 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 								<?php print $element->PrintReport(); ?>
 							</p>
 						</form>						
-					</div>
+					</div>									
 				</div>
         		<div class="col-lg-4 col-sm-4">
 
         		</div>
-        		<div class="col-lg-4 col-sm-4">
+        		<div class="col-lg-4 col-sm-6">
 	        		<nav>
 	        		  <ul class="pagination">
 	        		    <li class="disabled">
