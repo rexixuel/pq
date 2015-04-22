@@ -52,6 +52,13 @@ print $element->SetHomeActive('active');
 $element->SetUser($user);
 print $element->GetHeader($user);
 
+// insert login scripts here
+
+// step1: check if invoked via $_SELF
+// step2: if invoked, instantiate userControl class with $_POST values
+// step3: call login
+// step4: validate user access
+// step5: call user access elements from elementClass
 ?>			
 <!-- Start Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

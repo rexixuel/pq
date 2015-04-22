@@ -32,12 +32,33 @@
 <?php
 
 include ('/include/elementClass.php');
+include('/include/pqControl.php');
+
+// step1: check if invoked via $_SELF
+// step2: if invoked, instantiate userControl class with $_POST values
+// step3: call signup
+// step4: return signup successful <div class='alert-success'> </div>
+// step5: 
+$pqControl = new pqControl();
+
+if(isset($_POST)){
+	$pqDatabase->
+	if (isset($_POST["signIn"])){
+
+
+		$pqControl->login($_POST); 
+
+	}
+	else
+	if(isset($_POST["register"])){
+		$pqControl->register($_POST);
+	}
+}
 
 $element = new ConstantElements();
 $element->SetUser('');
 print $element->SetHomeActive('active');
 print $element->GetHeader();
-
 
 ?>
 <!-- Start Modal -->
@@ -65,7 +86,7 @@ print $element->GetHeader();
                             </div>
                         </div>
                         <div class = "form-group form-inline">
-                                <button type="submit" class="btn btn-primary btn-sm" >Sign In</button>
+                                <button type="submit" name="signIn" value="signin" class="btn btn-primary btn-sm" >Sign In</button>
                                 <a href="signup.php"> <large> Sign Up Now! </large> </a>
                         </div>
                         <a href="account-recovery-password.php"> <small> Forgot your password? </small></a>
@@ -103,7 +124,7 @@ print $element->GetHeader();
         <!-- /.row -->
 					
 		<h3 class="dark-grey"></h3>
-        <form  class="form-horizontal" id="registerHere" method='post' action=''>
+        <form  class="form-horizontal" id="registerHere" method="POST">
             <fieldset>
                   <div class="col-md-6">
                     
@@ -115,7 +136,8 @@ print $element->GetHeader();
                     <div class="form-group">                                                        
 	                    <div class="col-lg-6">
 	                        <label>Password</label>
-	                        <input type="password" name="" class="form-control" id="password" placeholder="********" required="required" data-toggle="tooltip"  title="Password must be at least 8 characters long, containing a number and special character">
+	                        <input type="password" name="" class="form-control" id="password" placeholder="********" required="required" data-toggle="tooltip"  title="Password must be at least 8 characters long, containing a number and special character"
+	                        		onchange = "validatePassword(this);">
 	                    </div>
                     
 	                    <div class="col-lg-6">
@@ -126,12 +148,12 @@ print $element->GetHeader();
 					<div class="form-group">                                    
 	                    <div class="col-lg-6">
 	                        <label>Email Address</label>
-	                        <input type="email" name="" class="form-control" id="" value="" required="required" data-toggle="tooltip"  title="Enter e-mail address used for verification and account recovery">
+	                        <input type="email" name="email" class="form-control" id="email" value="" required="required" data-toggle="tooltip"  title="Enter e-mail address used for verification and account recovery">
 	                    </div>
 	                    
 	                    <div class="col-lg-6">
 	                        <label>Confirm Email Address</label>
-	                        <input type="email" name="" class="form-control" id="" value="" data-toggle="tooltip"  title="Re-enter e-mail address">
+	                        <input type="email" name="email" class="form-control" id="cemail" value="" data-toggle="tooltip"  title="Re-enter e-mail address">
 	                    </div>          
                     </div>                    
                     <div class="form-group col-lg-12">
@@ -148,7 +170,7 @@ print $element->GetHeader();
                         <label>Birthday</label>
 						<span rel="tooltip" data-toggle="tooltip"  title="This field is used to validate age of user">
 							<div class="input-group date" id="birthdayForm">
-							  <input type="text" id="birthday" name="birthday" class="form-control"  placeholder = "mm/dd/yyyy"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+							  <input type="date" id="birthday" name="birthday" class="form-control"  placeholder = "mm/dd/yyyy"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 							</div>
 						</span>
 					</div>
@@ -282,7 +304,7 @@ print $element->GetHeader();
 					</div>
 					<!-- end panel -->
 					<div class="col-lg-12">
-						<button type="submit" class="btn btn-primary">Register</button>
+						<button type="submit" name="register" value="register" class="btn btn-primary">Register</button>
 					</div>
                 </div>
 
@@ -366,6 +388,8 @@ print $element->GetHeader();
 			defaultViewDate: { year: 1977, month: 04, day: 25 }
 		});
 	</script>
+
+
 </body>
 
 </html>
