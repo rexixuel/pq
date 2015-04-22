@@ -235,7 +235,108 @@ print $element->GetHeader();
     					</tr>
         			</thead>
             		<tbody class="">
-                        <form class="form-group">                            
+                        <form class="form-group"> 
+                        <?php
+                            if(empty($user)){
+                                print '
+                                <tr>
+                                    <!-- <td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review1" id="reviews"/> </td>-->
+                                    <td class=""> 
+                                      
+                                        <label>
+                                            <input type="checkbox" name="review4" id="review4" class="reviews"/>  
+                                            <a href="category-1.php?username='.$user.'"> Sports </a> 
+                                        </label>
+                                     
+                                       </td>
+                                    <td> Description extracted from category setup </td>
+                                     <td><span data-toggle="tooltip" data-placement="left" title="Unsubscribe to categories"> 
+                                           <a href="edit-post-1.php?username='.$user.'" class="btn btn-primary btn-xs"><i class="fa fa-sign-in"></i> Subscribe </a>
+                                        
+                                         <!--</span>-->
+                                    </td>
+                                    <td>
+                                        55
+                                    </td>
+                                    <td>
+                                        100
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <!-- <td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review1" id="reviews"/> </td>-->
+                                    <td class=""> 
+                                      
+                                        <label>
+                                            <input type="checkbox" name="review4" id="review4" class="reviews"/>  
+                                            <a href="category-1.php?username='.$user.'"> Entertainment and Movies </a> 
+                                        </label>
+                                     
+                                       </td>
+                                    <td> Description extracted from category setup </td>
+                                     <td><span data-toggle="tooltip" data-placement="left" title="Unsubscribe to categories"> 
+                                           <a href="edit-post-1.php?username='.$user.'" class="btn btn-primary btn-xs"><i class="fa fa-sign-in"></i> Subscribe </a>
+                                        
+                                         <!--</span>-->
+                                    </td>
+                                    <td>
+                                        55
+                                    </td>
+                                    <td>
+                                        100
+                                    </td>
+                                </tr> 
+
+                                <tr>
+                                    <!-- <td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review1" id="reviews"/> </td>-->
+                                    <td class=""> 
+                                      
+                                        <label>
+                                            <input type="checkbox" name="review4" id="review4" class="reviews"/>  
+                                            <a href="category-1.php?username='.$user.'"> Health and Fitness </a> 
+                                        </label>
+                                     
+                                       </td>
+                                    <td> Description extracted from category setup </td>
+                                     <td><span data-toggle="tooltip" data-placement="left" title="Unsubscribe to categories"> 
+                                           <a href="edit-post-1.php?username='.$user.'" class="btn btn-primary btn-xs"><i class="fa fa-sign-in"></i> Subscribe </a>
+                                        
+                                         <!--</span>-->
+                                    </td>
+                                    <td>
+                                        55
+                                    </td>
+                                    <td>
+                                        100
+                                    </td>
+                                </tr> 
+
+                                <tr>
+                                    <!-- <td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review1" id="reviews"/> </td>-->
+                                    <td class=""> 
+                                      
+                                        <label>
+                                            <input type="checkbox" name="review4" id="review4" class="reviews"/>  
+                                            <a href="category-1.php?username='.$user.'"> Social Networking </a> 
+                                        </label>
+                                     
+                                       </td>
+                                    <td> Description extracted from category setup </td>
+                                     <td><span data-toggle="tooltip" data-placement="left" title="Unsubscribe to categories"> 
+                                           <a href="edit-post-1.php?username='.$user.'" class="btn btn-primary btn-xs"><i class="fa fa-sign-in"></i> Subscribe </a>
+                                        
+                                         <!--</span>-->
+                                    </td>
+                                    <td>
+                                        55
+                                    </td>
+                                    <td>
+                                        100
+                                    </td>
+                                </tr> 
+ ';
+                            }
+                            ?>                          
                 			<tr>
                                 <!-- <td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review1" id="reviews"/> </td>-->
                                 <?php
@@ -244,6 +345,64 @@ print $element->GetHeader();
                                     <label>
                                         <input type="checkbox" name="review1" id="review1" class="reviews"/>  
                                         <a href="category-1.php?username='.$user.'"> Games </a> 
+                                    </label>
+                                 
+                                   </td>';
+                                ?>
+                				<td> Description extracted from category setup </td>
+                                 <td><span data-toggle="tooltip" data-placement="left" title="Unsubscribe to categories"> 
+                                        <a href="#" data-target="#confirmUnsubscribe" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-sign-out"></i> Unsubscribe</a> 
+                                     </span>
+                                     <!--<span data-toggle="tooltip" data-placement="right" title="Edit Post"> -->
+                                        <?php
+                                        // print '<a href="edit-post-1.php?username='.$user.'" class="btn btn-primary btn-xs"><i class="fa fa-sign-in"></i> Subscribe </a>';
+                                        ?>
+                                     <!--</span>-->
+                                </td>
+                                <td>
+                                    55
+                                </td>
+                                <td>
+                                    100
+                                </td>
+            				</tr>
+                            <tr>
+                                <!-- <td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review1" id="reviews"/> </td>-->
+                                <?php
+                				  print '<td class=""> 
+                                  
+                                    <label>
+                                        <input type="checkbox" name="review3" id="review3" class="reviews"/>  
+                                        <a href="category-1.php?username='.$user.'"> Music </a> 
+                                    </label>
+                                 
+                                   </td>';
+                                ?>
+                				<td> Description extracted from category setup </td>
+                                 <td><span data-toggle="tooltip" data-placement="left" title="Unsubscribe to categories"> 
+                                        <a href="#" data-target="#confirmUnsubscribe" class="btn btn-danger btn-xs" data-toggle="modal"> <i class="fa fa-sign-out"></i> Unsubscribe</a> 
+                                     </span>
+                                     <!--<span data-toggle="tooltip" data-placement="right" title="Edit Post"> -->
+                                        <?php
+                                        // print '<a href="edit-post-1.php?username='.$user.'" class="btn btn-primary btn-xs"><i class="fa fa-sign-in"></i> Subscribe </a>';
+                                        ?>
+                                     <!--</span>-->
+                                </td>
+                                <td>
+                                    55
+                                </td>
+                                <td>
+                                    100
+                                </td>
+            				</tr>
+                            <tr>
+                                <!-- <td class="input-group form-inline"> <input type="checkbox" class="checkbox" name="review1" id="reviews"/> </td>-->
+                                <?php
+                				  print '<td class=""> 
+                                  
+                                    <label>
+                                        <input type="checkbox" name="review4" id="review4" class="reviews"/>  
+                                        <a href="category-1.php?username='.$user.'"> Gadget </a> 
                                     </label>
                                  
                                    </td>';

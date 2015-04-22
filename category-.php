@@ -92,7 +92,7 @@ print $element->GetReportModal();
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"> <i class="glyphicon glyphicon-search"></i> Generic Category
+                <h1 class="page-header"> <i class="glyphicon glyphicon-search"></i> Food and Restaurant
 				<small> All Reviews </small>
 				<span data-toggle="tooltip" data-placement="right" title="Subscribe to Generic Category Template!"> 
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal"> <i class="fa fa-sign-in"></i> Subscribe</a> 
@@ -124,7 +124,7 @@ print $element->GetReportModal();
             <!-- Sidebar Column -->
             <div class="col-md-4">
                 <div class="panel panel-info">
-                	<div class="panel-heading panel-primary"> <strong> Generic Category Sidebar </strong> </div>
+                	<div class="panel-heading panel-primary"> <strong> Food and Restaurant Sidebar </strong> </div>
                 	<div class="panel-body">
 	                	<p> <mark> Hi and welcome to generic category! <br /> <br /> Please see <strong> rules </strong> below for a happier community!</mark> </p>
 	                	<strong> The Rules </strong>
@@ -144,7 +144,7 @@ print $element->GetReportModal();
                 	</div>
 				</div>            	
 				<div class="panel panel-info">
-                	<div class="panel-heading panel-primary"> <strong> Generic Category Moderators </strong> </div>
+                	<div class="panel-heading panel-primary"> <strong> Food and Restaurant Moderators </strong> </div>
                 	<div class="panel-body">
                 		<h5 class="pq-header"> <strong> Message the Mods! </strong> </h5>
                 		<div class="list-group" class="pq-mod-list">
@@ -443,12 +443,7 @@ print $element->GetReportModal();
           // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
           var modal = $(this)
-          var type = button.data('type');
-          if(type == 'block'){
-            modal.find('.modal-title').text('Block ' + recipient)
-          }else{
-            modal.find('.modal-title').text('Report to ' + recipient)
-          }
+          modal.find('.modal-title').text('Report to ' + recipient)
           modal.find('#subject').val(user + ' POST REPORT:')
           modal.find('#recipient').val(recipient)
         })    

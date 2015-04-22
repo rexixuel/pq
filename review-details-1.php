@@ -96,7 +96,7 @@ print $element->GetReportModal();
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header"> <i class="fa fa-search"></i> Sinigang na Lechon
-                    <small> reviewed by username 
+                    <small> reviewed by username on Apr 04, 2015 
                     </small>
                     <div class="pq-page-instruction">
                         <small class="pq-page-instruction"> 
@@ -726,7 +726,12 @@ print $element->GetReportModal();
           // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
           var modal = $(this)
-          modal.find('.modal-title').text('Report to ' + recipient)
+          var type = button.data('type');
+          if(type == 'block'){
+            modal.find('.modal-title').text('Block ' + recipient)
+          }else{
+            modal.find('.modal-title').text('Report to ' + recipient)
+          }
           modal.find('#subject').val(user + ' POST REPORT:')
           modal.find('#recipient').val(recipient)
         })    

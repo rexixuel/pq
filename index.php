@@ -196,12 +196,16 @@ print $element->GetHeader($user);
 				<!-- product row -->
 
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-1.php?username='.$user.'">';
+                        ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-1.php">Sinigang na Lechon </a> | 
-							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
+							<?php
+								print '<a href="review-details-1.php?username='.$user.'">';
+                            ?>Sinigang na Lechon </a> | 
+							<small>  <?php print '<a href="category-2.php?username='.$user.'">'; ?> Food and Restaurant </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -221,12 +225,16 @@ print $element->GetHeader($user);
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Two</a> | 
-							<small>  <a href="category-1.php"> Category 1 </a> </small>
+							<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>Product Two</a> | 
+							<small>  <?php print '<a href="category-1.php?username='.$user.'">'; ?> Category 1 </a> </small>
 
 						</h3>
 						<form class="form-group">
@@ -242,7 +250,9 @@ print $element->GetHeader($user);
 			                		print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
 			                	?>
 
-			                 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+			                 <?php
+								print '<a href="review-details-.php?username='.$user.'"';
+                              ?>  class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 			                <?php print $element->PrintReport(); ?>
 			                </p>
 						</form>						
@@ -251,12 +261,16 @@ print $element->GetHeader($user);
 				<!-- /.row product -->
 				<!--  product row-->				
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Three</a> | 
-							<small>  <a href="category-1.php"> Category 1 </a> </small>
+							<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>Product Three</a> | 
+							<small>  <?php print '<a href="category-1.php?username='.$user.'">'; ?> Category 1 </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -271,18 +285,24 @@ print $element->GetHeader($user);
 									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
 								?>
 
-								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+								<?php
+								print '<a href="review-details-.php?username='.$user.'"';
+                              ?>  class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 							<?php print $element->PrintReport(); ?>
 							</p>	
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/750x400" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product 4</a> | 
-							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
+							<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>Product 4</a> | 
+							<small>  <?php print '<a href="category-2.php?username='.$user.'">'; ?> Food and Restaurant </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -297,7 +317,9 @@ print $element->GetHeader($user);
 									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
 								?>
 
-								 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+								 <?php
+								print '<a href="review-details-.php?username='.$user.'"';
+                              ?>  class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 								<?php print $element->PrintReport(); ?>
 							</p>
 						</form>						

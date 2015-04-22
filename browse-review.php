@@ -45,7 +45,8 @@ if(!empty($_GET['username']))
 $element = new ConstantElements();
 $element->SetUser($user);
 print $element->GetHeader();
-
+print $element->GetReplyModal();
+print $element->GetReportModal();
 ?>						
 <!-- Start Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -180,12 +181,16 @@ print $element->GetHeader();
 				<!-- product row -->
 				<div class="row">
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-1.php?username='.$user.'">';
+                        ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-1.php">Sinigang na Lechon </a> | 
-							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
+							<?php
+								print '<a href="review-details-1.php?username='.$user.'">';
+                            ?>Sinigang na Lechon </a> | 
+							<small>  <?php print '<a href="category-2.php?username='.$user.'">'; ?> Food and Restaurant </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -207,12 +212,16 @@ print $element->GetHeader();
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Two</a> | 
-							<small>  <a href="category-1.php"> Category 1 </a> </small>
+							<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>Product Two</a> | 
+							<small>  <?php print '<a href="category-1.php?username='.$user.'">'; ?> Category 1 </a> </small>
 
 						</h3>
 						<form class="form-group">
@@ -228,7 +237,9 @@ print $element->GetHeader();
 			                		print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
 			                	?>
 
-			                 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+			                 <?php
+								print '<a href="review-details-.php?username='.$user.'"';
+                              ?>  class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 			                <?php print $element->PrintReport(); ?>
 			                </p>
 						</form>						
@@ -238,12 +249,16 @@ print $element->GetHeader();
 				<!--  product row-->				
 				<div class="row">
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product Three</a> | 
-							<small>  <a href="category-1.php"> Category 1 </a> </small>
+							<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>Product Three</a> | 
+							<small>  <?php print '<a href="category-1.php?username='.$user.'">'; ?> Category 1 </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -258,18 +273,24 @@ print $element->GetHeader();
 									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
 								?>
 
-								<a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+								<?php
+								print '<a href="review-details-.php?username='.$user.'"';
+                              ?>  class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 							<?php print $element->PrintReport(); ?>
 							</p>	
 						</form>
 					</div>
 					<div class="col-md-6 img-portfolio">
-						<a href="review-details-.php">
+						<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>
 							<img class="img-responsive img-hover" src="http://placehold.it/350x200" alt=""> <p class="pq-header pq-thumbnail-user-post" style=""> username, Apr 04, 2015 </p>
 						</a>
 						<h3>
-							<a href="review-details-.php">Product 4</a>| 
-							<small>  <a href="category-2.php"> Food and Restaurant </a> </small>
+							<?php
+								print '<a href="review-details-.php?username='.$user.'">';
+                            ?>Product 4</a> | 
+							<small>  <?php print '<a href="category-2.php?username='.$user.'">'; ?> Food and Restaurant </a> </small>
 						</h3>
 						<form class="form-group">
 							<div class = "form-group">
@@ -284,7 +305,9 @@ print $element->GetHeader();
 									print '<a href="review-details-1.php?username='.$user.'#commentsAnchor" '.$element->SetDisabled().'  class="btn btn-primary" role="button"><i class="glyphicon glyphicon-pencil"></i></a>';
 								?>
 
-								 <a href="reviewdetails.php" class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
+								 <?php
+								print '<a href="review-details-.php?username='.$user.'"';
+                              ?>  class="btn btn-info" role="button"><i class="glyphicon glyphicon-share-alt"></i> Details</a>
 								<?php print $element->PrintReport(); ?>
 							</p>
 						</form>						
@@ -352,7 +375,7 @@ print $element->GetHeader();
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Team CMC 2015</p>
                 </div>
             </div>
         </footer>
@@ -367,7 +390,54 @@ print $element->GetHeader();
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+   <script type="text/javascript">
+        $('#message').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var recipient = button.data('recipient') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          modal.find('.modal-title').text('Message ' + recipient)
+          modal.find('#recipient').val(recipient)
+        })
 
+        $('#reply').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var replytype = button.data('replytype');
+          var recipient = button.data('recipient') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          if (replytype == 'main'){
+            modal.find('.modal-title').text('Reply to ' + recipient + ' review of Sinigang na Lechon')            
+          }else{
+            modal.find('.modal-title').text('Reply to ' + recipient)            
+          }
+          modal.find('#recipient').val(recipient)
+        })    
+
+        $('#report').on('show.bs.modal', function (event) {
+
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var user = button.data('user')
+          if (user == null){
+            user = ''            
+          }
+          var recipient = button.data('recipient') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          var type = button.data('type');
+          if(type == 'block'){
+            modal.find('.modal-title').text('Block ' + recipient)
+          }else{
+            modal.find('.modal-title').text('Report to ' + recipient)
+          }
+          modal.find('#subject').val(user + ' POST REPORT:')
+          modal.find('#recipient').val(recipient)
+        })    
+
+    </script>    
 </body>
 
 </html>

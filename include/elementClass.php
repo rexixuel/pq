@@ -73,9 +73,9 @@ class ConstantElements{
 	}
 	public function SetUser($user){
 		$this->user  = $user;
-		$this->categoryDropDown ='	<li><a href="categories.php?username='.$this->user.'&categoryKey=">Gaming</a></li>
-							    	<li><a href="categories.php?username='.$this->user.'&categoryKey=">Music</a></li>
-									<li><a href="categories.php?username='.$this->user.'&categoryKey=">Gadgets</a></li>
+		$this->categoryDropDown ='	<li><a href="category-1.php?username='.$this->user.'&categoryKey=">Games</a></li>
+							    	<li><a href="category-1.php?username='.$this->user.'&categoryKey=">Music</a></li>
+									<li><a href="category-1.php?username='.$this->user.'&categoryKey=">Gadgets</a></li>
 									<li class="divider"></li>
 									<li><a href="categories.php?username='.$this->user.'">See All Subscription</a></li>';		
 		if ($user == "Regular User" )
@@ -112,12 +112,12 @@ class ConstantElements{
 					$this->userIndex = 'index.php';					
 					$this->callToAction = '<a class="btn btn-lg btn-primary btn-block" href="signup.php">Signup Now!</a>';
 					$this->categoryDropDown = '<li class=""><a href="category-2.php">Food and Restaurants</a></li>
-                        <li><a href="sports.php">Sports</a></li>
-                        <li><a href="entertainment.php">Entertainment & Movies</a></li>
-                        <li><a href="hnf.php">Health and Fitness</a></li>
-                        <li><a href="music.php">Music</a></li>
-                        <li><a href="olgames.php">Online Games</a></li>
-                        <li><a href="socialnet.php">Social Networking</a></li>
+                        <li><a href="category-1.php">Sports</a></li>
+                        <li><a href="category-1.php">Entertainment & Movies</a></li>
+                        <li><a href="category-1.php">Health and Fitness</a></li>
+                        <li><a href="category-1.php">Music</a></li>
+                        <li><a href="category-1.php">Games</a></li>
+                        <li><a href="category-1.php">Social Networking</a></li>
                         <li class="divider"></li>
                         <li><a href="categories.php?username='.$this->user.'">See All...</a></li>';
 				}
@@ -360,7 +360,7 @@ class ConstantElements{
                         </div>
                         <div class = "form-group">
                             <div class="">
-                                    <label for="message-body" class="sr-only">Message</label>
+                                    <label for="message-body">Message</label>
 
 									<a href="formatting-help.php" class="pq-form-misc-links"> <small> Formatting Help </small> </a>
 										
@@ -397,11 +397,18 @@ class ConstantElements{
 	public function PrintReport(){		
 		if(empty($this->user)){
 			return "";
-		}else{
-			return '<a href="#" data-container="body" data-toggle="modal" data-recipient="@FNR_Mod; @Admin" data-user="@user" data-target="#report" 
-                                            class="btn btn-link">
-                                          <small>  <i class="fa fa-flag"></i> report </small> </a>';
 		}
+        else
+            if($this->user == "admin" || $this->user == "moderator"){
+                return '<a href="#" data-container="body" data-type="block" data-toggle="modal" data-recipient="@user" data-user="@user" data-target="#report" 
+                                class="btn btn-link">
+                              <small>  <i class="fa  fa-lock"></i> block </small> </a>';
+            }
+                else{
+                    return '<a href="#" data-container="body" data-toggle="modal" data-recipient="@FNR_Mod; @Admin" data-user="@user" data-target="#report" 
+                                                    class="btn btn-link">
+                                                  <small>  <i class="fa fa-flag"></i> report </small> </a>';
+                }
 	}
 
 	public function PrintReviewReport(){		
