@@ -34,24 +34,32 @@
 include ('/include/elementClass.php');
 include('/include/pqControl.php');
 
+/*function __autoload($class_name) {
+    if(file_exists("/include/".$class_name.'.php')) {
+        require_once($class_name . '.php');    
+    } else {
+        throw new Exception("Unable to load $class_name.");
+    }
+}*/
 // step1: check if invoked via $_SELF
 // step2: if invoked, instantiate userControl class with $_POST values
 // step3: call signup
 // step4: return signup successful <div class='alert-success'> </div>
 // step5: 
-$pqControl = new pqControl();
+
+$userControl = new userControl();
 
 if(isset($_POST)){
-	$pqDatabase->
+
 	if (isset($_POST["signIn"])){
 
 
-		$pqControl->login($_POST); 
+		$userControl->login($_POST); 
 
 	}
 	else
 	if(isset($_POST["register"])){
-		$pqControl->register($_POST);
+		$userControl->register($_POST);
 	}
 }
 
@@ -111,7 +119,6 @@ print $element->GetHeader();
 						<small class="pq-page-instruction"> Enter details below to create a new account.  Click 'Register' to finalize registration. </small>
 					</div>
                 </h1>
-				
                 <ol class="breadcrumb">
                     <li><a href="index.php">Home</a>
                     </li>
@@ -119,6 +126,7 @@ print $element->GetHeader();
                     </li>
                     
                 </ol>
+			<!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now Accepting PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/webapps/mpp/how-paypal-works"><font size="2" face="Arial" color="#0079CD">How PayPal Works</font></a></div></td></tr></table><!-- PayPal Logo -->
             </div>
         </div>
         <!-- /.row -->
@@ -130,19 +138,19 @@ print $element->GetHeader();
                     
                     <div class="form-group col-lg-12">
                         <label>Username</label>
-                        <input type="" name="" class="form-control" id="username" value="" required="required" rel="tooltip"  title="Username must be unique" placeholder="Enter your Username">
+                        <input type="" name="username" class="form-control" id="username" value="" required="required" rel="tooltip"  title="Username must be unique" placeholder="Enter your Username">
                     </div>
                     
                     <div class="form-group">                                                        
 	                    <div class="col-lg-6">
 	                        <label>Password</label>
-	                        <input type="password" name="" class="form-control" id="password" placeholder="********" required="required" data-toggle="tooltip"  title="Password must be at least 8 characters long, containing a number and special character"
+	                        <input type="password" name="password" class="form-control" id="password" placeholder="********" required="required" data-toggle="tooltip"  title="Password must be at least 8 characters long, containing a number and special character"
 	                        		onchange = "validatePassword(this);">
 	                    </div>
                     
 	                    <div class="col-lg-6">
 	                        <label>Confirm Password</label>
-	                        <input type="password" name="" class="form-control" id="cpassword" placeholder="********" required="required" data-toggle="tooltip"  title="Re-enter password to confirm">
+	                        <input type="password" name="password" class="form-control" id="cpassword" placeholder="********" required="required" data-toggle="tooltip"  title="Re-enter password to confirm">
 	                    </div>
 	                </div>
 					<div class="form-group">                                    
@@ -170,7 +178,7 @@ print $element->GetHeader();
                         <label>Birthday</label>
 						<span rel="tooltip" data-toggle="tooltip"  title="This field is used to validate age of user">
 							<div class="input-group date" id="birthdayForm">
-							  <input type="date" id="birthday" name="birthday" class="form-control"  placeholder = "mm/dd/yyyy"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+							  <input id="birthday" name="birthday" class="form-control"  placeholder = "mm/dd/yyyy"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 							</div>
 						</span>
 					</div>
@@ -190,7 +198,7 @@ print $element->GetHeader();
 							
 									<div class="input-group">									
 											<span class="input-group-addon">+63 </span>
-											<input type="" name="mobileNumber" class="form-control" id="mobileNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx xxx" data-toggle="tooltip" />
+											<input type="number" name="mobileNumber" class="form-control" id="mobileNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx xxx" data-toggle="tooltip" />
 									</div>
 							
 
@@ -201,7 +209,7 @@ print $element->GetHeader();
 							
 									<div class="input-group">									
 											<span class="input-group-addon">+63 </span>
-											<input type="" name="landlineNumber" class="form-control" id="landlineNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx" data-toggle="tooltip" />
+											<input type="number" name="landlineNumber" class="form-control" id="landlineNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx" data-toggle="tooltip" />
 									</div>
 
 							
@@ -209,7 +217,7 @@ print $element->GetHeader();
 					</div>
                     <div class="form-group col-lg-12">
                         <label>Security Question</label>
-                        <input type="secQuestion" name="" class="form-control" id="" value=""
+                        <input type="text" name="secQuestion" class="form-control" id="" value=""
 						placeholder = "Enter your Secret Security Question that is used to recover your account." rel="tooltip"
 						data-toggle="tooltip" data-placement="top" title="TIP: Security question could be a personal detail only known to you ">
                     </div>          
@@ -217,7 +225,7 @@ print $element->GetHeader();
 
                     <div class="form-group col-lg-12">
                         <label>Security Answer</label>
-                        <input type="secAnswer" name="" class="form-control" id="" value=""
+                        <input type="secAnswer" name="secAnswer" class="form-control" id="" value=""
 						placeholder = "Enter Security Answer that is used to recover your account"
 						rel="tooltip"
 						data-toggle="tooltip" data-placement="top" title="This is the answer to your security question. TIP: Security question could be a personal detail only known to you">

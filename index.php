@@ -1,3 +1,9 @@
+<?php
+/*	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,18 +46,10 @@
 
 <?php
 
-include ('/include/elementClass.php');
+include ('/include/pqControl.php');
 
-$element = new ConstantElements();
-$user = '';
-if(!empty($_GET['username']))
-{
-	$user = $_GET['username'];
-}
-print $element->SetHomeActive('active');
-$element->SetUser($user);
-print $element->GetHeader($user);
-
+$element = new elementControl();
+$userControl = new userControl();
 // insert login scripts here
 
 // step1: check if invoked via $_SELF
@@ -59,43 +57,40 @@ print $element->GetHeader($user);
 // step3: call login
 // step4: validate user access
 // step5: call user access elements from elementClass
+$userType = '';
+$user = ''; 
+$userTypeDescription = '';
+
+if(isset($_POST)){
+
+	if (isset($_POST["signIn"])){
+		$userControl->login($_POST); 
+	}
+	else
+	if(isset($_POST["details"])){
+		$userControl->register($_POST);
+	}else
+	if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
+		session_destroy();
+	}
+}else
+if(isset($_GET["log"]) &&  $_GET["log"]  == "out" && session_status() != PHP_SESSION_NONE){
+	session_destroy();
+}
+if(isset($_SESSION['logged']) && $_SESSION['logged']){	
+	$userType = $_SESSION['userType'];
+	$userTypeDescription = $_SESSION['userTypeDescription'];
+	$user = $_SESSION['username'];
+}else{
+	print $element->GetLoginModal();
+}
+	$element->SetUser($userType, $user, $userTypeDescription);
+
+	print $element->GetHeader();
+	print $element->SetHomeActive('active');
+
 ?>			
-<!-- Start Modal -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-        <div class="modal-content pq-modal-body">
-                <div class="modal-header pq-modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Log In
-                </div>
-                <div class="modal-body ">
-                    <form action="login.php" method="POST">
-                        <div class="form-group">
-                            <div class="">									
-                                    <label for="username" class="sr-only">Username</label>
-                                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
-                            </div>
-                        </div>
-                        <div class = "form-group">
-                            <div class="">
-                                    <label for="password" class="sr-only">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
-                            </div>
-                        </div>
-                        <div class = "form-group form-inline">
-                                <button type="submit" class="btn btn-primary btn-sm" >Sign In</button>
-                                <a href="signup.php"> <large> Sign Up Now! </large> </a>
-                        </div>
-                        <a href="account-recovery-password.php"> <small> Forgot your password? </small></a>
-                        <a href="account-recovery-user.php"> <small> Forgot your username? </small></a>
-                        </form>
-                </div>
-        </div>
-   </div>
-</div>
-<!-- End Modal -->
+	
     <!-- Header Carousel -->
     <header id="" class="carousel push-down">
         <!-- Wrapper for slides -->
