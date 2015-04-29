@@ -1,0 +1,10 @@
+<?php
+
+	include ('/include/pqControl.php');
+	
+	$userControl = new userControl();
+
+	$userControl->logout();
+
+	
+?>

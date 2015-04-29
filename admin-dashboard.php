@@ -1,3 +1,41 @@
+<?php
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	
+	include ('/include/pqControl.php');
+
+	$element = new elementControl();
+	$userControl = new userControl();
+	// insert login scripts here
+
+	// step1: check if invoked via $_SELF
+	// step2: if invoked, instantiate userControl class with $_POST values
+	// step3: call login
+	// step4: validate user access
+	// step5: call user access elements from elementClass
+	$userType = '';
+	$loginResult = '';
+	$user = ''; 
+	$userTypeDescription = '';
+
+	if(isset($_POST)){
+
+		if (isset($_POST["signIn"])){
+			$loginResult = $userControl->login($_POST); 
+		}
+		else
+		if(isset($_POST["details"])){
+			$userControl->register($_POST);
+		}else
+		if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
+			session_destroy();
+		}
+	}else
+	if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
+			session_destroy();
+	}	
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,12 +72,20 @@
 
 <?php
 
-include ('/include/elementClass.php');
+if(isset($_SESSION['logged']) && $_SESSION['logged']){	
+	$userType = $_SESSION['userType'];
+	$userTypeDescription = $_SESSION['userTypeDescription'];
+	$user = $_SESSION['username'];
+}else{
+	print $element->GetLoginModal();
+}
+	$element->SetSidebarActive('active');
 
-$element = new ConstantElements();
-$element->SetSidebarActive('active');
-$element->SetUser('admin');
-print $element->GetHeader();
+	$element->SetUser($userType, $user, $userTypeDescription);
+
+	print $element->SetHomeActive('active');
+	print $element->GetHeader();
+
 
 ?>   
     <!-- login modal -->
@@ -122,7 +168,7 @@ print $element->GetHeader();
             <div class="col-md-3">
                 <div class="list-group">
                     <?php                       
-                        print $element->GetSidebar('','','','','','','active');
+                        print $element->GetSidebar('','','','','','','');
                     ?>
                 </div>
             </div>

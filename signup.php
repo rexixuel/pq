@@ -198,7 +198,7 @@ print $element->GetHeader();
 							
 									<div class="input-group">									
 											<span class="input-group-addon">+63 </span>
-											<input type="number" name="mobileNumber" class="form-control" id="mobileNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx xxx" data-toggle="tooltip" />
+											<input name="mobileNumber" class="form-control" id="mobileNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx xxx" data-toggle="tooltip" />
 									</div>
 							
 
@@ -209,7 +209,7 @@ print $element->GetHeader();
 							
 									<div class="input-group">									
 											<span class="input-group-addon">+63 </span>
-											<input type="number" name="landlineNumber" class="form-control" id="landlineNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx" data-toggle="tooltip" />
+											<input name="landlineNumber" class="form-control" id="landlineNumber" value="" rel="tooltip" data-toggle="tooltip"  title="Either Mobile Number or Landline Number must not be empty. This fields are used to contact winner of the sponsored prize of the month" placeholder = "xxx xxxx" data-toggle="tooltip" />
 									</div>
 
 							

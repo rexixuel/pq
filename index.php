@@ -1,8 +1,40 @@
 <?php
-/*	if (session_status() == PHP_SESSION_NONE) {
-		session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();		
 	}
-	*/
+	
+	include ('/include/pqControl.php');
+
+	$element = new elementControl();
+	$userControl = new userControl();
+	// insert login scripts here
+
+	// step1: check if invoked via $_SELF
+	// step2: if invoked, instantiate userControl class with $_POST values
+	// step3: call login
+	// step4: validate user access
+	// step5: call user access elements from elementClass
+	$userType = '';
+	$loginResult = '';
+	$user = ''; 
+	$userTypeDescription = '';
+
+	if(isset($_POST)){
+
+		if (isset($_POST["signIn"])){
+			$loginResult = $userControl->login($_POST); 
+		}
+		else
+		if(isset($_POST["details"])){
+			$userControl->register($_POST);
+		}else
+		if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
+			session_destroy();
+		}
+	}else
+	if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
+		session_destroy();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,38 +77,6 @@
 <body>
 
 <?php
-
-include ('/include/pqControl.php');
-
-$element = new elementControl();
-$userControl = new userControl();
-// insert login scripts here
-
-// step1: check if invoked via $_SELF
-// step2: if invoked, instantiate userControl class with $_POST values
-// step3: call login
-// step4: validate user access
-// step5: call user access elements from elementClass
-$userType = '';
-$user = ''; 
-$userTypeDescription = '';
-
-if(isset($_POST)){
-
-	if (isset($_POST["signIn"])){
-		$userControl->login($_POST); 
-	}
-	else
-	if(isset($_POST["details"])){
-		$userControl->register($_POST);
-	}else
-	if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
-		session_destroy();
-	}
-}else
-if(isset($_GET["log"]) &&  $_GET["log"]  == "out" && session_status() != PHP_SESSION_NONE){
-	session_destroy();
-}
 if(isset($_SESSION['logged']) && $_SESSION['logged']){	
 	$userType = $_SESSION['userType'];
 	$userTypeDescription = $_SESSION['userTypeDescription'];
@@ -86,8 +86,8 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 }
 	$element->SetUser($userType, $user, $userTypeDescription);
 
-	print $element->GetHeader();
 	print $element->SetHomeActive('active');
+	print $element->GetHeader();
 
 ?>			
 	
@@ -97,8 +97,8 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
         <div class="carousel-inner">
             
             <div class="item active ">
-                
-                <div class="fill pq-carousel" style="background-image:url('img/test1.jpg');">
+                <div class="fill pq-carousel" style="background-image:url('img/test4.jpg');">
+                <?php print $loginResult; ?>
 
 					<!-- start 1st row -->
 					<div class="row">
@@ -122,18 +122,9 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 					<!--end 1st row -->
 					<div class="clearfix"> </div>
 					<!--start 2nd row -->
-					<div class="row">	
-						<div class="col-md-12 col-sm-12 col-xs-12 pull-right ">
-							<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
-								
-								<a id="loginLink" href="#" class="" data-container="body" data-toggle="modal" data-target="#login">
-								Login Here </a> or
-								<a href="signup.php"> Sign up </a> now as a premium user and get a chance to win monthly prizes!						
-								
-							</div>
-							
-						</div>
-					</div>
+					<?php 
+					$element->SetUser($userType, $user, $userTypeDescription);
+					print $element->GetIndexCarousel(); ?>
 					<!-- end 2nd row -->
 
                 </div>
@@ -158,7 +149,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
         <div class="row">
 				<div class="col-lg-2">
                     <div class="row">
-                        
+						
                         <div class="col-lg-12 col-md-4 col-sm-4">
                             <h3 class="page-header">
                                 Announcements

@@ -1,5 +1,6 @@
 <?php
 include('/include/pqDatabase.php');
+include('/include/password_compat-master/lib/password.php');
 class userControl{
 	public $username;
 	public $password; 
@@ -31,7 +32,12 @@ class userControl{
 	    }
 
 	}	
+	public function logout(){
+		session_destroy();
+		header("Location: index.php"); /* Redirect browser */
+		exit();
 
+	}
 	public function login($userParms = array()){
 		$this->_construct($userParms);
 		
@@ -48,25 +54,38 @@ class userControl{
 		if($pqUserSuccess){
 			$pqDatabase->commitTransaction($pqConn);
 			$user = $pqUser->fetchUser();
-			$passHash = $user->password;			
+			if(!empty($user)){
+				$passHash = $user->password;							
+			}else{
+				return '<div class="alert alert-danger" role="alert"> Invalid Username </div> ';				
+			}
 			// verify password
 			if (password_verify($this->password, $passHash)){
 				$userType = $pqUserType->read($pqConn, $user['user_type_id']);
 				if (session_status() == PHP_SESSION_NONE) {
 				    session_start();
+					session_regenerate_id(true);
 				}
-				session_regenerate_id(true);
 				$_SESSION['logged'] = true;
 				$_SESSION['username'] = $user->username;
-				$_SESSION['userType'] = $user->user_type_id;
+				$_SESSION['userType'] = $user->user_type_id;				
 				$_SESSION['userTypeDescription'] = $userType['description'];
+				if($user->user_type_id == 1){
+					header("Location: admin-dashboard.php"); /* Redirect browser */
+					exit();
+				}else
+					if($user->user_type_id == 2){
+						header("Location: mod-dashboard.php"); /* Redirect browser */
+						exit();
+					}
+				return "";
 			}
 			else{
-				print '<div class="alert alert-danger" role="alert"> Invalid Username and/or Password</div> '. password_hash($this->password, PASSWORD_BCRYPT). ' : '.$passHash;
+				return '<div class="alert alert-danger" role="alert"> Invalid Username and/or Password</div>';
 			}
 		}else{
 			$pqDatabase->rollBackTransaction($pqConn);
-			print '<div class="alert alert-danger" role="alert"> USER Transaction Error</div>';
+			return '<div class="alert alert-danger" role="alert"> USER Transaction Error</div>';
 
 		}
 	}
@@ -180,7 +199,7 @@ class userControl{
 			}				
 			$this->user_type_id = 3;
 		}else{
-			$this->user_type_id = 4;
+			$this->user_type_id = 3;
 		}
 		$this->interests = $userParms['interests']; //change later to table for category poll aggregates
 		if(!$userError){
@@ -242,6 +261,7 @@ class elementControl{
 		public $userSidebar2;
 		public $userSidebar2Active;
 		public $callToAction;
+		public $indexCarousel;
 		public $categoryDropDown;
 
 	public function GetLoginModal(){
@@ -342,28 +362,57 @@ class elementControl{
 	}
 	public function SetUser($userType, $username, $userTypeDescription){
 		// fix default dropdowns
+		$this->user = $username;
 		$this->userType  = $userType;
 		$this->categoryDropDown ='	<li><a href="category-1.php?categoryKey=">Games</a></li>
 							    	<li><a href="category-1.php?categoryKey=">Music</a></li>
 									<li><a href="category-1.php?categoryKey=">Gadgets</a></li>
 									<li class="divider"></li>
 									<li><a href="categories.php?">See All Subscription</a></li>';		
+
 		if ($userType == 3 )
 		{
 			$this->menu = '<li> <a href="account-mgt.php"> Account Management </a> </li>';
-			$this->userIndex = 'index-mock-reg-user.php';
+			$this->userIndex = 'index.php';
 			$this->userSidebar = '<a href="account-mgt.php" class="list-group-item"> Account Management </a>';
 			$this->callToAction = '<a class="btn btn-lg btn-primary btn-block" href="account-mgt.php">Upgrade Now!</a>';
+			$this->indexCarousel = '					<div class="row">	
+				<div class="col-md-12 col-sm-12 col-xs-12  pull-right ">
+					<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+						
+							Logged In as Regular User  
+						
+					</div>
+					
+					<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+						<a href="account-mgt.php"> Upgrade </a> now to premium user and get a chance to win the monthly prize! <a href="account-mgt.php"> Learn More Here</a> 
+					</div>					
+				</div>
+			</div>';
+
 		}
 		else
 			if ($userType == 2)
 			{
 				$this->menu = '<li> <a href="mod-dashboard.php">  Category Set-up </a> </li>
 							   <li> <a href="account-mgt.php"> Account Management </a> </li>';		
-				$this->userIndex = 'index-mock-moderator.php';
+				$this->userIndex = 'index.php';
 				$this->userSidebar = '<a href="mod-dashboard.php" class="list-group-item '.$this->userSidebarActive.'"> Category Set-up </a>';
 				$this->userSidebar2 = '<a href="account-mgt.php" class="list-group-item '.$this->userSidebar2Active.'"> Account Management </a>';
 				$this->callToAction = '<a class="btn btn-lg btn-primary btn-block" href="account-mgt.php">Upgrade Now!</a>';
+				$this->indexCarousel = '					<div class="row">	
+						<div class="col-md-12 col-sm-12 col-xs-12  pull-right ">
+							<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+								
+									Logged In as Moderator
+								
+							</div>
+							
+							<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+								You can set-up your categories<a href="mod-dashboard.php"> Here </a>
+							</div>					
+						</div>
+					</div>';				
 
 			}
 			else
@@ -371,11 +420,23 @@ class elementControl{
 				{
 					$this->menu = '<li> <a href="admin-dashboard.php"> Site Set-up </a> </li>
 								   <li> <a href="user-mgt.php"> User Management </a> </li>';			
-					$this->userIndex = 'index-mock-admin.php';
+					$this->userIndex = 'index.php';
 					$this->userSidebar = '<a href="admin-dashboard.php" class="list-group-item '.$this->userSidebarActive.'"> Site-setup </a>';
 					$this->userSidebar2 = '<a href="user-mgt.php" class="list-group-item '.$this->userSidebar2Active.'"> User Management </a>';
-					$this->callToAction = '';
-
+					$this->callToAction = '<a class="btn btn-lg btn-primary btn-block" href="account-mgt.php">Upgrade Now!</a>';
+					$this->indexCarousel = '					<div class="row">	
+						<div class="col-md-12 col-sm-12 col-xs-12  pull-right ">
+							<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+								
+									Logged In as Administrator
+								
+							</div>
+							
+							<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+								You can set-up the site<a href="admin-dashboard.php"> Here </a>
+							</div>					
+						</div>
+					</div>';					
 				}
 				else
 				{
@@ -390,6 +451,18 @@ class elementControl{
                         <li><a href="category-1.php">Social Networking</a></li>
                         <li class="divider"></li>
                         <li><a href="categories.php?">See All...</a></li>';
+					$this->indexCarousel = '<div class="row">	
+							<div class="col-md-12 col-sm-12 col-xs-12 pull-right ">
+								<div class="pq-carousel-text pq-carousel-header pq-carousel-text-min">
+									
+									<a id="loginLink" href="#" class="" data-container="body" data-toggle="modal" data-target="#login">
+									Login Here </a> or
+									<a href="signup.php"> Sign up </a> now as a premium user and get a chance to win monthly prizes!						
+									
+								</div>
+								
+							</div>
+						</div>';                        
 				}
 	
 		if(!empty($userType))
@@ -428,7 +501,7 @@ class elementControl{
 					<li> <a href="messages.php?"> Messages <span class="badge">2</span></a> </li>
 								</ul>
 							</div>';
-			$this->log = '<li><a href="index.php?log=out"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>';
+			$this->log = '<li><a href="logout.php"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>';
 		}
 		else
 			{
@@ -440,7 +513,7 @@ class elementControl{
 	public function GetSidebar($list1,$list2,$list3,$list4,$list5,$list6)
 	{
 		$userSidebar='';
-		if(!empty($this->user))
+		if(isset($_SESSION['logged']) && $_SESSION['logged'])
 		{
         	$userSidebar = '<a href="post-review.php?" class="list-group-item '.$list3.'">Post A Review</a>
                     		<a href="review-mgt.php?" class="list-group-item '.$list4.'"> Review Management </a>    							
@@ -452,6 +525,10 @@ class elementControl{
 		                    <a href="browse-review.php?" class="list-group-item '.$list1.'">Browse All Reviews</a>
                     <a href="categories.php?" class="list-group-item '.$list2.'">Browse Reviews By Category</a>'.$userSidebar;                   
        return $this->sidebar;
+	}
+
+	public function GetIndexCarousel(){
+		return $this->indexCarousel;
 	}
 
 	public function GetCallToAction(){
