@@ -7,6 +7,8 @@
 
 	$element = new elementControl();
 	$userControl = new userControl();
+	$siteControl = new siteControl();
+	$categoryControl = new categoryControl();
 	// insert login scripts here
 
 	// step1: check if invoked via $_SELF
@@ -16,18 +18,28 @@
 	// step5: call user access elements from elementClass
 	$userType = '';
 	$loginResult = '';
+	$siteSetupResult = '';
+	$categoryPollResult = '';
 	$user = ''; 
 	$userTypeDescription = '';
 
 	if(isset($_POST)){
-
 		if (isset($_POST["signIn"])){
-			$loginResult = $userControl->login($_POST); 
+			$loginResult = $userControl->Login($_POST); 
 		}
 		else
-		if(isset($_POST["details"])){
-			$userControl->register($_POST);
-		}else
+		if(isset($_POST["save"])){			
+			$siteSetupResult = $siteControl->Save($_POST, $_FILES);
+		}
+		else
+		if(isset($_POST["preview"])){
+			$siteControl->Preview($_POST);
+		}
+		else
+		if(isset($_POST["saveCategory"])){
+			$categoryPollResult = $categoryControl->SetNewPoll($_POST);
+		}		
+		else
 		if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
 			session_destroy();
 		}
@@ -72,12 +84,15 @@
 
 <?php
 
-if(isset($_SESSION['logged']) && $_SESSION['logged']){	
+if(isset($_SESSION['logged']) && $_SESSION['logged']) {	
 	$userType = $_SESSION['userType'];
 	$userTypeDescription = $_SESSION['userTypeDescription'];
 	$user = $_SESSION['username'];
-}else{
-	print $element->GetLoginModal();
+}
+
+if(!isset($_SESSION['logged']) || $userType != 1)
+{
+		$userControl->invalidAccess();
 }
 	$element->SetSidebarActive('active');
 
@@ -87,42 +102,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 	print $element->GetHeader();
 
 
-?>   
-    <!-- login modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog ">
-        <div class="modal-content pq-modal-body">
-                <div class="modal-header pq-modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Log In
-                </div>
-                <div class="modal-body ">
-                    <form>
-                        <div class="form-group">
-                            <div class="">									
-                                    <label for="username" class="sr-only">Username</label>
-                                    <input type="text" id="username" class="form-control" placeholder="Username" />
-                            </div>
-                        </div>
-                        <div class = "form-group">
-                            <div class="">
-                                    <label for="password" class="sr-only">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Password" />
-                            </div>
-                        </div>
-                        <div class = "form-group form-inline">
-                                <button type="button" class="btn btn-primary btn-sm" >Sign In</button>
-                                <a href="signup.php"> <large> Sign Up Now! </large> </a>
-                        </div>
-                        </form>
-                </div>
-        </div>
-       </div>
-    </div>
-  
-
+?>     
 
     <!-- Page Content -->
     <div class="container">
@@ -158,6 +138,8 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
                     </li>
                     
                 </ol>
+    			<?php print $siteControl->GetErrorsFound().$siteSetupResult.$categoryPollResult; ?>
+
             </div>
         </div>
         <!-- /.row -->
@@ -191,7 +173,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 							
 						</ul> 
 				
-						<form>
+						<form method="POST" id="siteSetup" name="siteSetup" enctype="multipart/form-data">
 						
 							<hr>						
 							<span id="sponsorOptions" class="pq-offset-anchor">					
@@ -202,40 +184,47 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 							<div class = "form-group">
 								<div class="">
 										<label for="sponsorName">Name</label>
-										<input type="text" id="sponsorName" class="form-control" placeholder="Sponsor" />
+										<input type="text" id="sponsorName" name="sponsorName" class="form-control" placeholder="Sponsor" />
 								</div>
+								<?php print $siteControl->GetSponsorNameError(); ?>
 							</div>
 							<div class = "form-group">
 								<div class="">
 										<label for="prize">Prize Description</label>
-										<textarea rows="7" id="prize" class="form-control" placeholder="Specify prize to be given away by sponsor of the month"></textarea>
+										<textarea rows="7" id="prize" name="prize" class="form-control" placeholder="Specify prize to be given away by sponsor of the month"></textarea>
 								</div>
+								<?php print $siteControl->GetPrizeError(); ?>
 							</div>
 							<div class="form-group">
 								<label for="mobile" >Mobile Number</label>
 								<div class="input-group">									
 										<span class="input-group-addon">+63 </span>
-										<input type="text" id="mobile" class="form-control" placeholder="xxx xxxx xxx"/>
+										<input type="text" id="mobile" name="mobile" class="form-control" placeholder="xxx xxxx xxx"/>
 								</div>
+								<?php print $siteControl->GetContactError(); ?>								
 							</div>
 							<div class = "form-group">
-								<div class="">
-										<label for="password">Password</label>
-										<input type="text" id="password" class="form-control" placeholder="Password" />
+								<label for="landline" >Landline Number</label>
+								<div class="input-group">									
+										<span class="input-group-addon">+63 </span>
+										<input type="text" id="landline" name="landline" class="form-control" placeholder="xxx xxxx"/>
 								</div>
+								<?php print $siteControl->GetContactError(); ?>								
 							</div>
 							<div class = "form-group">
 								<div class="">
 										<label for="address">Address</label>
-										<input type="text" id="address" class="form-control" placeholder="Address" />
+										<input type="text" id="address" name="address" class="form-control" placeholder="Address" />
 								</div>
+								<?php print $siteControl->GetAddressError(); ?>								
 							</div>
 							<div class = "form-group">
 								<div class="">
 										<label for="prizeBanner">Prize Banner</label>
-										<input type="file" id="address" />
+										<input type="file" id="prizeBanner" name="prizeBanner" class="form-control" />
 										<p class="help-block"> Upload Prize Banner Image </p>
 								</div>
+								<?php print $siteControl->GetPrizeBannerError(); ?>								
 							</div>						
 							
 							<hr>							
@@ -247,8 +236,9 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 							<div class = "form-group">
 								<div class="">
 										<label for="welcomeMessage">Welcome Message</label>
-										<textarea rows="7" id="welcomeMessage" class="form-control" placeholder="Welcome Message that shall appear in the welcome page. You can describe the website here or add links"></textarea>
+										<textarea rows="7" id="welcomeMessage" name="welcomeMessage" class="form-control" placeholder="Welcome Message that shall appear in the welcome page. You can describe the website here or add links"></textarea>
 								</div>
+								<?php print $siteControl->GetWelcomeMessageError(); ?>								
 								<div class="pq-format-tags">
 									<label> <small> Format: </small> </label>
 									<a href=""> <code> List </code> </a>
@@ -267,11 +257,13 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 								<div class="">
 										<label for="announcement">Announcement</label>
 										<div class = "form-group form-inline">
-											<input type="text" class="form-control" placeholder="Announcement Title" data-toggle="tooltip" title="This is the title of the announement." required/>
+											<input type="text" id="announcementTitle" name="announcementTitle" class="form-control" placeholder="Announcement Title" data-toggle="tooltip" title="This is the title of the announement." />
 										</div>
+										<?php print $siteControl->GetAnnouncementTitleError(); ?>								
 										<div class = "form-group">										
-											<textarea rows="7" id="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"></textarea>
+											<textarea rows="7" id="announcement" name="announcement" class="form-control" placeholder="Enter announcements here. Announcements can be about site maintenance or any upgrades made in the site"></textarea>
 										</div>
+										<?php print $siteControl->GetAnnouncementError(); ?>								
 										<div class="pq-format-tags">
 											<label> <small> Format: </small> </label>
 											<a href=""> <code> List </code> </a>
@@ -294,12 +286,14 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 										<div class="form-group form-inline">
 											<div>
 												<label for="newsTitle" class="sr-only"> News Title </label>
-												<input required type="text" id="newsTitle" name="newsTitle" class="form-control" placeholder="News Title" data-toggle="tooltip" title="This is the title of the news." />																						
+												<input type="text" id="newsTitle" name="newsTitle" class="form-control" placeholder="News Title" data-toggle="tooltip" title="This is the title of the news." />																						
 											</div>	
+											<?php print $siteControl->GetNewsTitleError(); ?>								
 										</div>
 										<div class="form-group">
-											<textarea rows="7" id="news" class="form-control" placeholder="Enter Site News Here. "></textarea>
+											<textarea rows="7" id="news" name="news" class="form-control" placeholder="Enter Site News Here. "></textarea>
 										</div>
+										<?php print $siteControl->GetNewsError(); ?>								
 										<div class="pq-format-tags">
 											<label> <small> Format: </small> </label>
 											<a href=""> <code> List </code> </a>
@@ -318,8 +312,8 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 							<hr>
 							
 							<div class = "form-group form-inline">
-									<button type="submit" class="btn  btn-default btn-sm" >Preview</button>                
-									<button type="submit" class="btn btn-primary btn-sm" >Submit</button>           
+									<button type="submit" id="preview" name="preview" value="preview" class="btn  btn-default btn-sm" >Preview</button>                
+									<button type="submit" id="save" name="save" value="save" class="btn btn-primary btn-sm" >Submit</button>           
 							</div>
 							
 							<hr>							
@@ -337,7 +331,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 								<li> <a href="#pollOptions"> Create Category Poll </a> </li>
 								<li> <a href="#approveOptions"> Approve </a> </li>					
 							</ul>
-							<form>
+							<form method="POST" enctype="multipart/form-data">
 							
 								<hr>
 								<span id="pollOptions" class="pq-offset-anchor">					
@@ -345,69 +339,23 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 								</span>	
 								<hr>
 								
-								<div class = "form-group">
-									<div class="input-group">
-											<div>
-													<label for="pollNumber">Number of Categories</label>
-													<input type="number" id="pollNumber" class="form-control" min=2 max=5 value=2/>
-											</div>
-									</div>
-								</div>
-								<!-- must be dynamic -->
-								<div class = "form-group">
-									<div class="">
-											<label for="category1">Category 1</label>
-											<input type='text' id="category1" class="form-control" placeholder="Category Name">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="">									
-											<label for="category2">Category 2</label>
-											<input type='text' id="category2" class="form-control" placeholder="Category Name">
-									</div>
-								</div>
-								<div class = "form-group">
-									<div class="">
-											<label for="category3">Category 3</label>
-											<input type='text' id="category3" class="form-control" placeholder="Category Name">
-									</div>
-								</div>
-								
+								<?php print $element->GetPollForm($categoryControl->GetCategoryPollError()); ?>								
 								<hr>								
 								<span id="approveOptions" class="pq-offset-anchor">					
 									<h3 class="pq-offset-anchor"> Create Category </h3>
 								</span>
 								<hr>								
 								
-								<div class="">
-									<ul>
-										<li class="progress-bar" style="width:50%; margin-bottom:5px;"> Poll Category 1 - 50%</li>
-										<div class="clearfix"> </div>
-										<li class="progress-bar" style="width:30%; margin-bottom:5px;"> Poll Category 2 - 30%</li>
-										<div class="clearfix"> </div>
-										<li class="progress-bar" style="width:20%; margin-bottom:5px;"> Poll Category 3 - 20%</li>
-										<div class="clearfix"> </div>
-									</ul>
-								</div>
-								<div class="form-inline">
-										<label for="winner">New Category: </label>
-										<input id="winner" class="form-control bg-success" placeholder="Poll Category" value="Category 1" disabled /> 										
-								</div>
+								<?php print $categoryControl->DisplayPollResult($categoryControl->GetPollResultError()); ?>								
+								
 								<div class = "form-group">
 									
 								</div>
-								
-								<div class = "form-group">
-									<div class="">
-											<label for="moderator">Moderator</label>
-											<input id="moderator" class="form-control" placeholder="Moderator" /> 
-									</div>
-								</div>
-								
+																
 								<hr> 
 								
 								<div class = "form-group form-inline">										                
-										<button type="submit" class="btn btn-primary btn-sm" >Submit</button>           
+										<button type="submit" id="saveCategory" name="saveCategory"  class="btn btn-primary btn-sm" >Submit</button>           
 								</div>
 							</form>
 							

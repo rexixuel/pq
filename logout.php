@@ -4,7 +4,7 @@
 	session_start();
 	$userControl = new userControl();
 
-	$userControl->logout();
+	$userControl->Logout();
 
 
 ?>

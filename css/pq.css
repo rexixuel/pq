@@ -19,6 +19,8 @@
 html,
 body {
     height: 750px;
+    background-image:url('../img/agsquare.png');
+    background-repeat:repeat;
     /*font-family:intro;
     font-size: 13px;*/
 }
@@ -48,6 +50,19 @@ h1,h2{
 
 header.carousel {
     height: 100px;
+}
+
+.alert{
+	font-weight: bold;
+}
+
+.pq-vertical-center{
+	min-height: 100%;
+	min-height: 100vh;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-direction:column;
 }
 .pq-main-reply{
 	margin:5px;
@@ -148,9 +163,9 @@ header.carousel {
 	font-size:20px;
 }	
 
-	.pq-carousel-caption-header{
+	/*.pq-carousel-caption-header{
 		font-size:35px;
-	}
+	}*/
 	
 	h1.pq-carousel-caption-header{
 		font-size:40px;

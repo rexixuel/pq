@@ -7,6 +7,8 @@
 
 	$element = new elementControl();
 	$userControl = new userControl();
+	$categoryControl = new categoryControl();
+	$newPollAnnouncement = '';
 	// insert login scripts here
 
 	// step1: check if invoked via $_SELF
@@ -18,16 +20,15 @@
 	$loginResult = '';
 	$user = ''; 
 	$userTypeDescription = '';
-
+	$pollSidebar = '';
 	if(isset($_POST)){
 
 		if (isset($_POST["signIn"])){
-			$loginResult = $userControl->login($_POST); 
+			$loginSuccessful = $userControl->Login($_POST); 
+
+			$loginResult = $userControl->GetLoginResult();		
+			
 		}
-		else
-		if(isset($_POST["details"])){
-			$userControl->register($_POST);
-		}else
 		if(isset($_GET["log"]) &&  $_GET["log"] == "out" && session_status() != PHP_SESSION_NONE){
 			session_destroy();
 		}
@@ -81,7 +82,29 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 	$userType = $_SESSION['userType'];
 	$userTypeDescription = $_SESSION['userTypeDescription'];
 	$user = $_SESSION['username'];
-}else{
+	
+	$pollSidebar = $element->GetPollSidebar();
+	if(!isset($_SESSION['pollChecked']))
+	{
+		$userId = $_SESSION['userId'];
+		$lastLog = $_SESSION['lastLog'];
+		$newPollAnnouncement = $element->GetNewPollAnnouncement($lastLog);
+		
+		$loginResult = $userControl->UpdateLastLog($user);	
+
+		$_SESSION['pollChecked'] = true;
+		$_SESSION['lastLog'] = $userControl->GetLastLog();		
+
+	}else{
+
+		$lastLog = $_SESSION['lastLog'];
+		
+		$newPollAnnouncement = $element->GetNewPollAnnouncement($lastLog);		
+	}
+
+
+}else{	
+
 	print $element->GetLoginModal();
 }
 	$element->SetUser($userType, $user, $userTypeDescription);
@@ -97,7 +120,14 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
         <div class="carousel-inner">
             
             <div class="item active ">
-                <div class="fill pq-carousel" style="background-image:url('img/test4.jpg');">
+            	<?php 
+            		$element->SetupSite();
+            		$prizeId = $element->GetPrizeId();
+            		$newsId = $element->GetNewsId();
+            		/*$announcementId = $element->GetAnnouncementId();
+            		$welcomeMessageId = $element->GetWelcomeMessageId();*/
+            	?>
+                <?php print $element->GetBanner($prizeId); ?>
                 <?php print $loginResult; ?>
 
 					<!-- start 1st row -->
@@ -114,8 +144,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 push-down">
 							<div class="pq-carousel-caption" >
-								<h2 class="pq-carousel-caption-header">Sponsored Prize of the Month</h2>
-								<h1 class="pq-carousel-caption-header">25% OFF on IMAGINARY TRAVEL AGENCY!!!</h1>
+							<?php print $element->GetPrizeDetails($prizeId); ?>
 							</div>
 						</div>
 					</div>
@@ -130,7 +159,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
                 </div>
 				
 				<div class="carousel-caption pq-carousel-poll-announcement">
-
+						<?php print $newPollAnnouncement; ?>
 				</div>
                 <div class="clearfix"> </div>
     
@@ -149,7 +178,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){
         <div class="row">
 				<div class="col-lg-2">
                     <div class="row">
-						
+						<?php print $pollSidebar; ?>
                         <div class="col-lg-12 col-md-4 col-sm-4">
                             <h3 class="page-header">
                                 Announcements

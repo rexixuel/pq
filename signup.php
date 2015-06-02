@@ -1,3 +1,48 @@
+<?php
+
+
+	
+	include ('/include/pqControl.php');
+	$loginModal='';
+	$element = new elementControl();
+	$userControl = new userControl();
+
+	$userType = '';
+	$loginResult = '';
+	$user = ''; 
+	$userTypeDescription = '';
+	// step1: check if invoked via $_SELF
+	// step2: if invoked, instantiate userControl class with $_POST values
+	// step3: call signup
+	// step4: return signup successful <div class='alert-success'> </div>
+	// step5: 
+
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();		
+	}
+	if(!isset($_SESSION['logged'])){		
+		$loginModal = $element->GetLoginModal();					
+	}else{
+		$userControl->InvalidAccess();
+	}
+
+	$userControl = new userControl();
+
+	if(isset($_POST)){
+
+		if (isset($_POST["signIn"])){
+
+			$loginResult = $userControl->Login($_POST); 
+
+		}
+		else
+		if(isset($_POST["register"])){
+			$userControl->Register($_POST);
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,82 +76,12 @@
 
 <?php
 
-include ('/include/elementClass.php');
-include('/include/pqControl.php');
+	print $loginModal;
+	$element->SetUser($userType, $user, $userTypeDescription);
 
-/*function __autoload($class_name) {
-    if(file_exists("/include/".$class_name.'.php')) {
-        require_once($class_name . '.php');    
-    } else {
-        throw new Exception("Unable to load $class_name.");
-    }
-}*/
-// step1: check if invoked via $_SELF
-// step2: if invoked, instantiate userControl class with $_POST values
-// step3: call signup
-// step4: return signup successful <div class='alert-success'> </div>
-// step5: 
-
-$userControl = new userControl();
-
-if(isset($_POST)){
-
-	if (isset($_POST["signIn"])){
-
-
-		$userControl->login($_POST); 
-
-	}
-	else
-	if(isset($_POST["register"])){
-		$userControl->register($_POST);
-	}
-}
-
-$element = new ConstantElements();
-$element->SetUser('');
-print $element->SetHomeActive('active');
-print $element->GetHeader();
-
+	print $element->SetHomeActive('active');
+	print $element->GetHeader();
 ?>
-<!-- Start Modal -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-        <div class="modal-content pq-modal-body">
-                <div class="modal-header pq-modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Log In
-                </div>
-                <div class="modal-body ">
-                    <form action="login.php" method="POST">
-                        <div class="form-group">
-                            <div class="">									
-                                    <label for="username" class="sr-only">Username</label>
-                                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
-                            </div>
-                        </div>
-                        <div class = "form-group">
-                            <div class="">
-                                    <label for="password" class="sr-only">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
-                            </div>
-                        </div>
-                        <div class = "form-group form-inline">
-                                <button type="submit" name="signIn" value="signin" class="btn btn-primary btn-sm" >Sign In</button>
-                                <a href="signup.php"> <large> Sign Up Now! </large> </a>
-                        </div>
-                        <a href="account-recovery-password.php"> <small> Forgot your password? </small></a>
-                        <a href="account-recovery-user.php"> <small> Forgot your username? </small></a>
-                        </form>
-                </div>
-        </div>
-   </div>
-</div>
-<!-- End Modal -->
-
-
 
 	<div class="container">
                     <!-- Registration Area -->
@@ -126,6 +101,7 @@ print $element->GetHeader();
                     </li>
                     
                 </ol>
+                <?php print $loginResult; ?>
 			<!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now Accepting PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/webapps/mpp/how-paypal-works"><font size="2" face="Arial" color="#0079CD">How PayPal Works</font></a></div></td></tr></table><!-- PayPal Logo -->
             </div>
         </div>

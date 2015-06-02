@@ -1,6 +1,919 @@
 <?php
 include('/include/pqDatabase.php');
 include('/include/password_compat-master/lib/password.php');
+date_default_timezone_set('Asia/Manila');
+
+class siteControl{
+
+	public $sponsorName;
+	public $sponsorNameError;
+	public $prize;
+	public $prizeError;
+	public $mobileNumber;
+	public $contactError;
+	public $landlineNumber;
+	public $address;
+	public $addressError;
+	public $prizeBanner;
+	public $prizeBannerError;
+	public $welcomeMessage;
+	public $welcomeMessageError;
+	public $announcementTitle;
+	public $announcementTitleError;
+	public $announcement;
+	public $announcementError;
+	public $newsTitle;
+	public $newsTitleError;
+	public $news;
+	public $newsError;
+	public $siteParmsError;	
+	public $emptyTableError;
+
+	public $sponsorUpdate;
+	public $welcomeMessageUpdate;
+	public $announcementUpdate;
+	public $newsUpdate;
+
+	public function _construct($siteParms = array(), $siteFile){
+		if( !empty( $siteParms['sponsorName'] ) ){
+			$this->sponsorName = stripslashes( strip_tags( $siteParms['sponsorName'] ) );			
+		}
+
+	    if( !empty( $siteParms['prize'] ) ){
+	    	 $this->prize = stripslashes( strip_tags( $siteParms['prize'] ) );
+	    }
+
+	    if( !empty( $siteParms['mobile'] ) ){
+	    	 $this->mobileNumber = stripslashes( strip_tags( $siteParms['mobile'] ) );
+	    }
+	    
+	    if( !empty( $siteParms['landline'] ) ){
+	    	 $this->landlineNumber = stripslashes( strip_tags( $siteParms['landline'] ) );
+	    }
+
+	    if( !empty( $siteParms['address'] ) ){
+	    	 $this->address = stripslashes( strip_tags( $siteParms['address'] ) );
+	    }
+
+	    if( !empty( $siteFile['prizeBanner']['tmp_name']) ){
+	    	 $this->prizeBanner =  $siteFile['prizeBanner'];	    	 
+	    }
+	    
+	    
+	    if( !empty( $siteParms['welcomeMessage'] ) ){
+	    	 $this->welcomeMessage = stripslashes( strip_tags( $siteParms['welcomeMessage'] ) );
+	    }
+
+	    if( !empty( $siteParms['announcementTitle'] ) ){
+	    	 $this->announcementTitle = stripslashes( strip_tags( $siteParms['announcementTitle'] ) );
+	    }
+
+	    if( !empty( $siteParms['announcement'] ) ){
+	    	 $this->announcement = stripslashes( strip_tags( $siteParms['announcement'] ) );
+	    }
+
+	    if( !empty( $siteParms['newsTitle'] ) ){
+	    	 $this->newsTitle = stripslashes( strip_tags( $siteParms['newsTitle'] ) );
+	    }
+
+
+	    if( !empty( $siteParms['news'] ) ){
+	    	 $this->news = stripslashes( strip_tags( $siteParms['news'] ) );
+	    }
+
+	    // continue adding category fields
+	}
+
+	public function Save($siteParms = array(), $siteFile){
+		
+		$this->_construct($siteParms, $siteFile);
+		if(isset($this->sponsorName) || isset( $this->prize ) || isset($this->mobileNumber) || isset($this->landlineNumber) || isset(  $this->address ) || isset( $this->prizeBanner ) )
+		{
+			if( !isset( $this->sponsorName ) ){
+				$this->sponsorNameError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Sponsor Name </strong> is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;
+			}
+
+		    if( !isset( $this->prize ) ){
+				$this->prizeError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Prize </strong> is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;
+		    }
+
+		    if( !isset($this->mobileNumber) && !isset( $this->landlineNumber ) ){
+				$this->contactError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Contact Details </strong> is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;
+		    }
+		    
+		    if( !isset(  $this->address ) ){
+				$this->addressError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Address </strong> is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;
+		    }
+
+		    if( !isset( $this->prizeBanner) ){
+				$this->prizeBannerError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Prize Banner </strong>  is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;
+		    }else{
+		    	//validates image size and type and returns error	    	
+				$size = $this->ValidateImg($this->prizeBanner);
+		    }
+
+			$this->sponsorUpdate = true;
+		}else{
+			$this->sponsorUpdate = false;
+		}
+	    if( isset(  $this->welcomeMessage ) ){
+	    	$this->welcomeMessageUpdate = true;
+	    }else{
+	    	$this->welcomeMessageUpdate = false;	    	
+	    }
+	    /*if( !isset(  $this->welcomeMessage ) ){
+			$this->welcomeMessageError = 
+			'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Welcome Message </strong>  is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+			$this->siteParmsError += 1;
+	    }*/
+
+	    if(isset( $this->announcementTitle ) || isset( $this->announcement ))
+		{
+
+		    if( !isset( $this->announcementTitle ) && isset( $this->announcement ) ){
+				$this->announcementTitleError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Announcement Title </strong>  is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;
+		    }
+
+		    if( !isset( $this->announcement ) && isset( $this->announcementTitle ) ){
+				$this->announcementError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Announcement </strong>  is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;
+		    }
+		    $this->announcementUpdate = true;
+		}else{
+		    $this->announcementUpdate = false;			
+		}	    	
+	    if( !isset( $this->newsTitle ) && isset( $this->news ) ){
+			$this->newsTitleError = 
+			'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> News Title </strong>  is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+			$this->siteParmsError += 1;
+	    }
+
+	    if(isset( $this->news  )  || isset( $this->newsTitle ) )
+    	{    		
+		    if( !isset( $this->news  )  && isset( $this->newsTitle ) ){
+				$this->newsError = 
+				'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> News </strong>  is <u> required </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				$this->siteParmsError += 1;	    
+			}
+   			$this->newsUpdate = true;
+		}else{
+		    $this->newsUpdate = false;			
+		}	    	
+    	
+
+		if($this->siteParmsError == 0 && ($this->newsUpdate || $this->announcementUpdate || $this->welcomeMessageUpdate || $this->sponsorUpdate)){
+			/** instantiate connection **/
+			$pqDatabase = new pqDatabase();
+			$pqConn = $pqDatabase->connectDb();
+		    
+			$pqDatabase->startTransaction($pqConn);
+	
+			$pqArchiveSuccess = $this->ArchiveSiteSetup($pqConn);
+
+			
+			if($pqArchiveSuccess){
+				$siteSetupSuccess = $this->InsertSiteSetup($pqConn);
+
+				if($siteSetupSuccess){
+					$pqDatabase->commitTransaction($pqConn);
+
+					return '<div class="alert alert-success text-center" role="alert"> <i class="fa fa-check"></i> <strong> Site setup successful! </strong> <i class="fa fa-check"></i> </div> ';
+				}else{
+					$pqDatabase->rollBackTransaction($pqConn);
+					return $this->emptyTableError;
+				}
+			}else{
+				$pqDatabase->rollBackTransaction($pqConn);
+				return '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> Archive Error! <i class="fa fa-exclamation-triangle"></i> </div> ';							
+			}
+		}
+
+	}
+
+	public function InsertSiteSetup($pqConn){
+		
+		$pqSiteSetup = new siteSetup();
+		$pqSponsor = new sponsor();
+		$pqPrize = new prize();
+		$pqBanner = new banner();
+		$pqNews = new news();
+		$pqAnnouncement = new announcement();
+		$pqWelcomeMessage = new welcomeMessage();
+		
+		if($this->sponsorUpdate)
+		{
+			$sponsorSuccess = $pqSponsor->insert($pqConn, $this->sponsorName, $this->address, $this->mobileNumber, $this->landlineNumber);
+			$sponsorId = $pqSponsor->getLastId($pqConn);
+
+				/***  get the image info. ***/
+			    $image = getimagesize($this->prizeBanner['tmp_name']);
+
+			    /*** assign our variables ***/
+			    $type = $image['mime'];
+			    $height = $image[0];
+			    $width = $image[1];
+			    $fileSize = $image[3];
+			    $fileName = $this->prizeBanner['name'];
+
+			    $imgfp = fopen($this->prizeBanner['tmp_name'], 'rb');		    
+
+			$bannerSuccess = $pqBanner->insert($pqConn, $imgfp, $type, $fileName, $fileSize);
+			$bannerId = $pqBanner->getLastId($pqConn);
+
+			$prizeSuccess = $pqPrize->insert($pqConn, $this->prize, $bannerId, $sponsorId);
+			$prizeId = $pqPrize->getLastId($pqConn);
+		}else{
+			$prizeId = $pqPrize->getMaxId($pqConn);
+			if(!empty($prizeId))
+			{
+				$sponsorSuccess = true;
+				$bannerSuccess = true;
+				$prizeSuccess = true;
+			}else{
+				$sponsorSuccess = false;
+				$bannerSuccess = false;
+				$prizeSuccess = false;				
+
+				$this->emptyTableError = $this->emptyTableError.' <div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Prize Table </strong> is <u> empty </u> ! <i class="fa fa-exclamation-triangle"></i> </div> ';							
+
+			}
+		}
+
+		if($this->newsUpdate){
+			$newsSuccess = $pqNews->insert($pqConn, $this->newsTitle, $this->news);			
+			$newsId = $pqNews->getLastId($pqConn);
+		}else{
+			$newsId = $pqNews->getMaxId($pqConn);
+			if(!empty($newsId))
+			{
+				$newsSuccess = true;			
+			}else{
+				$newsSuccess = false;				
+				$this->emptyTableError = $this->emptyTableError.' <div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> News Table </strong> is <u> empty </u> ! <i class="fa fa-exclamation-triangle"></i> </div> ';											
+			}
+		}
+
+
+		if($this->announcementUpdate){
+			$announcementSuccess = $pqAnnouncement->insert($pqConn, $this->announcementTitle, $this->announcement);
+			$announcementId = $pqAnnouncement->getLastId($pqConn);
+		}else{
+			$announcementId = $pqAnnouncement->getMaxId($pqConn);
+			if(!empty($announcementId))
+			{
+				$announcementSuccess = true;
+			}else{
+				$announcementSuccess = false;		
+				$this->emptyTableError = $this->emptyTableError.' <div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Announcement Table </strong> is <u> empty </u> ! <i class="fa fa-exclamation-triangle"></i> </div> ';							
+
+			}
+
+		}
+
+		if($this->welcomeMessageUpdate)
+		{
+			$welcomeMessageSuccess = $pqWelcomeMessage->insert($pqConn, $this->welcomeMessage);
+			$welcomeMessageId = $pqWelcomeMessage->getLastId($pqConn);
+		}else{
+			$welcomeMessageId = $pqWelcomeMessage->getMaxId($pqConn);
+			if(!empty($announcementId))
+			{
+				$welcomeMessageSuccess = true;
+			}else{
+				$welcomeMessageSuccess = false;				
+				$this->emptyTableError = $this->emptyTableError.' <div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Welcome Message Table </strong> is <u> empty </u> ! <i class="fa fa-exclamation-triangle"></i> </div> ';											
+			}
+		}
+
+
+
+		if($sponsorSuccess && $bannerSuccess && $prizeSuccess && $newsSuccess && $announcementSuccess && $welcomeMessageSuccess)
+		{
+			$siteSetupSuccess = $pqSiteSetup->insert($pqConn, $prizeId, $newsId, $announcementId, $welcomeMessageId );		
+		}
+
+		if(isset($siteSetupSuccess) && $siteSetupSuccess){
+			return true;
+		}
+		else{
+			return false;
+		}
+
+
+	}
+
+	public function ArchiveSiteSetup($pqConn){
+		$pqSiteSetup = new siteSetup();
+
+		$siteSetupId = $pqSiteSetup->getMaxId($pqConn);
+		if(empty($siteSetupId) ){
+			$pqArchiveSuccess = true;
+		}else{
+			$pqArchiveSuccess = $pqSiteSetup->archive($pqConn, $siteSetupId);
+		}
+
+		return $pqArchiveSuccess;
+
+			
+
+
+
+	}
+
+	public function ValidateImg($prizeBanner){
+		if(is_uploaded_file($prizeBanner['tmp_name']) && getimagesize($prizeBanner['tmp_name']) != false){
+		    $image = getimagesize($prizeBanner['tmp_name']);
+		    /*** assign our variables ***/
+		    $type = $image['mime'];
+		    $width = $image[0];
+		    $height = $image[1];
+		    $fileSize = $image[3];
+		    $fileName = $prizeBanner['name'];
+		    $maxsize = 99999999;
+
+		    if($height < 800 || $width < 1080){
+				$this->siteParmsError +=1;										
+				
+				$this->prizeBannerError = $this->prizeBannerError.'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> '.$fileName.' </strong>  
+					resolution should be greater than is <u> 1080 x 800 </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+		    }		    
+		    else
+		    	if($fileSize > $maxsize)
+			    {
+					$this->siteParmsError +=1;
+					$this->prizeBannerError = $this->prizeBannerError.'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> '.$fileName.' </strong>  
+						file size is <u> too large </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+
+			    }
+
+		}
+		else
+		{
+			$this->siteParmsError +=1;
+			$fileName = $prizeBanner['name'];
+			$this->prizeBannerError = $this->prizeBannerError.'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> '.$fileName.' </strong>  file type is <u> not supported </u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+		}
+	}
+	public function GetErrorsFound(){
+		
+		if($this->siteParmsError > 0)
+		{			
+			return '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong>'.$this->siteParmsError.' </strong> Error Found! <i class="fa fa-exclamation-triangle"></i>  </div>';
+		}else{
+			return '';
+		}
+	}
+
+	public function GetSponsorNameError(){
+		return $this->sponsorNameError;
+	}
+
+	public function GetPrizeError(){
+		return $this->prizeError;
+	}
+
+	public function GetContactError(){
+		return $this->contactError;
+	}
+
+	public function GetAddressError(){
+		return $this->addressError;
+	}
+
+	public function GetPrizeBannerError(){
+		return $this->prizeBannerError;
+	}
+
+	public function GetWelcomeMessageError(){
+		return $this->welcomeMessageError;
+	}
+
+	public function GetAnnouncementTitleError(){
+		return $this->announcementTitleError;
+	}
+
+	public function GetAnnouncementError(){
+		return $this->announcementError;
+	}
+
+	public function GetNewsTitleError(){
+		return $this->newsTitleError;
+	}
+
+	public function GetNewsError(){
+		return $this->newsError;
+	}
+
+}
+
+class categoryControl{
+	public $newPollAnnouncement;
+	public $pollNumber;
+	public $newCategoryName;
+	public $categoryPoll;
+	public $categoryModerator = array();
+	public $pollCategory = array();
+	public $categoryPollError;
+	public $categoryModError;
+	public $pollEntry = array();
+
+	public function _construct($categoryParms){
+		if(!empty($categoryParms['pollNumber']))
+		{
+			$this->pollNumber = $categoryParms['pollNumber'];
+
+			for($x=1; $x <= $this->pollNumber; $x++){
+				$categoryIndex = "category".$x;
+			
+				if(!empty($categoryParms[$categoryIndex]))
+				{
+					$this->pollCategory[$categoryIndex] = $categoryParms[$categoryIndex];					
+				}
+				
+			}
+		}
+		
+		if(!empty($categoryParms['categoryName']))
+		{
+			$this->newCategoryName = $categoryParms['categoryName'];
+		}
+
+		if(!empty($categoryParms['moderator']))
+		{
+			// head first. should loop for moderator setup
+			$this->categoryModerator[0] = $categoryParms['moderator'];
+		}		
+	}
+
+	public function SetNewPollAnnouncement($lastLog){
+		$userControl = new userControl();
+
+		//$lastLog = $userControl->GetLastLog();
+
+		if(!isset($this->categoryPoll)){ // do prevent multiple database requests
+			$this->SetPoll();
+		} 
+		$pollDatePosted = $this->GetPollDatePosted();	
+
+		$dateComp1 = new DateTime($lastLog);
+		$dateComp2 = new DateTime($pollDatePosted);
+
+		if($dateComp1 < $dateComp2){
+
+			$this->newPollAnnouncement = '	<div class="carousel-caption pq-carousel-poll-announcement">
+						<p> New Category Poll Available! Scroll Down and Vote! </p>
+					</div>';
+		}else{
+			$this->newPollAnnouncement = '';
+		}
+		return $this->newPollAnnouncement;
+	}
+
+	public function SetPollSidebar(){
+		$pollSidebar = '';
+		$pollEntriesTag = '';
+
+		if(!isset($this->categoryPoll)){ // do prevent multiple database requests
+			$this->SetPoll();
+		} 
+
+
+		if(isset($this->categoryPoll)){
+
+			if(!isset($this->pollEntry)){ // do prevent multiple database requests
+				$this->SetPollEntry();
+			} 
+
+			$pollId = $this->GetPollId();
+			$pollStatus = $this->GetPollStatus();
+
+			if($pollStatus == 'open')
+			{
+				$pqCategoryPoll =  $this->SetPollEntries($pollId);
+
+				$pollCategoryEntries = $this->GetPollEntries($pqCategoryPoll);
+				$x = 1;			
+				while(!empty($pollCategoryEntries)){
+					
+					$categoryPollEntryId = $pollCategoryEntries->category_poll_entry_id;
+					$categoryPollEntryName = $pollCategoryEntries->name;
+					$pollEntriesTag = $pollEntriesTag.'<div class="radio">
+	                                            <label>
+	                                                <input type="radio" name="pollCategOptions" id="'.$categoryPollEntryId.'" value="'.$categoryPollEntryId.'">
+	                                                '.$categoryPollEntryName.'
+	                                            </label>
+	                                   </div>';
+					$pollCategoryEntries = $this->GetPollEntries($pqCategoryPoll);
+					$x++;
+				}
+				$pollSidebar = '
+	                        <div class="col-lg-12 col-md-4 col-sm-4">
+	                            <h3 class="page-header">
+	                                    Category Poll 
+										<small> Vote Now! </small>
+	                            </h3>
+	                            <form>
+	                                <div class="form-group">'.$pollEntriesTag.'
+	                                        <button type="submit" class="btn btn-sm btn-primary"> Submit Vote </button>
+	                                </div>
+	                            </form>
+							</div>';
+			}else{
+				$pollSidebar = '
+	                        <div class="col-lg-12 col-md-4 col-sm-4">
+	                            <div class="alert alert-warning text-center"> <strong> Poll </strong> has been <u> closed </u></div>
+	                        </div>';				
+			}
+		}
+		return $pollSidebar;
+
+	}
+
+	public function SetPollEntries($pollId){
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqCategoryPoll = new categoryPoll();
+
+		$pqCategoryPoll->getLatestPoll($pqConn);
+
+		$categoryEntry = $pqCategoryPoll->readEntries($pqConn, $pollId);
+						
+		$x=0;
+
+		return $pqCategoryPoll;
+
+
+	}
+
+	public function GetPollEntries($pqCategoryPoll){
+		return $pqCategoryPoll->fetchCategoryEntry();
+	}
+
+	public function GetPollStatus(){
+		return $this->categoryPoll->status;
+	}
+	public function GetPollId(){
+		return $this->categoryPoll->category_poll_id;
+	}
+
+	public function GetPollDatePosted(){
+		return $this->categoryPoll->date_posted;
+	}
+
+	public function GetPollDateClose(){
+		return $this->categoryPoll->date_close;
+	}
+
+	public function SetPoll(){
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqCategoryPoll = new categoryPoll();
+
+		$pqCategoryPoll->getLatestPoll($pqConn);
+
+		$this->categoryPoll = $pqCategoryPoll->fetchCategoryPoll();
+
+	}
+
+	public function SetNewPoll($categoryParms){
+		$this->_construct($categoryParms);
+
+
+
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqCategory = new category();
+
+		$categoryExists = false;
+
+		$pqDatabase->startTransaction($pqConn);
+
+		if(isset($this->categoryModerator[0])){
+			$newMod = $this->categoryModerator[0];
+			$userControl = new userControl();
+
+			$userExists = $userControl->ReadUser($newMod);
+
+			$userId = $userControl->GetUserId();
+
+		}else{
+			$this->categoryModError = '<div class="alert alert-danger text-center" role="alert"> 
+								<i class="fa fa-exclamation-triangle"></i> 
+								<strong> Moderator </strong> is <u> empty</u>!
+								<i class="fa fa-exclamation-triangle"></i> 
+							</div> ';			
+
+			$userExists = false;			
+		}
+
+		
+		if(!$userExists && isset($newMod)){
+			$this->categoryModError = '<div class="alert alert-danger text-center" role="alert"> 
+								<i class="fa fa-exclamation-triangle"></i> 
+								<strong> User '.$newMod.' </strong> <u> does not exist</u> ! 
+								<i class="fa fa-exclamation-triangle"></i> 
+							</div> ';			
+		}
+
+
+		if(isset($this->pollNumber) && $userExists)
+		{
+			$categoryEntriesComplete = true;
+			if($this->pollNumber > 1 ){
+
+				// check if every entry is filled
+				for($x=1; $x <= $this->pollNumber; $x++){
+					$categoryIndex = "category".$x;
+				
+					if(!isset($this->pollCategory[$categoryIndex]))
+					{
+						$categoryEntriesComplete = false;		
+					}else{
+						$numberOfCategory = $pqCategory->readCategoryName($pqConn, $this->pollCategory[$categoryIndex]);	
+
+						if($numberOfCategory > 0){
+							$this->categoryPollError =  $this->categoryPollError.'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Category '.$this->pollCategory[$categoryIndex].' </strong> <u> already exists! </u> <i class="fa fa-exclamation-triangle"></i> </div> ';
+							$categoryExists = true;
+						}
+					}
+					
+				}
+				
+				if($categoryEntriesComplete && !$categoryExists){
+					$insertSuccess = $this->InsertCategoryPoll($pqConn);
+
+					if(isset($insertSuccess) && $insertSuccess){
+						$insertCategorySuccess = $this->InsertCategory($pqConn, $this->newCategoryName, $userId);
+
+						if(isset($insertCategorySuccess) && $insertCategorySuccess){
+							$user = new userControl();
+
+							$userModSuccess = $userControl->UpdateModerator($pqConn,$newMod);
+							
+							if($userModSuccess){
+
+								$pqDatabase->commitTransaction($pqConn);
+
+
+								return '<div class="alert alert-success text-center"> <i class="fa fa-check"></i> <strong> Category Poll </strong> <u> successfuly created! </u> <i class="fa fa-check"></i> </div>';
+								
+							}else{
+								$pqDatabase->rollBackTransaction($pqConn);								
+								$this->categoryPollError = $this->categoryPollError.'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Moderator </strong> <u> Error! </u> <i class="fa fa-exclamation-triangle"></i> </div> ';
+							}
+
+						}else{
+							$pqDatabase->rollBackTransaction($pqConn);								
+							$this->categoryPollError = $this->categoryPollError.'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Poll Creation Error! </strong> <i class="fa fa-exclamation-triangle"></i> </div> ';
+						}
+					}
+
+				}else{
+					$this->categoryPollError =  $this->categoryPollError.'<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Category entries </strong> <u> not complete </u> <i class="fa fa-exclamation-triangle"></i> </div> ';
+					return '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Category errors found!  </strong> <i class="fa fa-exclamation-triangle"></i> </div> ';
+				}
+			}else{			
+				$this->categoryPollError = '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Number of categories </strong> <u> should be greater than 1 </u> <i class="fa fa-exclamation-triangle"></i> </div> ';
+				return '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Category errors found!  </strong> <i class="fa fa-exclamation-triangle"></i> </div> ';
+			}
+
+		}else{			
+			$this->categoryPollError = '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Number of categories </strong> is <u> empty </u> ! <i class="fa fa-exclamation-triangle"></i> </div> ';
+			return '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> <strong> Category errors found!  </strong> <i class="fa fa-exclamation-triangle"></i> </div> ';
+		}
+
+	}
+
+	public function GetCategoryPollError(){
+		return $this->categoryPollError;
+	}	
+
+	public function GetPollResultError(){
+		return $this->categoryModError;
+	}
+
+	public function InsertCategory($pqConn, $categoryName, $userId){
+		$pqCategory = new category();
+		$pqCategoryModerator = new categoryModerator();
+
+		$insertCategorySuccess = $pqCategory->insert($pqConn, $categoryName);
+		$categoryId = $pqCategory->getLastId($pqConn);
+
+		$insertCategoryModSuccess = $pqCategoryModerator->insert($pqConn, $categoryId, $userId); 
+
+		if($insertCategoryModSuccess && $insertCategorySuccess){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+	public function InsertCategoryPoll($pqConn)
+	{
+
+		$pqCategoryPoll = new categoryPoll();
+
+
+		$pqPollCloseSuccess = $this->ClosePreviousPoll($pqConn, $pqCategoryPoll);		
+
+
+		$dateClose = new DateTime("now");
+		$dateClose = $dateClose->add(new DateInterval("P1MT6H"));
+		$dateClose = $dateClose->format('Y-m-d H:i:s');
+		
+		
+		$pqCategoryPollSuccess = $pqCategoryPoll->insert($pqConn, $dateClose );
+
+		if($pqCategoryPollSuccess && $pqPollCloseSuccess){
+
+			$categoryPollId = $pqCategoryPoll->getLastId($pqConn);
+			$pqCategoryPollEntriesSuccess = true;
+			for($x=1; $x <= $this->pollNumber; $x++){
+				$categoryIndex = "category".$x;				
+				$categoryEntry = $this->pollCategory[$categoryIndex];
+
+				$pqCategoryPollEntriesSuccessTemp = $pqCategoryPoll->insertEntries($pqConn, $categoryEntry, $categoryPollId);
+
+				if(!$pqCategoryPollEntriesSuccessTemp)
+				{
+					$pqCategoryPollSuccess = false;
+				}else{
+
+				}
+
+			}
+
+			if($pqCategoryPollSuccess){
+				return true;
+			}else{
+				//$pqDatabase->rollBackTransaction($pqConn);						
+				return false;
+			}									
+		}else{
+			//$pqDatabase->rollBackTransaction($pqConn);
+			return false;
+		}
+
+	}
+
+	public function ClosePreviousPoll($pqConn, $pqCategoryPoll){
+		$fields = "status = ?";
+		$values[0] = "close";
+		$numberOfFields = 1;
+		
+		$pqCategoryPoll->getLatestPoll($pqConn);
+
+		$latestCategoryPoll = $pqCategoryPoll->fetchCategoryPoll();
+
+		$categoryPollId = $latestCategoryPoll->category_poll_id;
+
+		return $pqCategoryPoll->update($pqConn, $fields, $values, $numberOfFields, $categoryPollId);
+		
+
+	}
+
+	public function SetPollForm($pollFormError){
+		$pollResults = '';
+
+		if(!isset($this->categoryPoll)){ // do prevent multiple database requests
+			$this->SetPoll();
+		} 
+		$pollStatus = $this->GetPollStatus();
+		
+		$pollDateClose = $this->GetPollDateClose();
+
+		$dateComp1 = new DateTime($pollDateClose);
+		$dateComp2 = new DateTime("now");
+
+		if($dateComp1 > $dateComp2)		
+		{
+			$pollForm = '<div class="alert alert-warning text-center"> <strong> Category Poll  </strong> is  <u> not yet closed </u> </div>';
+		}else{
+			$pollForm ='<div class = "form-group">
+									<div class="input-group">
+											<div> <!--jquery dynamic number of category polls -->
+
+													<!-- also add dynamic aggregation of interests thru php -->
+													<label for="pollNumber">Number of Categories</label>
+													<input type="number" id="pollNumber" name="pollNumber" class="form-control" min=2 max=5 value=2/>
+													'.$pollFormError.'
+											</div>
+									</div>
+						</div>
+								<!-- must be dynamic -->
+						<div class = "form-group">
+									<div class="">
+											<label for="category1">Category 1</label>
+											<input type="text" id="category1" name="category1"class="form-control" placeholder="Category Name">
+									</div>
+						</div>
+						<div class="form-group">
+									<div class="">									
+											<label for="category2">Category 2</label>
+											<input type="text" id="category2" name="category2" class="form-control" placeholder="Category Name">
+									</div>
+						</div>
+								<div class = "form-group">
+									<div class="">
+											<label for="category3">Category 3</label>
+											<input type="text" id="category3" name="category3" class="form-control" placeholder="Category Name">
+									</div>
+						</div>';
+
+		}				
+
+		return $pollForm;
+	}
+
+	public function DisplayPollResult($pollResultError){
+		$pollResults = '';
+
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqCategoryPoll = new categoryPoll();
+
+		$pqCategoryPoll->getLatestPoll($pqConn);
+
+		$latestCategoryPoll = $pqCategoryPoll->fetchCategoryPoll();
+		
+		if(empty($latestCategoryPoll)){
+			$pollResults = '<div class="alert alert-warning text-center"> No Category Poll has been started. Please create poll through categories set-up. </div>';
+		}
+		else
+		{
+			$categoryTotalVote = $pqCategoryPoll->readEntriesVote($pqConn, $latestCategoryPoll->category_poll_id);
+			
+			$categoryEntry = $pqCategoryPoll->readEntries($pqConn, $latestCategoryPoll->category_poll_id);
+			
+			
+			$pollEntry = '';
+
+			$category = $pqCategoryPoll->fetchCategoryEntry();
+
+			while(!empty($category)) {
+
+				
+				$percentage = ($category->votes / $categoryTotalVote) * 100;
+				$pollEntry = $pollEntry.'<li class="progress-bar" style="width:'.$percentage.'%; margin-bottom:5px;"> '.$category->name.' - '.$percentage.'% </li>
+														<div class="clearfix"> </div>';
+
+				$category = $pqCategoryPoll->fetchCategoryEntry();
+
+
+			}
+
+
+			$pollResults = '<div class="">
+									<ul>'.$pollEntry.'
+									</ul>
+								</div>';
+			$dateComp1 = new DateTime($latestCategoryPoll->date_close);
+			$dateComp2 = new DateTime("now");
+
+			if($dateComp1 > $dateComp2){
+				$pollResults = $pollResults.'<div class="alert alert-warning text-center"> <strong> Category Poll  </strong> is  <u> not yet closed </u> </div>';
+			}else{
+
+				$pqCategoryPoll->readEntriesMaxVote($pqConn, $latestCategoryPoll->category_poll_id);
+
+				$category = $pqCategoryPoll->fetchCategoryEntry();
+
+				$pollResults = $pollResults.'<div class="form-inline">
+										<label for="categoryName">New Category: </label>
+										<input class="form-control bg-success" placeholder="Poll Category" value="'.$category->name.'" disabled />
+										<input class="form-control" id="categoryName" type="hidden" name="categoryName" value="'.$category->name.'" />
+								</div>
+								<div class = "form-group">
+									<div class="">
+											<label for="moderator">Moderator</label>
+											<input id="moderator" name="moderator" category="moderator" class="form-control" placeholder="Moderator" />'.$pollResultError.'
+									</div>
+								</div>';
+			}
+		}
+
+		return $pollResults;
+
+	}
+}
 class userControl{
 	public $username;
 	public $password; 
@@ -20,8 +933,10 @@ class userControl{
 	public $premium_plan_id;
 	public $user_detail_id;
 	public $security_id;
+	public $lastLog;
+	public $userId;
 
-
+	public $loginResult;
 	public function _construct($userParms = array()){
 		if( isset( $userParms['username'] ) ){
 			$this->username = stripslashes( strip_tags( $userParms['username'] ) );			
@@ -32,13 +947,86 @@ class userControl{
 	    }
 
 	}	
-	public function logout(){
+
+	public function InvalidAccess(){
+		header("Location: invalidAccess.php"); /* Redirect browser */
+		exit();		
+	}
+	public function Logout(){
 		session_destroy();
 		header("Location: index.php"); /* Redirect browser */
 		exit();
 
 	}
-	public function login($userParms = array()){
+
+	public function UpdateLastLog($username){
+			$pqDatabase = new pqDatabase();
+			$pqConn = $pqDatabase->connectDb();
+			$pqUser = new user();
+
+			$pqDatabase->startTransaction($pqConn);
+
+			$fields = "last_log = ?";
+			$dateNow = new DateTime("now");
+			$values[0] = $dateNow->format('Y-m-d H:i:s'); 
+			$numberOfFields = 1;
+			$userUpdateSuccessful = $pqUser->update($pqConn, $fields, $values, $numberOfFields, $username);
+	
+
+			if($userUpdateSuccessful)
+			{
+				$pqDatabase->commitTransaction($pqConn);
+				$this->lastLog = $dateNow->format('Y-m-d H:i:s');  
+				return '';				
+			}
+			else
+			{
+				$pqDatabase->rollBackTransaction($pqConn);
+				return '<div class="alert alert-danger text-center" role="alert"> USER Transaction Error</div>';
+			}
+
+	}
+
+	public function GetLastLog(){
+
+		return $this->lastLog;
+	}
+
+	public function GetUserId(){		
+		return $this->userId;
+	}
+
+	public function GetLoginResult(){
+		return $this->loginResult;
+	}
+	public function ReadUser($username){
+		
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+		$pqUser = new user();
+		$pqUserType = new userType();
+
+
+		$pqDatabase->startTransaction($pqConn);
+		
+		$pqUserSuccess = $pqUser->read($pqConn, $username);
+		$user = $pqUser->fetchUser();
+		$this->userId = $user->user_id;
+		return $pqUserSuccess;
+	}
+
+	public function UpdateModerator($pqConn, $username){
+		$pqUser = new user();
+
+		$fields = "user_type_id = ?";
+		$values[0] = 2; 
+		$numberOfFields = 1;
+		$userUpdateSuccessful = $pqUser->update($pqConn, $fields, $values, $numberOfFields, $username);
+	
+		return $userUpdateSuccessful;	
+
+	}
+	public function Login($userParms = array()){
 		$this->_construct($userParms);
 		
 		$pqDatabase = new pqDatabase();
@@ -52,15 +1040,17 @@ class userControl{
 		$pqUserSuccess = $pqUser->read($pqConn, $this->username);
 
 		if($pqUserSuccess){
-			$pqDatabase->commitTransaction($pqConn);
 			$user = $pqUser->fetchUser();
 			if(!empty($user)){
 				$passHash = $user->password;							
 			}else{
-				return '<div class="alert alert-danger" role="alert"> Invalid Username </div> ';				
+				$this->loginResult = '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> Invalid <u> Username</u> <i class="fa fa-exclamation-triangle"></i> </div> ';				
+				return false;
 			}
 			// verify password
 			if (password_verify($this->password, $passHash)){
+				$pqDatabase->commitTransaction($pqConn);
+				
 				$userType = $pqUserType->read($pqConn, $user['user_type_id']);
 				if (session_status() == PHP_SESSION_NONE) {
 				    session_start();
@@ -70,6 +1060,13 @@ class userControl{
 				$_SESSION['username'] = $user->username;
 				$_SESSION['userType'] = $user->user_type_id;				
 				$_SESSION['userTypeDescription'] = $userType['description'];
+
+				// set variables for last_log checking and setting
+				$this->userId = $user->user_id;
+				$this->lastLog = $user->last_log;
+				$_SESSION['lastLog'] = $this->lastLog;
+				$_SESSION['userId'] = $this->userId;
+
 				if($user->user_type_id == 1){
 					header("Location: admin-dashboard.php"); /* Redirect browser */
 					exit();
@@ -77,20 +1074,26 @@ class userControl{
 					if($user->user_type_id == 2){
 						header("Location: mod-dashboard.php"); /* Redirect browser */
 						exit();
+					}else{						
+						header("Location: index.php"); /* Redirect browser */					
+						exit();
 					}
-				return "";
+				return true;
 			}
 			else{
-				return '<div class="alert alert-danger" role="alert"> Invalid Username and/or Password</div>';
+				$pqDatabase->rollBackTransaction($pqConn);			
+				$this->loginResult = '<div class="alert alert-danger text-center" role="alert"> <i class="fa fa-exclamation-triangle"></i> Invalid <u> Password</u> <i class="fa fa-exclamation-triangle"></i>  </div>';
+				return false;
 			}
 		}else{
-			$pqDatabase->rollBackTransaction($pqConn);
-			return '<div class="alert alert-danger" role="alert"> USER Transaction Error</div>';
+			$pqDatabase->rollBackTransaction($pqConn);			
+			$this->loginResult = '<div class="alert alert-danger text-center" role="alert"> USER Transaction Error</div>';
+			return false;
 
 		}
 	}
 
-	public function register($userParms = array()){
+	public function Register($userParms = array()){
 	// re-validate passed parameters
 		$pqDatabase = new pqDatabase();
 		$pqConn = $pqDatabase->connectDb();
@@ -107,12 +1110,12 @@ class userControl{
 			if($numberOfUsername > 0){
 				
 				$userError = true;
-				$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Username must be unique </div>';
+				$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Username must be unique </div>';
 			}
 
 
 		}else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Username must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Username must not be empty </div>';
 			$userError = true;			
 		}
 
@@ -121,43 +1124,45 @@ class userControl{
             //uncomment for latest php version
             $this->password = password_hash($this->password, PASSWORD_BCRYPT);
 	    }else{
-			$errAlert =$errAlert. ' <div class="alert alert-danger" role="alert"> Password must not be empty </div>';
+			$errAlert =$errAlert. ' <div class="alert alert-danger text-center" role="alert"> Password must not be empty </div>';
 			$userError = true;			
 		}
 
 	    if( isset( $userParms['email'] ) ){
 	    	 $this->email = stripslashes( strip_tags( $userParms['email'] ) );
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Email must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Email must not be empty </div>';
 			$userError = true;		
 		}		
 
 	    if( isset( $userParms['firstName'] ) ){
 	    	 $this->firstName = stripslashes( strip_tags( $userParms['firstName'] ) );
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> First Name must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> First Name must not be empty </div>';
 			$userError = true;			
 		}				
 
 	    if( isset( $userParms['lastName'] ) ){
 	    	 $this->lastName = stripslashes( strip_tags( $userParms['lastName'] ) );
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Last Name must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Last Name must not be empty </div>';
 			$userError = true;			
 		}				
 
 
 	    if( isset( $userParms['birthday'] ) ){
 	    	 $this->birthday = stripslashes( strip_tags( $userParms['birthday'] ) );
+	    	 $this->birthday = date('Y-m-d', strtodate($this->birthday));
+	    	 
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Birthday must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Birthday must not be empty </div>';
 			$userError = true;			
 		}		
 
 	    if( isset( $userParms['address'] ) ){
 	    	 $this->address = stripslashes( strip_tags( $userParms['address'] ) );
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Address must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Address must not be empty </div>';
 			$userError = true;			
 		}		
 
@@ -165,22 +1170,21 @@ class userControl{
 	    	 $this->mobileNumber = stripslashes( strip_tags( $userParms['mobileNumber'] ) );
 	    	 $this->landlineNumber = stripslashes( strip_tags( $userParms['landlineNumber'] ) );
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Contact details must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Contact details must not be empty </div>';
 			$userError = true;			
 		}	
 
 	    if( isset( $userParms['secQuestion'] )  ){
 	    	 $this->secQuestion = stripslashes( strip_tags( $userParms['secQuestion'] ) );
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Security Question must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Security Question must not be empty </div>';
 			$userError = true;			
 		}	
-
 
 	    if( isset( $userParms['secAnswer'] )  ){
 	    	 $this->secAnswer = stripslashes( strip_tags( $userParms['secAnswer'] ) );
 	    }else{
-			$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Security Answer must not be empty </div>';
+			$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Security Answer must not be empty </div>';
 			$userError = true;			
 		}			
 
@@ -194,7 +1198,7 @@ class userControl{
 				 $this->premium_plan_id = $pqPremiumPlan->getLastId($pqConn);
 
 		    }else{
-				$errAlert = $errAlert.' <div class="alert alert-danger" role="alert"> Please select a Payment Option and Schedule</div>';
+				$errAlert = $errAlert.' <div class="alert alert-danger text-center" role="alert"> Please select a Payment Option and Schedule</div>';
 				$userError = true;			
 			}				
 			$this->user_type_id = 3;
@@ -212,7 +1216,8 @@ class userControl{
 
 			
 
-			$pqUserDetailSuccess = $pqUserDetail->insert($pqConn, $this->firstName, $this->lastName, $this->email, $this->birthday, $this->interests /*temporary, can be shipped to different table*/, 
+			/*temporary, can be shipped to different table*/
+			$pqUserDetailSuccess = $pqUserDetail->insert($pqConn, $this->firstName, $this->lastName, $this->email, $this->birthday, $this->interests, 
 									$this->address, $this->mobileNumber, $this->landlineNumber);
 			$this->user_detail_id = $pqUserDetail->getLastId($pqConn);
 			//for test only
@@ -226,8 +1231,7 @@ class userControl{
                 if (!isset($pqPremiumPlanSuccess) || $pqPremiumPlanSuccess){
                 	//commit if successful
                 	$pqDatabase->commitTransaction($pqConn);
-                	print '<div class="alert alert-success"> User '.$this->username.' successfuly registered! </div>';
-    //                $pqConn->commit();
+                	print '<div class="alert alert-success text-center"> User '.$this->username.' successfuly registered! </div>';
                 }
             }else{
             	// rollback if failed
@@ -237,11 +1241,6 @@ class userControl{
             print $errAlert;
         }
   
-		//use last id
-		// insert write to security
-		// insert write to user_details
-		// insert write to user
-
 		
 	}
 }
@@ -263,6 +1262,126 @@ class elementControl{
 		public $callToAction;
 		public $indexCarousel;
 		public $categoryDropDown;
+
+
+		public $prizeId;
+		public $newsId;
+		public $announcementId;
+		public $welcomeMessageId;
+
+	public function SetupSite(){
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqSiteSetup = new siteSetup();
+
+		$pqSiteSetupSuccess = $pqSiteSetup->read($pqConn);
+		$siteSetup = $pqSiteSetup->fetchSiteSetup();
+
+		if(!empty($siteSetup)){
+			$this->prizeId = $siteSetup->prize_id;
+			$this->newsId = $siteSetup->news_id;
+			$this->announcementId = $siteSetup->announcement_id;
+			$this->welcomeMessageId = $siteSetup->welcome_message_id;			
+		}
+
+
+	}
+
+	public function GetPrizeId(){
+		return $this->prizeId;
+	}
+
+	public function GetAnnouncementId(){
+		return $this->announcementId;
+	}
+
+
+	public function GetNewsId(){
+		return $this->newsId;
+	}
+
+	public function GetWelcomeMessageId(){
+		return $this->welcomeMessageId;
+	}
+
+	public function GetPrizeDetails($prizeId){
+
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqPrize = new prize();
+		$pqSponsor = new sponsor();
+
+		$pqPrizeSuccess = $pqPrize->readPrize($pqConn, $prizeId); 
+		$prize = $pqPrize->fetchPrize();
+
+		if(!empty($prize))
+		{
+			$sponsorSuccess = $pqSponsor->readSponsor($pqConn, $prize->sponsor_id);
+			$sponsor = $pqSponsor->fetchSponsor();		
+		}else{
+			$sponsorSuccess = false;
+		}
+
+		if($pqPrizeSuccess && !empty($prize) && $sponsorSuccess && !empty($sponsor))
+		{
+			$prizeDetails = '<h2 class="pq-carousel-caption-header"> Sponsored Prize of the Month by '.$sponsor->name.'</h2>
+							<h1 class="pq-carousel-caption-header text-center">'.$prize->description.'</h1>';
+
+		}else{
+			$prizeDetails = '<h2 class="pq-carousel-caption-header"> Error Retrieving Setup Info </h2>
+							<h1 class="pq-carousel-caption-header text-center">Site needs to be setup!</h1>';
+		}
+
+		return $prizeDetails;
+	}
+
+	public function GetBanner($prizeId){
+
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqBanner = new banner();
+		$pqPrize = new prize();
+
+		$pqPrizeSuccess = $pqPrize->readPrize($pqConn, $prizeId); 
+		$prize = $pqPrize->fetchPrize();
+
+		if(!empty($prize))
+		{
+			$selectParms = "banner_id, name";
+			$bannerSuccess = $pqBanner->readBanner($pqConn, $selectParms, $prize->banner_id);
+			$banner = $pqBanner->fetchBanner();
+
+			$_SESSION['bannerId'] = $banner->banner_id;
+		}else{
+			$bannerSuccess = false;
+		}
+
+		if($pqPrizeSuccess && !empty($prize) && $bannerSuccess && !empty($banner))
+		{
+			$banner ='<div class="fill pq-carousel" style="background-image:url(img.php);">';
+		}else{
+			$banner ='<div class="fill pq-carousel" style="background-image:url(img/banner-default.png);">';
+		}
+
+		return $banner;
+	}
+
+	public function GetImage($bannerId){
+
+		$pqDatabase = new pqDatabase();
+		$pqConn = $pqDatabase->connectDb();
+
+		$pqBanner = new banner();
+		$selectParms = "image, type";
+		$bannerSuccess = $pqBanner->readBanner($pqConn, $selectParms, $bannerId);
+		$banner = $pqBanner->fetchBanner();
+
+		return $banner;
+
+	}
 
 	public function GetLoginModal(){
 		$loginModal = '<!-- Start Modal -->
@@ -509,6 +1628,23 @@ class elementControl{
 			}
 		
 	}
+	public function GetNewPollAnnouncement($lastLog){
+		$categoryControl = new categoryControl();
+
+		return $categoryControl->SetNewPollAnnouncement($lastLog);
+	}
+
+	public function GetPollSidebar(){
+		$categoryControl = new categoryControl();
+
+		return $categoryControl->SetPollSidebar();
+	}
+
+	public function GetPollForm($pollFormError){
+		$categoryControl = new categoryControl();
+
+		return $categoryControl->SetPollForm($pollFormError);
+	}	
 
 	public function GetSidebar($list1,$list2,$list3,$list4,$list5,$list6)
 	{
